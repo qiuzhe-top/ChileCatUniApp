@@ -1,0 +1,1 @@
+<view class="content"><image class="logo" src></image><view class="text-area"><view class="title"><navigator url="/pages/knowing/floor" hover-class="navigator-hover">晚查寝</navigator></view><view data-event-opts="{{[['tap',[['msg']]]]}}" class="title" bindtap="__e">晚自修</view><view data-event-opts="{{[['tap',[['msg']]]]}}" class="title" bindtap="__e">早签</view></view></view>

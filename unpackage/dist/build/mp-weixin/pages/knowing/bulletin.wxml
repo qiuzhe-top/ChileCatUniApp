@@ -1,0 +1,1 @@
+<view class="bulletin">今日缺勤名单<block wx:for="{{peo_list}}" wx:for-item="item" wx:for-index="__i0__" wx:key="id"><view class="box">{{''+item.stuname+"\n\t\t"+item.roomname+''}}</view></block></view>

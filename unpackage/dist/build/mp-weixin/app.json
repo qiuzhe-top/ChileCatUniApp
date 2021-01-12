@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/knowing/floor",
+    "pages/knowing/room",
+    "pages/knowing/people",
+    "pages/login/login",
+    "pages/knowing/bulletin",
+    "pages/user/home",
+    "pages/login/register"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "工作"
+      },
+      {
+        "pagePath": "pages/user/home",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
