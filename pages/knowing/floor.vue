@@ -124,9 +124,9 @@ export default {
 .floor-box {
 	--webkit-display: flex;
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
+	justify-content: start;
 	align-items: center;
+	flex-wrap: wrap;
 }
 .floor-box .level {
 	/* background-color: rgb(266, 254, 145); */

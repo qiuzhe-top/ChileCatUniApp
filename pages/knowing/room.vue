@@ -27,6 +27,8 @@ export default {
 		return {
 			floor_name:'',
 			room_name:'',
+			floor_id:'',
+			floor_id_flg:'',
 			room_list: []
 		};
 	},
@@ -47,9 +49,27 @@ export default {
 			})
 		}
 	},	
+	onHide(){
+		this.$data.floor_id_flg = true
+		console.log(true)
+	},
+	onShow(){
+		console.log(this.$data.floor_id)
+		
+		if(this.$data.floor_id_flg){
+			this.$data.floor_id_flg = false
+			console.log("加载数据")
+			this.init_room(this.$data.floor_id)
+			console.log(666)
+		}
+		
+	},
 	onLoad: function(option) {
+		this.$data.floor_id_flg = false
+		console.log(false)
 		this.init_room(option.id)
 		this.floor_name = option.floor_name 
+		this.floor_id = option.id 
 		this.room_name = option.room_name 
 	}
 };
@@ -67,7 +87,7 @@ export default {
 		--webkit-display: flex;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-around;
+		justify-content: start;
 		align-items: center;
 	}
 	.room-box .level {

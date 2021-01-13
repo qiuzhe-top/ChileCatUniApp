@@ -15,7 +15,7 @@ export default {
 	onLoad() {},
 	methods: {
 		logout() {
-			console.log('123');
+			uni.setStorageSync('idcode', '');
 			uni.setStorageSync('token', '');
 			uni.reLaunch({
 				url: '/pages/login/login'

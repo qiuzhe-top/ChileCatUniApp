@@ -10,7 +10,7 @@
 
 
 		<!-- 基本示例 -->
-		<uni-popup ref="popup" type="center" :animation="false">
+		<uni-popup ref="popup" type="dialog" :animation="false">
 			<!-- @change="change" -->
 			<view class="popup-content">
 				<text class="user-name">{{user_obj.name}}</text>
@@ -115,8 +115,6 @@ export default {
 				this.$refs.popup.open();
 			}
 			this.$data.user_obj = item
-			console.log(this.$data.form)
-			// done()
 		},
 		// 输入原因
 		input_why(evt){
