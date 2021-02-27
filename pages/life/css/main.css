@@ -1,0 +1,23 @@
+.title {
+	font-size: 56rpx;
+	color: #3da7cf;
+}
+.box {
+	--webkit-display: flex;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+.box .level {
+	/* background-color: rgb(266, 254, 145); */
+	/* 	
+	margin-bottom: 15rpx;
+	margin-right: 15rpx;
+	border: #3f536e solid 1rpx; */
+	padding: 10rpx 40rpx;
+	margin: 10px 0;
+	margin-right: 7px;
+	display: inline-block;
+	box-shadow: #e8e8e8 1px 1px 10px;
+}

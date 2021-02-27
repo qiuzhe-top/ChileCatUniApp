@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/app/index",
+    "pages/home/home",
+    "pages/ask/history",
+    "pages/ask/index",
+    "pages/ask/details",
+    "pages/ask/result",
+    "pages/ask/froms",
+    "pages/life/floor",
+    "pages/life/room",
+    "pages/life/people",
+    "pages/life/bulletin",
+    "pages/auth/login",
+    "pages/auth/register"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#2b85e4",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/app/index",
+        "iconPath": "static/image/zy.png",
+        "selectedIconPath": "static/image/zyac.png",
+        "text": "工作"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "static/image/gr.png",
+        "selectedIconPath": "static/image/grac.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

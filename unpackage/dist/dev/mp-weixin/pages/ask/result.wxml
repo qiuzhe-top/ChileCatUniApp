@@ -1,0 +1,1 @@
+<view class="result">{{''+msg[flg]+''}}<button type="default" data-event-opts="{{[['tap',[['to_index']]]]}}" bindtap="__e">回到主页</button></view>
