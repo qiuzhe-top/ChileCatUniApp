@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "房间列表",
-  "usingComponents": {
-    "uni-popup": "/components/uni-popup/uni-popup"
-  }
-}

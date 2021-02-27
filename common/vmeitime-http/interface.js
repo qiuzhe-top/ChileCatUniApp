@@ -29,19 +29,21 @@ http.delete('user/1').then((res)=>{
 }) 
 
 */
+import store from '@/common/store'
 function getToken(){
 	var data = '4000'
-	let a = uni.getStorageSync('token')
+	let a = store.getters.token //uni.getStorageSync('token')
 	if(a) data = a
 	return data
 }
 export default {
 	config: {
-		// baseUrl: "https://unidemo.dcloud.net.cn/",
-		// baseUrl: 'http://127.0.0.1:8000/api/',
+		// baseUrl: 'https://mockapi.eolinker.com/EXhGIn9ed87b6462798dd7a08fe15a450cb0d4e9e5a5bc6',
+		baseUrl: 'http://127.0.0.1:8000/api/',
 		// baseUrl: 'http://192.168.0.3:8000/api/',
-		baseUrl: 'http://47.100.95.58:8000/api/',
+		// baseUrl: 'http://47.100.95.58:8000/api/',
 		// baseUrl: 'http://192.168.212.135:8000/api/',
+		// baseUrl: 'http://10.147.20.45:8000/api/',
 		header: {
 			'Content-Type':'application/json;charset=UTF-8',
 			// 'Content-Type':'application/x-www-form-urlencoded'
@@ -79,44 +81,54 @@ export default {
 	   	// 'Content-Type': 'application/x-www-form-urlencoded',
 	   	'token': getToken(),
 	   }
+	  
 		return new Promise((resolve, reject) => {
 			let _config = null
-			
+			// uni.showLoading({
+			//     title: '加载中'
+			// });
 			options.complete = (response) => {
+				// uni.hideLoading();
 				let statusCode = response.statusCode
 				response.config = _config
-				if (process.env.NODE_ENV === 'development') {
-					if (statusCode === 200) {
-						//console.log("【" + _config.requestId + "】 结果：" + JSON.stringify(response.data))
-					}
-				}
+				
 				if (this.interceptor.response) {
 					let newResponse = this.interceptor.response(response)
 					if (newResponse) {
 						response = newResponse
 					}
 				}
-				var code = response.data.code
-				if(code!=2000){
+				
+				// 统一的响应日志记录
+				_reslog(response)
+				
+				if (statusCode == 200) {
+					var code = response.data.code
+					if(code==2000){
+						resolve(response);
+					}else{
+						uni.showToast({
+						    title: response.data.message,
+							icon: "none",
+						    duration: 2000
+						});
+						if(code==5500){
+							uni.navigateTo({
+								url:'/pages/login/login'
+							})
+						}
+						reject(response)
+					}
+				}else{
+					if (process.env.NODE_ENV === 'development') {
+						//console.log("【" + _config.requestId + "】 结果：" + JSON.stringify(response.data))
+					}
 					uni.showToast({
-					    title: response.data.message,
+					    title: '服务器跑丢了！',
 						icon: "none",
 					    duration: 2000
 					});
-					// uni.showLoading({
-					// 	title: response.data.message
-					// });
-					// setTimeout(() => {
-					// 	uni.hideLoading();
-					// }, 1000);
-					console.log(code)
-				}
-				// 统一的响应日志记录
-				_reslog(response)
-				if (statusCode === 200) { //成功
-					resolve(response);
-				} else {
-					reject(response)
+					reject(response)					
 				}
 			}
 

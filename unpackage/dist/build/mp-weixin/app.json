@@ -1,13 +1,18 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/knowing/floor",
-    "pages/knowing/room",
-    "pages/knowing/people",
-    "pages/login/login",
-    "pages/knowing/bulletin",
-    "pages/user/home",
-    "pages/login/register"
+    "pages/app/index",
+    "pages/home/home",
+    "pages/ask/history",
+    "pages/ask/index",
+    "pages/ask/details",
+    "pages/ask/result",
+    "pages/ask/froms",
+    "pages/life/floor",
+    "pages/life/room",
+    "pages/life/people",
+    "pages/life/bulletin",
+    "pages/auth/login",
+    "pages/auth/register"
   ],
   "subPackages": [],
   "window": {
@@ -18,16 +23,20 @@
   },
   "tabBar": {
     "color": "#7A7E83",
-    "selectedColor": "#3cc51f",
+    "selectedColor": "#2b85e4",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/app/index",
+        "iconPath": "static/image/zy.png",
+        "selectedIconPath": "static/image/zyac.png",
         "text": "工作"
       },
       {
-        "pagePath": "pages/user/home",
+        "pagePath": "pages/home/home",
+        "iconPath": "static/image/gr.png",
+        "selectedIconPath": "static/image/grac.png",
         "text": "我的"
       }
     ]

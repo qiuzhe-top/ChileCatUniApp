@@ -1,88 +1,78 @@
 <template>
-	
 	<view class="content">
-		<!-- <img class="img_index" src="../../static/zhcy_index.png" /> -->
-		<!-- <view class="img_index">
-			
-		</view> -->
-		<image mode="aspectFit" src="http://ev20.oss-cn-hangzhou.aliyuncs.com/%E6%99%BA%E6%85%A7%E5%BD%A9%E4%BA%91/zhcy_index.png" ></image>
-		<!-- <image  src="../../static/5fe9ed6bba4e3d195c91b6634007d6c.png" ></image> -->
+		<image class="logo u" src="/static/logo.png"></image>
 		<view class="text-area">
-			<view class="title"><navigator url="/pages/knowing/floor" hover-class="navigator-hover">晚查寝</navigator></view>
-			<view class="title" @click="msg()">晚自修</view>
-			<view class="title" @click="msg()">早签</view>
-			<view class="title" @click="msg()">请假</view>
+			<text class="title">
+				uView - 多平台快速开发的UI框架
+			</text>
+		</view>
+		<view class="button-demo u">
+			<u-button class="u" :ripple="true">按钮组件演示</u-button>
+			<u-button >默认按钮</u-button>
+			<u-button type="primary" class="">主要按钮</u-button>
+			<u-button type="success">成功按钮</u-button>
+			<u-button type="info">信息按钮</u-button>
+			<u-button type="warning">警告按钮</u-button>
+			<u-button type="error">危险按钮</u-button>
+			<u-button plain>披荆</u-button>
+			
+			<!-- 或者显式设置为true -->
+			<u-button :plain="true">斩棘</u-button>
+		</view>
+		<view class="link-demo u-text-left">
+			<u-link :color="$u.color['primary']" :under-line="true" href="http://www.uviewui.com">跳转uView文档：www.uviewui.com</u-link>
 		</view>
 	</view>
 </template>
 
 <script>
-export default {
-	data() {
-		return {
-			title: 'Hello'
-		};
-	},
-	onLoad() {},
-	methods: {
-		msg() {
-			uni.showToast({
-				title: '功能开发中',
-				icon: 'none'
-			});
+	export default {
+		data() {
+			return {
+				title: 'Hello'
+			}
+		},
+		onLoad() {
+
+		},
+		methods: {
+
 		}
 	}
-};
 </script>
 
-<style>
-.content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding-top: 10rpx;
-	justify-content: center;
-}
-.img_index {
-	width: 200px;
-	/* padding-bottom: 150rpx; */
-	background-color: #04B8FC;
-	background-image: url(../../static/zhcy_index.png) ;
-	/* background-size:cover; */
-	background-size:contain;
-	height: 90rpx;
-}
-.logo {
-	height: 120rpx;
-	width: 200rpx;
-	margin-top: 200rpx;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 50rpx;
-}
+<style lang="scss" scoped>
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 40rpx;
+	}
 
-.text-area {
-	display: flex;
-	/* flex-direction: column; */
-	flex-wrap: wrap;
-	width: 80%;
-	margin: 0 auto;
-	margin-top: 20rpx;
-	justify-content: center;
-	/* align-items: center; */
-}
+	.logo {
+		height: 200rpx;
+		width: 200rpx;
+		margin-top: 100rpx;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 50rpx;
+	}
 
-.title {
-	font-size: 36rpx;
-	text-align: center;
-	color: #ffffff;
-	width: 200rpx;
-	height: 200rpx;
-	line-height: 200rpx;
-	/* padding: 50rpx; */
-	border-radius: 50%;
-	margin: 20rpx;
-	background-color: #23c5ff;
-}
-
+	.text-area {
+		display: flex;
+		justify-content: center;
+	}
+	
+	.title {
+		color: $u-content-color;
+	}
+	
+	.button-demo {
+		margin-top: 80rpx;
+	}
+	
+	.link-demo {
+		margin-top: 80rpx;
+	}
 </style>

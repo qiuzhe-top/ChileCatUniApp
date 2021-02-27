@@ -5,7 +5,6 @@ import http from './interface'
  * 如果项目很大可以将 url 独立成文件，接口分成不同的模块
  * 
  */
-
 // 单独导出(测试接口) import {test} from '@/common/vmeitime-http/'
 export const test = (data) => {
 	/* http.config.baseUrl = "http://localhost:8080/api/"
@@ -28,65 +27,6 @@ export const test = (data) => {
         data,
     })
 }
-
-// 轮播图
-export const login = (data) => {
-    return http.request({
-        url: 'user/auth',
-        method: 'POST', 
-        data,
-		// handle:true
-    })
-}
-// 验证验证码
-export const idcode_post = (data) => {
-    return http.request({
-        url: 'life/idcode',
-        method: 'POST', 
-        data,
-		// handle:true
-    })
-}
-// 验证token
-export const ValidationToken = (data) => {
-    return http.request({
-        url: 'life/validationToken',
-        method: 'POST', 
-		// handle:true
-    })
-}
-
-// 获取验证码
-export const idcode_get = (data) => {
-    return http.request({
-        url: 'life/idcode',
-        method: 'GET', 
-		// handle:true
-    })
-}
-// 获取楼->层
-export const buildinginfo = (data) => {
-    return http.request({
-        url: 'life/buildinginfo',
-        method: 'GET', 
-    })
-}
-// 获取层 -> 房间
-export const roominfo = (data) => {
-    return http.request({
-        url: 'life/roominfo',
-        method: 'GET',
-		data
-    })
-}
-//  房间 -> 学生
-export const stupositioninfo = (data) => {
-    return http.request({
-        url: 'life/stupositioninfo',
-        method: 'GET', 
-		data
-    })
-}
 // 今日缺勤列表
 export const recordsearch = (data) => {
   return http.request({
@@ -95,25 +35,11 @@ export const recordsearch = (data) => {
     data
   })
 }
-//  提交记录
-export const studentleak = (data) => {
-    return http.request({
-        url: 'life/studentleak',
-        method: 'POST', 
-		data,
-		handle:true
-    })
-}
-// 
-// 默认全部导出  import api from '@/common/vmeitime-http/'
+import user from '@/common/vmeitime-http/model/user.js'
+import life from '@/common/vmeitime-http/model/life.js'
+import ask from '@/common/vmeitime-http/model/ask.js'
 export default {
-	test,
-    login,
-	idcode_get,
-	idcode_post,
-	buildinginfo,
-	roominfo,
-	stupositioninfo,
-	studentleak,
-	recordsearch,
+	user,
+	life,
+	ask
 }
