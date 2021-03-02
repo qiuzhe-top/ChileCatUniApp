@@ -1,11 +1,10 @@
 import http from '../interface'
 
 // 请假类型
-export const leave_type = (data) => {
+export const leave_type = () => {
 	return http.request({
 		url: 'ask/leave_type',
-		method: 'GET',
-		data
+		method:'GET',
 	})
 }
 

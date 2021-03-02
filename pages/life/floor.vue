@@ -38,7 +38,7 @@ export default {
 		uniPopupDialog
 	},
 	onLoad() {
-		this.init_floor();
+		// this.init_floor();
 	},
 	mounted() {
 		// 判断是否需要输入验证码
@@ -50,10 +50,11 @@ export default {
 			 idcode = this.$store.getters.hygienist_code;
 		}
 		console.log(idcode)
+		// return
 		if (idcode) {
 			this.post_vfcode(idcode);
 		} else {
-			// this.show_message_box();
+			this.show_message_box();
 		}
 	},
 	methods: {
@@ -124,8 +125,8 @@ export default {
 };
 </script>
 
-<style>
-@import url('./css/main.css');
+<style lang="scss">
+@import url('./css/main.scss');
 .floor {
 	padding: 20rpx;
 }

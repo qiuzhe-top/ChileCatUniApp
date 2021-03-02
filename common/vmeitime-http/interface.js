@@ -39,11 +39,13 @@ function getToken(){
 export default {
 	config: {
 		// baseUrl: 'https://mockapi.eolinker.com/EXhGIn9ed87b6462798dd7a08fe15a450cb0d4e9e5a5bc6',
-		baseUrl: 'http://127.0.0.1:8000/api/',
-		// baseUrl: 'http://192.168.0.3:8000/api/',
+		// baseUrl: 'http://127.0.0.1:8000/api/',
+		// baseUrl: 'http://192.168.0.100:8000/api/',
 		// baseUrl: 'http://47.100.95.58:8000/api/',
-		// baseUrl: 'http://192.168.212.135:8000/api/',
+		// baseUrl: 'http://192.168.0.4:8000/api/',
+		// baseUrl: 'http://192.168.0.3:8000/api/',
 		// baseUrl: 'http://10.147.20.45:8000/api/',
+		baseUrl: 'http://47.102.215.230:8000/api/',
 		header: {
 			'Content-Type':'application/json;charset=UTF-8',
 			// 'Content-Type':'application/x-www-form-urlencoded'
@@ -102,8 +104,14 @@ export default {
 				// 统一的响应日志记录
 				_reslog(response)
 				
+				var code = response.data.code
 				if (statusCode == 200) {
-					var code = response.data.code
+					if(code==5500){
+						uni.navigateTo({
+							url:'/pages/auth/login'
+						})
+					}
+					
 					if(code==2000){
 						resolve(response);
 					}else{
@@ -112,11 +120,7 @@ export default {
 							icon: "none",
 						    duration: 2000
 						});
-						if(code==5500){
-							uni.navigateTo({
-								url:'/pages/login/login'
-							})
-						}
+					
 						reject(response)
 					}
 				}else{
@@ -124,12 +128,14 @@ export default {
 						//console.log("【" + _config.requestId + "】 结果：" + JSON.stringify(response.data))
 					}
 					uni.showToast({
-					    title: '服务器跑丢了！',
+					    title: '服务器异常！',
 						icon: "none",
 					    duration: 2000
 					});
+					
 					reject(response)					
 				}
+				
 			}
 
 			_config = Object.assign({}, this.config, options)

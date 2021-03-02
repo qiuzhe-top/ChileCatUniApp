@@ -6,7 +6,7 @@
 					<!-- <u-icon  size="32" name="search" class="u-m-r-10"></u-icon> -->
 					<text slot="icon" class="mark">*</text>
 					<text slot="right-icon">{{ form.ask_type }}</text>
-					<u-select slot="right-icon" v-model="ask_type_show" :list="list" @confirm="confirm_tim_ask_type"></u-select>
+					<u-select slot="right-icon" v-model="ask_type_show" :list="this.$store.getters.leave_type" @confirm="confirm_tim_ask_type"></u-select>
 				</u-cell-item>
 				<u-cell-item title="开始时间" arrow-direction="down" @click="ask_time_go_show = true">
 					<text slot="icon" class="mark">*</text>
@@ -89,8 +89,11 @@ export default {
 	
 	},
 	onLoad() {
-		// this.$store.dispatch('ask/leave_type');
-		this.form.ask_type = this.list[0].label;
+		this.$store.dispatch('ask/leave_type').then(res=>{
+			// console.log(res)
+			// this.$data.list = this.$store.getters.leave_type
+		this.form.ask_type = this.$store.getters.leave_type[0].label;
+		});
 	},
 	methods: {
 		// 提交请假条

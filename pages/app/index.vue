@@ -25,7 +25,8 @@
 				<u-icon class="icon" name="fangjian1" custom-prefix="custom-icon"></u-icon>
 				<view class="u-m-t-10">晚查寝</view>
 			</view>
-			<view class="item" @tap="go_to('floor', 'health')">
+			<view class="item" @tap="msg()">
+<!-- 			<view class="item" @tap="go_to('floor', 'health')"> -->
 				<u-icon class="icon" name="saoba1" custom-prefix="custom-icon"></u-icon>
 				<view class="u-m-t-10">查卫生</view>
 			</view>
@@ -68,11 +69,7 @@
 export default {
 	data() {
 		return {
-			url: {
-				ask: '/pages/ask/index', // 请假
-				floor: '/pages/life/floor', //进行晚查寝
-				bulletin: '/pages/life/bulletin' // 缺勤公告
-			},
+		
 			list: [
 				{
 					image: 'https://gitee.com/OtherNetwork/imgBox/raw/master/picimg/20210224162815.png',
@@ -106,11 +103,16 @@ export default {
 			});
 		},
 		go_to(key, type) {
+			var _url = {
+				ask: '/pages/ask/index', // 请假
+				floor: '/pages/life/floor', //进行晚查寝
+				bulletin: '/pages/life/bulletin' // 缺勤公告
+			}
 			if (key == 'floor') {
 				this.$store.commit('life/SET_WORK_TYPE', type);
 			}
 			uni.navigateTo({
-				url: this.$data.url[key]
+				url: _url[key]
 			});
 		},
 		titleChange(index) {

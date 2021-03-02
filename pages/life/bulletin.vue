@@ -1,6 +1,6 @@
 <template>
 	<view class="bulletin">
-		<image class="img_index" src="../../static/zhcy_index.png" mode="aspectFit"></image>
+		<image class="img_index" src="http://ev20.oss-cn-hangzhou.aliyuncs.com/%E6%99%BA%E6%85%A7%E5%BD%A9%E4%BA%91/zhcy_index.png" mode="aspectFit"></image>
 		<text class="title">今日缺勤名单</text>
 		<text class="time">{{time}}</text>
 		<view class="box" v-for="item in peo_list" v-bind:key="item.id">{{ item.stuname }} {{ item.roomname }}</view>
@@ -13,9 +13,9 @@
 					<t-th>原因</t-th>
 				</t-tr>
 				<t-tr v-for="item in tableList" :key="item.id">
-					<t-td>{{ item.roomname }}</t-td>
-					<t-td>{{ item.stuid }}</t-td>
-					<t-td>{{ item.stuname }}</t-td>
+					<t-td>{{ item.room_name }}</t-td>
+					<t-td>{{ item.student }}</t-td>
+					<t-td>{{ item.student_name }}</t-td>
 					<t-td>{{ item.reason }}</t-td>
 				</t-tr>
 			</t-table>
@@ -47,7 +47,7 @@ export default {
 		api.life.bulletin_life().then(res=>{
 			this.$data.tableList = res.data.data;
 			if(res.data.data.length<=0)return
-			var time_ = res.data.data[0].createdtime
+			var time_ = res.data.data[0].created_time
 			var index = time_.indexOf('T')
 			this.$data.time = time_.substring(0,index)
 			// console.log(res.data.data[0].createdtime.indexOf('T'));

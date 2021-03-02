@@ -2,7 +2,7 @@
 	<view class="people">
 		<view class="people-box">
 			<view v-for="item in people_list" class="box-map" v-bind:key="item.id" v-on:tap="to_people(item)">
-				<view class="level" v-bind:class="{ active: item.status == '0' }">{{ item.name }}</view>
+				<view class="level" v-bind:class="{ active: item.status == '1' }">{{ item.name }}</view>
 			</view>
 		</view>
 		<view class="button-sp-area" v-if="work_type == 'health'">
@@ -44,6 +44,7 @@
 			</radio-group>
 			<button type="default" v-on:tap="record()">确定</button>
 		</pop>
+		<text class="msg">白色背景：学生不在寝室</text>
 	</view>
 </template>
 
@@ -68,9 +69,9 @@ export default {
 			// 房间id
 			rommid: '',
 			// 学生缺勤原因
-			why: '',
+			reason: '',
 			// 生活部工作类型
-			work_type: 'health', //this.$store.getters.work_type,
+			work_type: this.$store.getters.work_type, //'health', //
 			// 寝室分数
 			score: 0,
 			// 缺勤原因
@@ -142,20 +143,28 @@ export default {
 	methods: {
 		// 加载学生数据
 		init_people(id) {
-			this.$api.life.stupositioninfo({ id: id }).then(res => {
+			this.$api.life.stupositioninfo({ room_id: id }).then(res => {
 				if (res.data.code == 2000) {
 					var peo_list = res.data.data;
 					this.$data.people_list = peo_list;
 				}
 			});
 		},
-		// 打开原因
+		// 点击姓名 打开原因/取消记录
 		to_people(item, done) {
-			if (item.status == '1') {
-				item.status = '0';
-				this.$data.form.unshift({
+			if (item.status == '0') {
+				item.status = '1';
+				var l = this.$data.form;
+				// l.forEach(function(k,i){
+				// 	if(k.id==item.id){
+				// 		// l.splice(i,1)
+				// 		l.remove(k)
+				// 		console.log('删除',k,i)
+				// 	}
+				// })
+				l.push({
 					id: item.id,
-					status: '0'
+					status: '1'
 				});
 				uni.showToast({
 					title: '撤销',
@@ -168,21 +177,21 @@ export default {
 		},
 		// 输入原因
 		input_why(evt) {
-			this.$data.user_obj.why = evt.target.value;
+			this.$data.user_obj.reason = evt.target.value;
 		},
 		// 单选选择原因
 		radioChange: function(evt) {
-			this.$data.user_obj.why = evt.target.value;
+			this.$data.user_obj.reason = evt.target.value;
 		},
 		// 写入不在列表
 		record() {
-			if (this.user_obj.why != undefined) {
-				this.$data.user_obj.status = '1';
-				// this.user_obj.why= this.$data.why
-				this.$data.form.unshift({
+			if (this.user_obj.reason != undefined) {
+				this.$data.user_obj.status = '0';
+				// this.user_obj.reason= this.$data.reason
+				this.$data.form.push({
 					id: this.$data.user_obj.id,
 					status: this.$data.user_obj.status,
-					why: this.$data.user_obj.why
+					reason: this.$data.user_obj.reason
 				});
 				uni.showToast({
 					title: '添加成功',
@@ -206,17 +215,17 @@ export default {
 			// 		d.unshift(item)
 			// 	}
 			// }
-
+			console.log(d)
+			// return
 			uni.showLoading({
 				title: '加载中'
 			});
-			this.$api.life.studentleak({ datas: d, roomid: this.$data.roomid, code: this.$store.getters.knowing_code }).then(res => {
+			this.$api.life.studentleak({ data: d, roomid: this.$data.roomid, code: this.$store.getters.knowing_code }).then(res => {
 				if (res.data.code == 2000) {
 					uni.showToast({
 						title: res.data.message,
 						duration: 6000
 					});
-
 					setTimeout(function() {
 						uni.navigateBack({
 							delta: 0.8
@@ -244,6 +253,7 @@ export default {
 		this.$data.roomid = option.id;
 		if (this.work_type == 'health') {
 			this.$data.people_list = this.$data.people_list1;
+			// this.init_people(option.id);
 		} else {
 			this.init_people(option.id);
 		}
@@ -312,5 +322,12 @@ export default {
 .active {
 	background-color: #04b8fc;
 	color: #f1f1f1;
+}
+.msg{
+	display: inline-block;
+	width: 100%;
+	margin: 20rpx;
+	color: $uni-text-color-disable;
+	text-align: center;
 }
 </style>

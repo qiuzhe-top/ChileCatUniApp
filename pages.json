@@ -99,8 +99,8 @@
 			"text": "工作"
 		}, {
 			"pagePath": "pages/home/home",
-			"iconPath": "static/image/gr.png",
-			"selectedIconPath": "static/image/grac.png",
+			"iconPath": "/static/image/gr.png",
+			"selectedIconPath": "/static/image/grac.png",
 			"text": "我的"
 		}]
 	}

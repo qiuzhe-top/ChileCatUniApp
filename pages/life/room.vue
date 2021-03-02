@@ -31,7 +31,7 @@ export default {
 	methods: {
 		// 加载房间数据
 		init_room() {
-			this.$api.life.roominfo({ id: this.layer.id ,type:this.$store.getters.work_type }).then(res => {
+			this.$api.life.roominfo({ floor_id: this.layer.id ,type:this.$store.getters.work_type }).then(res => {
 				this.$data.room_list = res.data.data;
 			});
 		},
@@ -58,12 +58,9 @@ export default {
 </script>
 
 <style>
-@import url('./css/main.css');
+@import url('./css/main.scss');
 .room {
 	padding: 20rpx;
 }
-.active {
-	color: #ffffff;
-	background-color: #04b8fc;
-}
+
 </style>

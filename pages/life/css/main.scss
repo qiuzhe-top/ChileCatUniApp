@@ -1,6 +1,9 @@
 .title {
-	font-size: 56rpx;
-	color: #3da7cf;
+	font-size: 38rpx;
+	color: #ff9900;
+	font-weight: bold;
+	margin-bottom: 30rpx;
+	margin-top: 20rpx;
 }
 .box {
 	--webkit-display: flex;
@@ -15,9 +18,15 @@
 	margin-bottom: 15rpx;
 	margin-right: 15rpx;
 	border: #3f536e solid 1rpx; */
-	padding: 10rpx 40rpx;
-	margin: 10px 0;
+	padding: 20rpx 40rpx;
+	margin: 10px 10rpx;
 	margin-right: 7px;
 	display: inline-block;
+	font-weight: bold;
+	color: #999;
 	box-shadow: #e8e8e8 1px 1px 10px;
+}
+.box .active {
+	background-color: #04b8fc;
+	color: #fff;
 }

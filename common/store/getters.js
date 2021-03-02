@@ -14,6 +14,7 @@ const getters = {
   
   ask_now: state => state.ask.ask_now,
   ask_all: state => state.ask.ask_all,
+  leave_type: state => state.ask.leave_type,
   monitor: state => state.ask.monitor
 }
 export default getters

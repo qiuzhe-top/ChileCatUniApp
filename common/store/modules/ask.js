@@ -39,15 +39,18 @@ const actions = {
 	// 获取类型
 	leave_type({
 		commit
-	}, data) {
-		console.log('获取类型')
+	},data='') {
 		return new Promise((resolve, reject) => {
-			api.ask.leave_type(data).then(res => {
-				console.log(res.data)
+			console.log('// 获取类型')
+			api.ask.leave_type().then(res => {
+				console.log('// 获取类型')
 				this.commit('ask/SET_LEAVE_TYPE', res.data.data)
+				resolve(res)
 			}).catch(err => {
-
+				
+				reject(err)
 			})
+		
 		})
 	},
 	// 获取请假条

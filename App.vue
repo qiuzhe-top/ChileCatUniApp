@@ -74,9 +74,9 @@
 
 <style  lang="scss">
 	/* 公共样式 */
-	// @import './common/css/iconfont.css';
+	@import './common/css/iconfont.css';
 	@import './common/css/common.css';
-	@import url('//at.alicdn.com/t/font_2269800_oq1y3uwsvx.css');
+	// @import url('https://at.alicdn.com/t/font_2269800_oq1y3uwsvx.css');
 	@import "uview-ui/index.scss";
 	body{
 		background: #FFFFFF !important;
