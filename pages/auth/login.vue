@@ -5,7 +5,7 @@
 		<view class="box username"><u-input v-model="username" placeholder="账号"  maxlength="20" /></view>
 		<view class="box password"><u-input v-model="password" placeholder="密码" type="password" maxlength="20" /></view>
 		<u-button class="login u-font-xs" type="primary" :loading="isRotate" v-on:tap="startLogin()">登录</u-button>
-		<view class="forget u-text-center u-m-t-50 u-font-sm">忘记密码</view>
+		<view class="forget u-text-center u-m-t-50 u-font-sm">忘记密码!</view>
 	</view>
 </template>
 
