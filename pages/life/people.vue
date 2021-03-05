@@ -62,7 +62,7 @@ export default {
 			// 用户卫生扣分名单
 			user_points: [],
 			// 用户扣分规则
-			user_point_rules:[],
+			user_point_rules: [],
 			// 当前用户对象
 			user_obj: {},
 			msgType: '',
@@ -77,7 +77,7 @@ export default {
 			// 缺勤原因
 			miss_items: ['请假', '无故'],
 			current: 0,
-		
+
 			// 寝室卫生扣分规则
 			dorm_point_rules: [
 				{
@@ -215,7 +215,7 @@ export default {
 			// 		d.unshift(item)
 			// 	}
 			// }
-			console.log(d)
+			console.log(d);
 			// return
 			uni.showLoading({
 				title: '加载中'
@@ -249,6 +249,30 @@ export default {
 			console.log(e);
 		}
 	},
+	onBackPress(e) {
+		if (e.from == 'backbutton') {
+				if(this.$data.form.length!=0){
+					uni.showModal({
+					    title: '注意',
+					    content: '未提交记录是否返回',
+					    success: function (res) {
+					        if (res.confirm) {
+								uni.navigateBack({
+									delta: 1
+								});
+					        } else if (res.cancel) {
+								return true; //阻止默认返回行为
+					        }
+					    }
+					});
+				}else{
+					uni.navigateBack({
+						delta: 1
+					});
+				}
+			return true; //阻止默认返回行为
+		}
+	},
 	onLoad: function(option) {
 		this.$data.roomid = option.id;
 		if (this.work_type == 'health') {
@@ -274,7 +298,7 @@ export default {
 	--webkit-display: flex;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
 	margin-top: 100rpx;
 }
@@ -283,15 +307,15 @@ export default {
 	text-align: center;
 }
 .people-box .level {
-	/* background-color: rgb(266, 254, 145); */
 	min-width: 110rpx;
 	padding: 25rpx 60rpx;
 	margin-bottom: 60rpx;
 	margin-right: 15rpx;
 	display: inline-block;
-	/* border: #3f536e solid 1rpx; */
 	box-shadow: #c3c3c3 1px 1px 10px;
+	
 }
+
 .people .popup-content {
 	width: 90%;
 	background-color: #fff;
@@ -323,7 +347,7 @@ export default {
 	background-color: #04b8fc;
 	color: #f1f1f1;
 }
-.msg{
+.msg {
 	display: inline-block;
 	width: 100%;
 	margin: 20rpx;

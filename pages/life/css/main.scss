@@ -8,10 +8,11 @@
 .box {
 	--webkit-display: flex;
 	display: flex;
+	justify-content: space-between;
 	flex-wrap: wrap;
-	justify-content: flex-start;
-	align-items: center;
+	// align-items: center;
 }
+
 .box .level {
 	/* background-color: rgb(266, 254, 145); */
 	/* 	
@@ -20,11 +21,14 @@
 	border: #3f536e solid 1rpx; */
 	padding: 20rpx 40rpx;
 	margin: 10px 10rpx;
-	margin-right: 7px;
+	// margin-right: 7px;
 	display: inline-block;
 	font-weight: bold;
 	color: #999;
 	box-shadow: #e8e8e8 1px 1px 10px;
+}
+.box .level:last-child {
+    margin-right: auto;
 }
 .box .active {
 	background-color: #04b8fc;

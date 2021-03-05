@@ -6,9 +6,7 @@
 				<text>{{ layer.name }}</text>
 			</view>
 			<view class="box">
-				<view v-for="item in room_list" v-bind:key="item.id" v-on:tap="to_people(item.id)">
-					<view class="level" v-bind:class="{ active: item.status == '1' }">{{ item.name }}</view>
-				</view>
+					<view class="level" v-for="item in room_list" v-bind:key="item.id" v-on:tap="to_people(item.id)" v-bind:class="{ active: item.status == '1' }">{{ layer.name.substr(1,1) }}{{ item.name }}</view>
 			</view>
 		</view>
 	</view>

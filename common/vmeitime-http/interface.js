@@ -36,18 +36,29 @@ function getToken(){
 	if(a) data = a
 	return data
 }
+function getUrl(){
+	if(process.env.NODE_ENV === 'development'){
+		// return 'http://127.0.0.1:8000/api/'
+		// return 'http://192.168.0.100:8000/api/'
+		return 'http://192.168.0.4:8000/api/'
+		// return 'http://192.168.0.3:8000/api/'
+		// return'http://10.147.20.45:8000/api/'
+		// return 'http://127.0.0.1:8000/api/'
+	}else{
+		// return 'http://47.100.95.58:8000/api/'
+		return 'http://47.102.215.230:8000/api/'
+	}
+}
 export default {
+
 	config: {
 		// baseUrl: 'https://mockapi.eolinker.com/EXhGIn9ed87b6462798dd7a08fe15a450cb0d4e9e5a5bc6',
-		// baseUrl: 'http://127.0.0.1:8000/api/',
-		// baseUrl: 'http://192.168.0.100:8000/api/',
-		// baseUrl: 'http://47.100.95.58:8000/api/',
-		// baseUrl: 'http://192.168.0.4:8000/api/',
-		// baseUrl: 'http://192.168.0.3:8000/api/',
-		// baseUrl: 'http://10.147.20.45:8000/api/',
-		baseUrl: 'http://47.102.215.230:8000/api/',
+
+		baseUrl:getUrl(),
+
 		header: {
 			'Content-Type':'application/json;charset=UTF-8',
+			'Access-Contro1-Allow-origin':'*'
 			// 'Content-Type':'application/x-www-form-urlencoded'
 		},  
 		data: {},
@@ -128,7 +139,7 @@ export default {
 						//console.log("【" + _config.requestId + "】 结果：" + JSON.stringify(response.data))
 					}
 					uni.showToast({
-					    title: '服务器异常！',
+					    title: '刘海嘉接异常！',
 						icon: "none",
 					    duration: 2000
 					});
