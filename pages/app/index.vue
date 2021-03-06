@@ -30,7 +30,8 @@
 				<u-icon class="icon" name="saoba1" custom-prefix="custom-icon"></u-icon>
 				<view class="u-m-t-10">查卫生</view>
 			</view>
-			<view class="item" @tap="go_to('ask')">
+			<!-- <view class="item" @tap="go_to('ask')"> -->
+			<view class="item" @tap="msg()">
 				<u-icon class="icon" name="shenpi" custom-prefix="custom-icon"></u-icon>
 				<view class="u-m-t-10">请假</view>
 			</view>

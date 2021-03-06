@@ -4,13 +4,6 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/auth/login",
-			"style": {
-				"navigationBarTitleText": "登录",
-				"navigationStyle": "custom"
-			}
-		},
-		{
 			"path": "pages/app/index",
 			"style": {
 				"navigationBarTitleText": "智慧彩云"
@@ -25,30 +18,37 @@
 			}
 		},
 		{
+			"path": "pages/auth/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/ask/history",
 			"style": {
 				"navigationBarTitleText": "历史"
 				// "navigationStyle": "custom"
 			}
-		},{
+		}, {
 			"path": "pages/ask/index",
 			"style": {
 				"navigationBarTitleText": "请假"
 				// "navigationStyle": "custom"
 			}
-		},{
+		}, {
 			"path": "pages/ask/details",
 			"style": {
 				"navigationBarTitleText": "详情"
 				// "navigationStyle": "custom"
 			}
-		},{
+		}, {
 			"path": "pages/ask/result",
 			"style": {
 				"navigationBarTitleText": "执行结果"
 				// "navigationStyle": "custom"
 			}
-		},{
+		}, {
 			"path": "pages/ask/froms",
 			"style": {
 				"navigationBarTitleText": "请假"
@@ -71,13 +71,13 @@
 			"style": {
 				"navigationBarTitleText": "学生列表"
 			}
-		},{
+		}, {
 			"path": "pages/life/bulletin",
 			"style": {
 				"navigationBarTitleText": "违规公告"
 			}
 		},
-	 
+
 		{
 			"path": "pages/auth/register",
 			"style": {}
