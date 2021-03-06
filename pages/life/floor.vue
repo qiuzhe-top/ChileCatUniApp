@@ -1,8 +1,16 @@
 <template>
 	<view class="floor">
 		<!-- 输入验证码 -->
-		<uni-popup ref="dialogInput" type="dialog" @change="change">
-			<uni-popup-dialog mode="input" title="输入验证码" value="" placeholder="请输入内容" @confirm="dialogInputConfirm"></uni-popup-dialog>
+		<uni-popup ref="dialogInput" type="dialog">
+			<uni-popup-dialog
+				mode="input"
+				title="输入验证码"
+				value=""
+				@close="close"
+				:before-close="true"
+				placeholder="请输入内容"
+				@confirm="dialogInputConfirm"
+			></uni-popup-dialog>
 		</uni-popup>
 
 		<!-- 楼=>层 列表展示 -->
@@ -28,8 +36,7 @@ export default {
 			message: '这是一条成功消息提示',
 			value: '默认输入的内容',
 			// 楼层数据
-			floor_list: [],
-	
+			floor_list: []
 		};
 	},
 	components: {
@@ -44,12 +51,12 @@ export default {
 		// 判断是否需要输入验证码
 		let work_type = this.$store.getters.work_type;
 		let idcode = '';
-		if(work_type=='absence'){
-			 idcode = this.$store.getters.knowing_code;
-		}else if(work_type='health'){
-			 idcode = this.$store.getters.hygienist_code;
+		if (work_type == 'absence') {
+			idcode = this.$store.getters.knowing_code;
+		} else if ((work_type = 'health')) {
+			idcode = this.$store.getters.hygienist_code;
 		}
-		console.log(idcode)
+		console.log(idcode);
 		// return
 		if (idcode) {
 			this.post_vfcode(idcode);
@@ -76,16 +83,15 @@ export default {
 				.idcode_post({ idcode: idcode, type: this.$store.getters.work_type })
 				.then(res => {
 					if (res.data.code == 2000) {
-						
 						// 保存验证码
-						if(this.$store.getters.work_type=='absence'){
-							 this.$store.commit('life/SET_KNOWING_CODE', idcode);
-						}else if(this.$store.getters.work_type='health'){
+						if (this.$store.getters.work_type == 'absence') {
+							this.$store.commit('life/SET_KNOWING_CODE', idcode);
+						} else if ((this.$store.getters.work_type = 'health')) {
 							this.$store.commit('life/SET_HYGIENIST_CODE', idcode);
 						}
-						
+
 						this.init_floor();
-						
+
 						try {
 							done();
 						} catch (e) {}
@@ -101,7 +107,6 @@ export default {
 		dialogInputConfirm(done, val) {
 			this.post_vfcode(val, done);
 			this.value = val;
-		
 		},
 		// 跳转到房间列表
 		to_room(floor, layer) {
@@ -111,14 +116,12 @@ export default {
 				url: '/pages/life/room'
 			});
 		},
-		// popup 状态发生变化触发
-		change(e) {
-			// console.log('popup ' + e.type + ' 状态', e.show);
-			if(!e.show){
-				uni.navigateBack({
-					delta:1
-				})
-			}
+		// 点击取消按钮触发
+		close(done) {
+			uni.navigateBack({
+				delta: 1
+			});
+			done();
 		}
 	}
 };

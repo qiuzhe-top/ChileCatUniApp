@@ -5,8 +5,11 @@
 				<text>{{ floor.name }}</text>
 				<text>{{ layer.name }}</text>
 			</view>
+
 			<view class="box">
-					<view class="level" v-for="item in room_list" v-bind:key="item.id" v-on:tap="to_people(item.id)" v-bind:class="{ active: item.status == '1' }">{{ layer.name.substr(1,1) }}{{ item.name }}</view>
+				<view class="level" v-for="item in room_list" v-bind:key="item.id" v-on:tap="to_people(item.id)" v-bind:class="{ active: item.status == '1' }">
+					{{ layer.name.substr(1, 1) }}{{ item.name }}
+				</view>
 			</view>
 		</view>
 	</view>
@@ -29,8 +32,12 @@ export default {
 	methods: {
 		// 加载房间数据
 		init_room() {
-			this.$api.life.roominfo({ floor_id: this.layer.id ,type:this.$store.getters.work_type }).then(res => {
-				this.$data.room_list = res.data.data;
+			this.$api.life.roominfo({ floor_id: this.layer.id, type: this.$store.getters.work_type }).then(res => {
+				var room_list = res.data.data;
+				room_list.sort(function(a, b) {
+					return parseInt(a.name) - parseInt(b.name);
+				});
+				this.$data.room_list = room_list;
 			});
 		},
 		// 跳转到房间列表
@@ -60,5 +67,4 @@ export default {
 .room {
 	padding: 20rpx;
 }
-
 </style>
