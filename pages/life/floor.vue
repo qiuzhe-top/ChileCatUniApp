@@ -99,15 +99,9 @@ export default {
 		},
 		// 输入对话框的确定事件
 		dialogInputConfirm(done, val) {
-			uni.showLoading({
-				// title: '3秒后会关闭'
-			});
 			this.post_vfcode(val, done);
 			this.value = val;
-			setTimeout(() => {
-				uni.hideLoading();
-				// 关闭窗口后，恢复默认内容
-			}, 500);
+		
 		},
 		// 跳转到房间列表
 		to_room(floor, layer) {
@@ -119,7 +113,12 @@ export default {
 		},
 		// popup 状态发生变化触发
 		change(e) {
-			console.log('popup ' + e.type + ' 状态', e.show);
+			// console.log('popup ' + e.type + ' 状态', e.show);
+			if(!e.show){
+				uni.navigateBack({
+					delta:1
+				})
+			}
 		}
 	}
 };
