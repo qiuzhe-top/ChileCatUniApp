@@ -2,7 +2,7 @@ import store from '@/common/store'
 import api from '@/common/vmeitime-http/index.js'
 const getDefaultState = () => {
 	return {
-		name: '1',
+		name: '',
 		avatar: '',
 		information: '',
 		classList: '',
@@ -41,13 +41,13 @@ const actions = {
 		return new Promise((resolve, reject) => {
 			api.user.login(request).then(res => {
 				if (res.data.code == 2000) {
-					// try {
-					// 	uni.setStorageSync('token', res.data.data.token); //存入缓存
-					// } catch (e) {
-					// 	// error
-					// }
+					try {
+						uni.setStorageSync('token', res.data.data.token); //存入缓存
+					} catch (e) {
+						// error
+					}
 					// store.commit
-					store.commit('user/SET_TOKEN',res.data.data.token)
+					// store.commit('user/SET_TOKEN',res.data.data.token)
 					// uni.showToast({
 					// 	icon: 'success',
 					// 	position: 'bottom',
@@ -55,12 +55,18 @@ const actions = {
 					// });
 					
 					this.dispatch('user/getInformation')
-					// uni.reLaunch({
-					// 	url: '/pages/index/index'
-					// });
-					uni.navigateBack({
-					    delta: 1
-					});
+				
+					if(getCurrentPages().length==1){
+						console.log('redirectTo')
+						uni.switchTab ({
+							url:'/pages/app/index'
+						})
+					}else{
+						uni.navigateBack({
+							delta: 1
+						});
+					}
+					
 				} else {
 					uni.showToast({
 						icon: 'none',

@@ -4,6 +4,13 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/auth/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/app/index",
 			"style": {
 				"navigationBarTitleText": "智慧彩云"
@@ -13,7 +20,7 @@
 		{
 			"path": "pages/home/home",
 			"style": {
-				// "navigationBarTitleText": "个人中心"
+				"navigationBarTitleText": "个人中心",
 				"navigationStyle": "custom"
 			}
 		},
@@ -70,12 +77,7 @@
 				"navigationBarTitleText": "违规公告"
 			}
 		},
-		{
-			"path": "pages/auth/login",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		}, 
+	 
 		{
 			"path": "pages/auth/register",
 			"style": {}

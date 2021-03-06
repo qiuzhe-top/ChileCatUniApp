@@ -29,10 +29,10 @@ http.delete('user/1').then((res)=>{
 }) 
 
 */
-import store from '@/common/store'
+// import store from '@/common/store'
 function getToken(){
-	var data = '4000'
-	let a = store.getters.token //uni.getStorageSync('token')
+	var data = ''
+	let a = uni.getStorageSync('token') // store.getters.token
 	if(a) data = a
 	return data
 }
@@ -40,7 +40,7 @@ function getUrl(){
 	if(process.env.NODE_ENV === 'development'){
 		// return 'http://127.0.0.1:8000/api/'
 		// return 'http://192.168.0.100:8000/api/'
-		return 'http://192.168.0.4:8000/api/'
+		return 'http://192.168.0.2:8000/api/'
 		// return 'http://192.168.0.3:8000/api/'
 		// return'http://10.147.20.45:8000/api/'
 		// return 'http://127.0.0.1:8000/api/'
@@ -117,12 +117,7 @@ export default {
 				
 				var code = response.data.code
 				if (statusCode == 200) {
-					if(code==5500){
-						uni.navigateTo({
-							url:'/pages/auth/login'
-						})
-					}
-					
+				
 					if(code==2000){
 						resolve(response);
 					}else{
@@ -138,6 +133,13 @@ export default {
 					if (process.env.NODE_ENV === 'development') {
 						//console.log("【" + _config.requestId + "】 结果：" + JSON.stringify(response.data))
 					}
+					
+					if(code==5500){
+						uni.navigateTo({
+							url:'/pages/auth/login'
+						})
+					}
+					
 					uni.showToast({
 					    title: '刘海嘉接异常！',
 						icon: "none",
