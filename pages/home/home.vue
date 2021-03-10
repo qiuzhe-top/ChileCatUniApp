@@ -22,6 +22,9 @@
 				<u-cell-item v-if="name!=this.title" icon="setting" title="退出登录" v-on:tap="logout()"></u-cell-item>
 			</u-cell-group>
 		</view>
+		<view class="version">
+			V0.0
+		</view>
 	</view>
 </template>
 
@@ -72,5 +75,13 @@ page{
 }
 .user-box{
 	background-color: #fff;
+}
+.version{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom: 5rpx;
+	font-size: $uni-font-size-xs;
+	color: $uni-text-color-disable;
 }
 </style>
