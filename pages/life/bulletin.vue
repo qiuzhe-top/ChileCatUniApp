@@ -13,10 +13,12 @@
 					<t-th>原因</t-th>
 				</t-tr>
 				<t-tr v-for="item in tableList" :key="item.id">
-					<t-td>{{ item.room_name }}</t-td>
-					<t-td>{{ item.student }}</t-td>
-					<t-td>{{ item.student_name }}</t-td>
-					<t-td>{{ item.reason }}</t-td>
+					<template v-if="item" >
+						<t-td >{{ item.room_name }}</t-td>
+						<t-td>{{ item.student }}</t-td>
+						<t-td :class="item.is_active ? 'is_active' : ''">{{ item.student_name }}</t-td>
+						<t-td>{{ item.reason }}</t-td>
+					</template>
 				</t-tr>
 			</t-table>
 		</view>
@@ -40,17 +42,26 @@ export default {
 		return {
 			peo_list: [],
 			tableList: [],
-			time: '2021-01-12'
+			time: ''
 		};
 	},
 	onLoad: function(option) {
 		api.life.bulletin_life().then(res => {
-			this.$data.tableList = res.data.data;
+			var list = res.data.data;
+			var classname = this.$store.getters.grade
+			for (var i in list) {
+				var obj = list[i]
+				if (obj.classname==classname){
+					obj.is_active= true
+					list.unshift(obj)
+					list[++i] = false
+				}
+			}
+			this.$data.tableList = list
 			if (res.data.data.length <= 0) return;
 			var time_ = res.data.data[0].created_time;
 			var index = time_.indexOf('T');
 			this.$data.time = time_.substring(0, index);
-			// console.log(res.data.data[0].createdtime.indexOf('T'));
 		});
 	}
 };
@@ -87,5 +98,8 @@ export default {
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+}
+.is_active{
+	color: red;
 }
 </style>

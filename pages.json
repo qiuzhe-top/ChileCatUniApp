@@ -74,7 +74,7 @@
 		}, {
 			"path": "pages/life/bulletin",
 			"style": {
-				"navigationBarTitleText": "违规公告"
+				"navigationBarTitleText": "考勤公告"
 			}
 		},
 

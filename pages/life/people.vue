@@ -75,7 +75,7 @@ export default {
 			// 寝室分数
 			score: 0,
 			// 缺勤原因
-			miss_items: ['请假', '无故'],
+			miss_items: ['请假', '当兵','未到校','无故'],
 			current: 0,
 
 			// 寝室卫生扣分规则
