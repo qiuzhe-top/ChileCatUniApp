@@ -25,9 +25,25 @@ export const getInformation = (data) => {
     })
 }
 
+// 心情
+export const mood = (data) =>{
+	return http.request({
+		url:'user/mymood',
+		method: 'post',
+	})
+}
 
+// 活动打卡
+export const activeity = (data) =>{
+	return http.request({
+		url:'user/activeity',
+		method:'get',
+		data
+	})
+}
 export default {
 	login,
 	ValidationToken,
-	getInformation
+	getInformation,
+	activeity
 }

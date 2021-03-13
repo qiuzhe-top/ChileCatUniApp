@@ -23,7 +23,7 @@
 			</u-cell-group>
 		</view>
 		<view class="version">
-			V0.0
+			V0.1
 		</view>
 	</view>
 </template>
@@ -81,7 +81,7 @@ page{
 	width: 100%;
 	text-align: center;
 	bottom: 5rpx;
-	font-size: $uni-font-size-xs;
-	color: $uni-text-color-disable;
+	font-size: 15rpx;
+	color: #dadada;
 }
 </style>

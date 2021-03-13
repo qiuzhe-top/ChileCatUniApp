@@ -47,16 +47,16 @@
 		</view>
 		<u-grid :col="4" class="u-m-t-30  u-row-between"  :border="false">
 			<u-grid-item @click="msg()" >
-				<u-icon name="hourglass" :size="46"></u-icon>
+				<u-icon name="tongxueshangke-" :size="46" custom-prefix="custom-icon"></u-icon>
 				<view class="grid-text">晚自修</view>
 			</u-grid-item>
-			<u-grid-item>
-				<u-icon name="hourglass" :size="46"></u-icon>
-				<view class="grid-text">开发中</view>
+			<u-grid-item @click="go_to('activity')">
+				<u-icon name="daka" :size="46" custom-prefix="custom-icon"></u-icon>
+				<view class="grid-text">活动</view>
 			</u-grid-item>
-			<u-grid-item>
-				<u-icon name="hourglass" :size="46"></u-icon>
-				<view class="grid-text">开发中</view>
+			<u-grid-item @click="go_to('mood')">
+				<u-icon name="xinqingdongtai"  custom-prefix="custom-icon":size="46"></u-icon>
+				<view class="grid-text">心情分享</view>
 			</u-grid-item>
 			<u-grid-item>
 				<u-icon name="hourglass" :size="46"></u-icon>
@@ -73,15 +73,15 @@ export default {
 		
 			list: [
 				{
-					image: 'https://gitee.com/OtherNetwork/imgBox/raw/master/picimg/20210224162815.png',
+					image: 'https://gitee.com/OtherNetwork/imgBox/raw/master/picimg/20210313204642.png',
 					title: '昨夜星辰昨夜风，画楼西畔桂堂东'
 				},
 				{
-					image: 'https://gitee.com/OtherNetwork/imgBox/raw/master/picimg/20210224162852.png',
+					image: 'https://gitee.com/OtherNetwork/imgBox/raw/master/picimg/20210313204852.png',
 					title: '身无彩凤双飞翼，心有灵犀一点通'
 				},
 				{
-					image: 'https://gitee.com/OtherNetwork/imgBox/raw/master/picimg/20210224162917.png',
+					image: 'https://gitee.com/OtherNetwork/imgBox/raw/master/picimg/20210313204927.png',
 					title: '谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳'
 				}
 			],
@@ -107,7 +107,9 @@ export default {
 			var _url = {
 				ask: '/pages/ask/index', // 请假
 				floor: '/pages/life/floor', //进行晚查寝
-				bulletin: '/pages/life/bulletin' // 缺勤公告
+				bulletin: '/pages/life/bulletin', // 缺勤公告
+				activity: '/pages/app/activity/index', // 活动打卡
+				mood: '/pages/app/mood/index' // 缺勤公告
 			}
 			if (key == 'floor') {
 				this.$store.commit('life/SET_WORK_TYPE', type);

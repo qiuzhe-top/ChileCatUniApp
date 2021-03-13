@@ -77,7 +77,23 @@
 				"navigationBarTitleText": "考勤公告"
 			}
 		},
-
+		{
+			"path": "pages/app/mood/index",
+			"style": {
+				"navigationBarTitleText": "心情分享"
+			}
+		},
+		{
+			"path": "pages/app/activity/index",
+			"style": {
+				"navigationBarTitleText": "活动"
+			}
+		},	{
+			"path": "pages/app/activity/details",
+			"style": {
+				"navigationBarTitleText": "活动详情"
+			}
+		},
 		{
 			"path": "pages/auth/register",
 			"style": {}
