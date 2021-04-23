@@ -26,7 +26,7 @@
 				<view class="u-m-t-10">晚查寝</view>
 			</view>
 			<view class="item" @tap="msg()">
-<!-- 			<view class="item" @tap="go_to('floor', 'health')"> -->
+				<!-- 			<view class="item" @tap="go_to('floor', 'health')"> -->
 				<u-icon class="icon" name="saoba1" custom-prefix="custom-icon"></u-icon>
 				<view class="u-m-t-10">查卫生</view>
 			</view>
@@ -40,13 +40,10 @@
 				<view class="u-m-t-10">公告</view>
 			</view>
 		</view>
-		
-		
-		<view class="u-font-xl u-m-t-60 u-font-weight-bold">
-			在线应用
-		</view>
-		<u-grid :col="4" class="u-m-t-30  u-row-between"  :border="false">
-			<u-grid-item @click="msg()" >
+
+		<view class="u-font-xl u-m-t-60 u-font-weight-bold">在线应用</view>
+		<u-grid :col="4" class="u-m-t-30  u-row-between" :border="false">
+			<u-grid-item @click="msg()">
 				<u-icon name="tongxueshangke-" :size="46" custom-prefix="custom-icon"></u-icon>
 				<view class="grid-text">晚自修</view>
 			</u-grid-item>
@@ -55,7 +52,7 @@
 				<view class="grid-text">活动</view>
 			</u-grid-item>
 			<u-grid-item @click="go_to('mood')">
-				<u-icon name="xinqingdongtai"  custom-prefix="custom-icon":size="46"></u-icon>
+				<u-icon name="xinqingdongtai" custom-prefix="custom-icon" :size="46"></u-icon>
 				<view class="grid-text">心情分享</view>
 			</u-grid-item>
 			<u-grid-item>
@@ -63,14 +60,17 @@
 				<view class="grid-text">开发中</view>
 			</u-grid-item>
 		</u-grid>
+		<myactive>
+			
+		</myactive>
 	</view>
 </template>
 
 <script>
+import myactive from './myactive.vue';
 export default {
 	data() {
 		return {
-		
 			list: [
 				{
 					image: 'https://gitee.com/OtherNetwork/imgBox/raw/master/picimg/20210313204642.png',
@@ -96,6 +96,9 @@ export default {
 		// 	console.log(111, res);
 		// });
 	},
+	components: {
+		myactive
+	},
 	methods: {
 		msg() {
 			uni.showToast({
@@ -110,7 +113,7 @@ export default {
 				bulletin: '/pages/life/bulletin', // 缺勤公告
 				activity: '/pages/app/activity/index', // 活动打卡
 				mood: '/pages/app/mood/index' // 缺勤公告
-			}
+			};
 			if (key == 'floor') {
 				this.$store.commit('life/SET_WORK_TYPE', type);
 			}
@@ -143,7 +146,7 @@ export default {
 };
 </script>
 
-<style   lang="scss">
+<style lang="scss">
 .iconfont {
 	font-size: 40px;
 }
@@ -204,26 +207,25 @@ export default {
 			font-size: 50rpx;
 		}
 	}
-	.item:nth-child(1) .icon{
+	.item:nth-child(1) .icon {
 		background-color: $u-type-primary;
 	}
-	.item:nth-child(2) .icon{
+	.item:nth-child(2) .icon {
 		background-color: $u-type-warning;
 	}
-	.item:nth-child(3) .icon{
+	.item:nth-child(3) .icon {
 		background-color: $u-type-success;
 	}
-	.item:nth-child(4) .icon{
+	.item:nth-child(4) .icon {
 		background-color: $u-type-error;
 	}
 }
 
-	/* 下方这些scss变量为uView内置变量，详见开发  组件-指南-内置样式 */
+/* 下方这些scss变量为uView内置变量，详见开发  组件-指南-内置样式 */
 
-	.grid-text {
-		font-size: 28rpx;
-		margin-top: 4rpx;
-		color: $u-type-info;
-	}
-	
+.grid-text {
+	font-size: 28rpx;
+	margin-top: 4rpx;
+	color: $u-type-info;
+}
 </style>

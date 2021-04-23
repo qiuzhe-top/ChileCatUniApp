@@ -45,29 +45,29 @@ export default {
 		uniPopupDialog
 	},
 	onLoad() {
-		// this.init_floor();
+		this.init_floor();
 	},
 	mounted() {
 		// 判断是否需要输入验证码
-		let work_type = this.$store.getters.work_type;
-		let idcode = '';
-		if (work_type == 'absence') {
-			idcode = this.$store.getters.knowing_code;
-		} else if ((work_type = 'health')) {
-			idcode = this.$store.getters.hygienist_code;
-		}
-		console.log(idcode);
+		// let work_type = this.$store.getters.work_type;
+		// let idcode = '';
+		// if (work_type == 'absence') {
+		// 	idcode = this.$store.getters.knowing_code;
+		// } else if ((work_type = 'health')) {
+		// 	idcode = this.$store.getters.hygienist_code;
+		// }
+		// console.log(idcode);
 		// return
-		if (idcode) {
-			this.post_vfcode(idcode);
-		} else {
-			this.show_message_box();
-		}
+		// if (idcode) {
+		// 	this.post_vfcode(idcode);
+		// } else {
+		// 	this.show_message_box();
+		// }
 	},
 	methods: {
 		// 加载楼层数据
 		init_floor() {
-			this.$api.life.buildinginfo().then(res => {
+			this.$api.life.buildinginfo({type:'a'}).then(res => {
 				if (res.data.code == 2000) {
 					this.$data.floor_list = res.data.data;
 				}

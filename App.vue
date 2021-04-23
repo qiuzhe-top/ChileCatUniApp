@@ -60,9 +60,9 @@ export default {
 
 <style lang="scss">
 /* 公共样式 */
-// @import './common/css/iconfont.css';
+@import './common/css/iconfont.css';
 @import './common/css/common.css';
-@import url('https://at.alicdn.com/t/font_2269800_e2lb17yy4z8.css');
+// @import url('https://at.alicdn.com/t/font_2269800_e2lb17yy4z8.css');
 @import 'uview-ui/index.scss';
 body {
 	background: #ffffff !important;

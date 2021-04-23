@@ -143,7 +143,7 @@ export default {
 	methods: {
 		// 加载学生数据
 		init_people(id) {
-			this.$api.life.stupositioninfo({ room_id: id }).then(res => {
+			this.$api.life.stupositioninfo({ room_id: id,type: this.$store.getters.work_type }).then(res => {
 				if (res.data.code == 2000) {
 					var peo_list = res.data.data;
 					this.$data.people_list = peo_list;

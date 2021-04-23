@@ -32,6 +32,7 @@ export const buildinginfo = (data) => {
     return http.request({
         url: 'life/buildinginfo',
         method: 'GET', 
+		
     })
 }
 // 获取层 -> 房间
