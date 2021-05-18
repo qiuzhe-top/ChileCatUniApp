@@ -4,7 +4,8 @@
 		<!-- <view class="img_index">
 			
 		</view> -->
-
+		<view class="">
+		</view>
 		<view class="u-demo-area">
 			<u-toast ref="uToast"></u-toast>
 			<u-swiper
