@@ -39,9 +39,11 @@ import user from '@/common/vmeitime-http/model/user.js'
 import life from '@/common/vmeitime-http/model/life.js'
 import activity from '@/common/vmeitime-http/model/activity.js'
 import ask from '@/common/vmeitime-http/model/ask.js'
+import SchoolAttendance from '@/common/vmeitime-http/model/SchoolAttendance.js'
 export default {
 	user,
 	life,
 	activity,
+	SchoolAttendance,
 	ask
 }
