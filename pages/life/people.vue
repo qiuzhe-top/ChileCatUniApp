@@ -180,7 +180,7 @@ export default {
 		// 点击姓名 打开原因/取消记录
 		to_people(item, done) {
 			if (item.status == '0') {
-				item.status = '1';
+				
 				var l = this.$data.form;
 				// l.forEach(function(k,i){
 				// 	if(k.id==item.id){
@@ -190,9 +190,10 @@ export default {
 				// 	}
 				// })
 				l.push({
-					id: item.id,
+					user_id: item.id,
 					status: '1'
 				});
+				item.status = '1';
 				uni.showToast({
 					title: '撤销',
 					icon: 'none'
