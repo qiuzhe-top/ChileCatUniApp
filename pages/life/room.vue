@@ -7,7 +7,7 @@
 			</view>
 
 			<view class="box">
-				<view class="level" v-for="item in room_list" v-bind:key="item.id" v-on:tap="to_people(item.id)" v-bind:class="{ active: item.status == '1' }">
+				<view class="level" v-for="item in room_list" v-bind:key="item.id" v-on:tap="to_people(item)" v-bind:class="{ active: item.status == '1' }">
 					{{ layer.name.substr(1, 1) }}{{ item.name }}
 				</view>
 			</view>
@@ -30,20 +30,31 @@ export default {
 		};
 	},
 	methods: {
+		onLoad() {
+			this.init_room();
+		},
 		// 加载房间数据
 		init_room() {
-			this.$api.life.roominfo({ floor_id: this.layer.id, type: this.$store.getters.work_type }).then(res => {
-				var room_list = res.data.data;
-				room_list.sort(function(a, b) {
-					return parseInt(a.name) - parseInt(b.name);
-				});
-				this.$data.room_list = room_list;
+			let task_id = this.$store.getters.task_now.id
+			this.$api.SchoolAttendance.task_room_info({
+					task_id:task_id,
+					floor_id:this.$data.layer.id,
+					type:'1',
+				}).then(res => {
+				if (res.data.code == 2000) {
+					var room_list = res.data.data;
+					// room_list.sort(function(a, b) {
+					// 	return parseInt(a.name) - parseInt(b.name);
+					// });
+					this.$data.room_list = room_list;
+				}
 			});
-		},
+			},
 		// 跳转到房间列表
-		to_people(id) {
+		to_people(room) {
+			this.$store.commit('SchoolAttendance/SET_ROOM_NOW',room);
 			uni.navigateTo({
-				url: '/pages/life/people?id=' + id
+				url: '/pages/life/people'
 			});
 		}
 	},
@@ -55,10 +66,8 @@ export default {
 			this.$data.flush_flg = false;
 			this.init_room();
 		}
-	},
-	onLoad() {
-		this.init_room();
 	}
+
 };
 </script>
 

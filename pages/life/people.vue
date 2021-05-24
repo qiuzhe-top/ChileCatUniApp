@@ -23,15 +23,15 @@
 			@confirm="treeConfirm"
 			@cancel="treeCancel"
 		></tki-tree>
-
+			{{rule}}
 		<!-- 基本示例（弹窗） -->
 		<pop ref="pop" direction="center" :is_close="true" :is_mask="true" :width="80">
 			<text class="user-name">姓名：{{ user_obj.name }}</text>
 			<radio-group @change="radioChange">
-				<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in miss_items" :key="index">
+				<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in rule_list" :key="index">
 					<view>
-						<radio :value="item" />
-						{{ item }}
+						<radio :value="''+item.id" />
+						{{ item.name }}
 					</view>
 				</label>
 				<label class="uni-list-cell uni-list-cell-pd">
@@ -75,6 +75,7 @@ export default {
 			// 寝室分数
 			score: 0,
 			// 缺勤原因
+			rule_list:[],
 			miss_items: ['请假', '当兵','未到校','无故'],
 			current: 0,
 
@@ -140,15 +141,41 @@ export default {
 			]
 		};
 	},
+	onLoad: function(option) {
+		// this.$data.roomid = option.id;
+		// if (this.work_type == 'health') {
+		// 	this.$data.people_list = this.$data.people_list1;
+		// 	// this.init_people(option.id);
+		// } else {
+		// }
+		this.init_people();
+		this.rule();
+	},
 	methods: {
+		rule(){
+			this.$api.SchoolAttendance.rule({codename:"0#001"}).then(res=>{
+				this.$data.rule_list = res.data.data
+			})
+		},
 		// 加载学生数据
-		init_people(id) {
-			this.$api.life.stupositioninfo({ room_id: id,type: this.$store.getters.work_type }).then(res => {
-				if (res.data.code == 2000) {
-					var peo_list = res.data.data;
-					this.$data.people_list = peo_list;
-				}
-			});
+		init_people() {
+			console.log(this.$store.getters.room_now)
+			
+			this.$api.SchoolAttendance.task_room_info({
+				task_id:this.$store.getters.task_now.id,
+				room_id:this.$store.getters.room_now.id,
+				type:'2'
+			}).then(res=>{
+				var peo_list = res.data.data;
+				this.$data.people_list = peo_list;
+			})
+			
+			// this.$api.life.stupositioninfo({ room_id: id,type: this.$store.getters.work_type }).then(res => {
+			// 	if (res.data.code == 2000) {
+			// 		var peo_list = res.data.data;
+			// 		this.$data.people_list = peo_list;
+			// 	}
+			// });
 		},
 		// 点击姓名 打开原因/取消记录
 		to_people(item, done) {
@@ -189,7 +216,7 @@ export default {
 				this.$data.user_obj.status = '0';
 				// this.user_obj.reason= this.$data.reason
 				this.$data.form.push({
-					id: this.$data.user_obj.id,
+					user_id: this.$data.user_obj.id,
 					status: this.$data.user_obj.status,
 					reason: this.$data.user_obj.reason
 				});
@@ -220,7 +247,13 @@ export default {
 			uni.showLoading({
 				title: '加载中'
 			});
-			this.$api.life.studentleak({ data: d, roomid: this.$data.roomid, code: this.$store.getters.knowing_code }).then(res => {
+			this.$api.SchoolAttendance.submit({ 
+				task_id: this.$store.getters.task_now.id,
+				type: 0,
+				data: d, 
+				room_id: this.$store.getters.room_now.id, 
+				code: this.$store.getters.knowing_code ,
+			}).then(res => {
 				if (res.data.code == 2000) {
 					uni.showToast({
 						title: res.data.message,
@@ -271,15 +304,6 @@ export default {
 					});
 				}
 			return true; //阻止默认返回行为
-		}
-	},
-	onLoad: function(option) {
-		this.$data.roomid = option.id;
-		if (this.work_type == 'health') {
-			this.$data.people_list = this.$data.people_list1;
-			// this.init_people(option.id);
-		} else {
-			this.init_people(option.id);
 		}
 	}
 };

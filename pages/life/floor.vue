@@ -1,18 +1,5 @@
 <template>
 	<view class="floor">
-		<!-- 输入验证码 -->
-		<uni-popup ref="dialogInput" type="dialog">
-			<uni-popup-dialog
-				mode="input"
-				title="输入验证码"
-				value=""
-				@close="close"
-				:before-close="true"
-				placeholder="请输入内容"
-				@confirm="dialogInputConfirm"
-			></uni-popup-dialog>
-		</uni-popup>
-
 		<!-- 楼=>层 列表展示 -->
 		<view v-for="item in floor_list" v-bind:key="item.id">
 			<view class="title">{{ item.name }}</view>
@@ -31,10 +18,6 @@ import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue';
 export default {
 	data() {
 		return {
-			type: 'top',
-			msgType: 'success',
-			message: '这是一条成功消息提示',
-			value: '默认输入的内容',
 			// 楼层数据
 			floor_list: []
 		};
@@ -45,7 +28,7 @@ export default {
 		uniPopupDialog
 	},
 	onLoad(option) {
-		this.init_floor(option.id);
+		this.init_floor();
 	},
 	mounted() {
 
@@ -53,61 +36,19 @@ export default {
 	methods: {
 		// 加载楼层数据
 		init_floor(id) {
-			this.$api.SchoolAttendance.task_room_info({id:id,type:'0'}).then(res => {
+			this.$api.SchoolAttendance.task_room_info({task_id:this.$store.getters.task_now.id,type:'0'}).then(res => {
 				if (res.data.code == 2000) {
 					this.$data.floor_list = res.data.data;
 				}
 			});
 		},
-		// 显示弹窗
-		show_message_box: function() {
-			this.$refs.dialogInput.open();
-		},
-		// 发送验证码
-		post_vfcode: function(idcode, done) {
-			this.$api.life
-				.idcode_post({ idcode: idcode, type: this.$store.getters.work_type })
-				.then(res => {
-					if (res.data.code == 2000) {
-						// 保存验证码
-						if (this.$store.getters.work_type == 'absence') {
-							this.$store.commit('life/SET_KNOWING_CODE', idcode);
-						} else if ((this.$store.getters.work_type = 'health')) {
-							this.$store.commit('life/SET_HYGIENIST_CODE', idcode);
-						}
-
-						this.init_floor();
-
-						try {
-							done();
-						} catch (e) {}
-					} else {
-						this.show_message_box();
-					}
-				})
-				.catch(err => {
-					this.show_message_box();
-				});
-		},
-		// 输入对话框的确定事件
-		dialogInputConfirm(done, val) {
-			this.post_vfcode(val, done);
-			this.value = val;
-		},
 		// 跳转到房间列表
 		to_room(floor, layer) {
-			this.$store.commit('life/SET_FLOOR_NOW', { id: floor.id, name: floor.name });
-			this.$store.commit('life/SET_LAYER_NOW', { id: layer.id, name: layer.name });
+			this.$store.commit('SchoolAttendance/SET_FLOOR_NOW', { id: floor.id, name: floor.name });
+			this.$store.commit('SchoolAttendance/SET_LAYER_NOW', { id: layer.id, name: layer.name });
 			uni.navigateTo({
 				url: '/pages/life/room'
 			});
-		},
-		// 点击取消按钮触发
-		close(done) {
-			uni.navigateBack({
-				delta: 1
-			});
-			done();
 		}
 	}
 };

@@ -2,7 +2,7 @@
 	<view class="">
 		<view class="active" v-for="(item,index) in actives" :key="index">
 			
-			<view class="" @click="go_to(item.type,item.id)">
+			<view class="" @click="go_to(item)">
 				{{item.title}} {{item.type}}
 			</view>
 			
@@ -26,16 +26,18 @@
 			this.init_actives()
 		},
 		methods:{
-			go_to(type,id) {
+			go_to(task) {
 				var _url = {
 					'0': '/pages/life/floor', // 查寝
 					'1': '/pages/life/floor', // 卫生
 					// '2': '/pages/life/floor', // 晚自修
 				};
-				this.$store.commit('life/SET_WORK_TYPE', type);
+				// this.$store.commit('life/SET_WORK_TYPE', task.type);
+				this.$store.commit('SchoolAttendance/SET_TASK_NOW', task);
 				uni.navigateTo({
-					url: _url[type] + "?id=" + id
+					url: _url[task.type]
 				});
+				
 			},
 			init_actives(){
 				this.$api.SchoolAttendance.task_executor().then(res=>{

@@ -8,9 +8,10 @@ const getters = {
   knowing_code: state => state.life.knowing_code,
   work_type: state => state.life.work_type,
   
-  floor_now: state => state.life.floor_now,
-  layer_now: state => state.life.layer_now,
-  room_now: state => state.life.room_now,
+  floor_now: state => state.SchoolAttendance.floor_now,
+  layer_now: state => state.SchoolAttendance.layer_now,
+  room_now: state => state.SchoolAttendance.room_now,
+  task_now: state => state.SchoolAttendance.task_now,
   
   ask_now: state => state.ask.ask_now,
   ask_all: state => state.ask.ask_all,
