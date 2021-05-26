@@ -55,6 +55,14 @@
 				// "navigationStyle": "custom"
 			}
 		}, {
+			"path": "pages/life/late",
+			"style": {
+				"navigationBarTitleText": "晚自修"
+				// "navigationStyle": "custom"
+			}
+		}, 
+		
+		{
 			"path": "pages/life/floor",
 			"style": {
 				"navigationBarTitleText": "楼层列表"

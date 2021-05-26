@@ -3,7 +3,7 @@
 		<view class="active" v-for="(item,index) in actives" :key="index">
 			
 			<view class="" @click="go_to(item)">
-				{{item.title}} {{item.type}}
+				{{item.title}}
 			</view>
 			
 		</view>
@@ -30,7 +30,7 @@
 				var _url = {
 					'0': '/pages/life/floor', // 查寝
 					'1': '/pages/life/floor', // 卫生
-					// '2': '/pages/life/floor', // 晚自修
+					'2': '/pages/life/late', // 晚自修
 				};
 				// this.$store.commit('life/SET_WORK_TYPE', task.type);
 				this.$store.commit('SchoolAttendance/SET_TASK_NOW', task);
