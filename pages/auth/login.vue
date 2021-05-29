@@ -26,8 +26,8 @@ export default {
 	mounted() {
 		_this = this;
 		if(process.env.NODE_ENV === 'development'){
-			this.username = '19510145'
-			this.password = '123456'
+			this.username = 'user1'
+			this.password = 'zhou24272592'
 		}
 		//this.isLogin();
 	},

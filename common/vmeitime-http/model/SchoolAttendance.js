@@ -37,9 +37,19 @@ export const  rule = (data) => {
     })
 }
 
+// 获取晚自修班级
+export const  late_class = (data) => {
+     return http.request({
+        url: 'school_attendance/late_class',
+        method: 'GET', 
+		data
+    })
+}
+
 export default{
 	task_executor,
 	rule,
 	submit,
-	task_room_info
+	task_room_info,
+	late_class
 }
