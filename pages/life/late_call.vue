@@ -48,6 +48,7 @@
 					<t-th></t-th>
 				</t-tr>
 				<t-tr v-for="(item,index) in user_list" :key="index">
+					
 					<template v-if="item" >
 						<t-td >{{ item.username }}</t-td>
 						<t-td>{{ item.name }}</t-td>
@@ -59,6 +60,7 @@
 						<t-td><u-button type="default" size="mini" @click="submit(item,true)">在</u-button></t-td>
 						<t-td><u-button type="default" size="mini" @click="submit(item,false)">不在</u-button></t-td>
 					</template>
+					
 				</t-tr>
 			</t-table>
 		
