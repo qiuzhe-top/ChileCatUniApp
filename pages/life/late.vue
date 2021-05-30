@@ -24,7 +24,7 @@
 						text: '违纪',
 					}
 				],
-				current:1
+				current:0
 			}
 		},
 		components:{
@@ -43,7 +43,7 @@
 					return true;					
 				},
 				// 加载规则
-				load_rull()						{
+				load_rull()	{
 					this.$api.SchoolAttendance.rule({codename:"0#002"}).then(res=>{
 						this.$store.commit('SchoolAttendance/SET_ROLL_CALL_LIST',res.data.data)
 					})

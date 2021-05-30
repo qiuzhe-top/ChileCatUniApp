@@ -52,7 +52,9 @@
 						<t-td >{{ item.username }}</t-td>
 						<t-td>{{ item.name }}</t-td>
 						<t-td>
-						{{ item.flg }}
+						
+						<u-icon v-show="item.flg" name="checkmark" color="#2979ff" size="28"></u-icon>
+						<u-icon v-show="item.flg==false" name="close" color="#d30000" size="28"></u-icon>
 						</t-td>
 						<t-td><u-button type="default" size="mini" @click="submit(item,true)">在</u-button></t-td>
 						<t-td><u-button type="default" size="mini" @click="submit(item,false)">不在</u-button></t-td>

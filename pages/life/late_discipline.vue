@@ -64,45 +64,7 @@
 				// 被选中的规则下标
 				select_role_index:[],
 				// 规则列表
-				rule_list:[
-					{
-						name:'规则1',
-						score:'1',
-					},{
-						name:'规则1',
-						score:'1',
-					},{
-						name:'规则1',
-						score:'1',
-					},		{
-						name:'规则1',
-						score:'1',
-					},{
-						name:'规则1',
-						score:'1',
-					},{
-						name:'规则1',
-						score:'1',
-					},		{
-						name:'规则1',
-						score:'1',
-					},{
-						name:'规则1',
-						score:'1',
-					},{
-						name:'规则1',
-						score:'1',
-					},		{
-						name:'规则1',
-						score:'1',
-					},{
-						name:'规则1',
-						score:'1',
-					},{
-						name:'规则1',
-						score:'1',
-					},
-				]
+				rule_list:this.$store.getters.vd_rull_list
 			}
 		},
 		components: {
@@ -133,6 +95,9 @@
 		                title:"纵向滚动 scrollTop 值已被修改为 0"
 		            })
 		        },
+				
+				// 获取规则
+				
 				// 搜索用户
 				search(){
 					this.$api.SchoolAttendance.student_information({
@@ -149,6 +114,7 @@
 				// 提交
 				submit(){
 					
+					// 规则下标转id
 					var indexs = this.$data.select_role_index
 					var list = new Array()
 					indexs.forEach(n=>{
@@ -156,6 +122,8 @@
 					})
 					
 					var username = this.$data.user.username
+					
+					// 发起请求
 					this.$api.SchoolAttendance.submit({
 						type:0,
 						task_id:this.$store.getters.task_now.id,
