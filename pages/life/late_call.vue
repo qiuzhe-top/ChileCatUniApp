@@ -7,11 +7,23 @@
 			
 			<!-- 班级选择 -->
 			<u-col span="4">
-				<u-button type="success" size="mini" @click="open()" plain>{{items_class[class_current].name}}</u-button>
+				<u-button type="success" size="mini" @click="open()" plain>{{items_class[class_index].name}}</u-button>
 			</u-col>
 			
+			<!-- 弹出层 选择班级 -->
+			<u-popup v-model="show" mode="center" length="80%" height="60%" border-radius="14">
+				<radio-group @change="select_sclass" class="class-radio-group">
+					<view class="radio-box" v-for="(item, index) in items_class" :key="index">
+						<label class="uni-list-cell uni-list-cell-pd">
+							<radio :value="str(index)" :checked="index === class_index" />
+							{{item.name}}
+						</label>
+					</view>
+				</radio-group>
+			</u-popup>
 			
-			<!-- 点名次数 -->
+			
+			<!-- 点名规则 -->
 			<u-col span="6">
 				<radio-group @change="select_rule" class="class-radio-group">
 					
@@ -19,12 +31,6 @@
 						<radio :value="str(item.id)" /><text>{{item.name}}</text>
 					</label>
 					
-				<!-- 	<view class="" v-for="(item, index) in items_class" :key="item.value">
-						<label class="uni-list-cell uni-list-cell-pd">
-							<radio :value="item" :checked="index === class_current" />
-							{{item}}
-						</label>
-					</view> -->
 				</radio-group>
 			</u-col>
 			
@@ -41,13 +47,15 @@
 					<t-th></t-th>
 					<t-th></t-th>
 				</t-tr>
-				<t-tr v-for="item in user_list" :key="item.id">
+				<t-tr v-for="(item,index) in user_list" :key="index">
 					<template v-if="item" >
 						<t-td >{{ item.username }}</t-td>
 						<t-td>{{ item.name }}</t-td>
-						<t-td>{{ item.status }}</t-td>
-						<t-td><u-button type="default" size="mini">在</u-button></t-td>
-						<t-td><u-button type="default" size="mini">不在</u-button></t-td>
+						<t-td>
+						{{ item.flg }}
+						</t-td>
+						<t-td><u-button type="default" size="mini" @click="submit(item,true)">在</u-button></t-td>
+						<t-td><u-button type="default" size="mini" @click="submit(item,false)">不在</u-button></t-td>
 					</template>
 				</t-tr>
 			</t-table>
@@ -58,25 +66,14 @@
 		
 		<u-row gutter="16" justify="space-around" class="class-list">
 			
-			<u-button >在</u-button>
-			<u-button >不在</u-button>
+			<u-button @click="roll_cal_list(true)" >在</u-button>
+			<u-button @click="roll_cal_list(false)">不在</u-button>
 			
 		</u-row>
 
 
 
-		<!-- 弹出层 选择班级 -->
-		<u-popup v-model="show" mode="center" length="80%" height="60%" border-radius="14">
-			<radio-group @change="select_sclass" class="class-radio-group">
-				<view class="radio-box" v-for="(item, index) in items_class" :key="index">
-					<label class="uni-list-cell uni-list-cell-pd">
-						<radio :value="str(item.id)" :checked="index === class_current" />
-						{{item.name}}
-					</label>
-				</view>
-			</radio-group>
-		</u-popup>
-		
+
 		
 	</view>
 </template>
@@ -95,40 +92,18 @@
 				show: false,
 				// 班级列表
 				items_class: this.$store.getters.class_list,// [{id:1,name:'选择班级'}],
-				// 当前班级列表
-				class_current: 0,
+				// 当前班级下标
+				class_index: 0,
 				// 当前班级名单
 				user_list:[
-					{
-						"username":"19510146",
-						"name":"张三",
-						"status":true,
-					},{
-						"username":"19510146",
-						"name":"张三",
-						"status":true,
-					},{
-						"username":"19510146",
-						"name":"张三",
-						"status":true,
-					},	{
-						"username":"19510146",
-						"name":"张三",
-						"status":true,
-					},{
-						"username":"19510146",
-						"name":"张三",
-						"status":true,
-					},{
-						"username":"19510146",
-						"name":"张三",
-						"status":true,
-					},
+					
 				],
 				// 当前多选 选中的学生
 				select_user_index:[],
 				// 点名规则
 				roll_call_list:  this.$store.getters.roll_call_list,
+				// 当前规则ID
+				rule_id: 0,
 			}
 		},
 		components: {
@@ -147,47 +122,89 @@
 			},
 			// 选择班级
 			select_sclass: function(evt) {
-				for (let i = 0; i < this.items_class.length; i++) {
-					if (this.items_class[i].id === evt.target.value) {
-						this.class_current = i;
-						break;
-					}
-				}
+				this.class_index = Number.parseInt(evt.target.value);
+				this.$data.user_list=[]
 			},
 			// 多选更新
 			table_change(e){
 				this.$data.select_user_index = e.detail
+				
+				console.log(e.detail)
 			},
 		
 			
 			// 选择规则
 			select_rule(e){
-				console.log(e.detail)
+				this.get_class_user(e.detail.value)
 			},
 		
 			// 获取名单
-			get_class_user(){
-				var class_id = 1
-				var rull_id = 1
+			get_class_user(id){
+				var class_id = this.$data.items_class[this.$data.class_index].id
+				var rule_id =  Number.parseInt(id)
+				this.$data.rule_id = rule_id
+				this.$api.SchoolAttendance.late_class({
+					type:1,
+					rule_id:rule_id,
+					class_id:class_id,
+					task_id:this.$store.getters.task_now.id
+				}).then(res=>{
+					this.$data.user_list = res.data.data
+				})
+				
+			},
+			submit(item,flg){
+				if(item.flg != null) return
+				var user_id = item.username
+				this.roll_cal([user_id],flg,function(a){
+					item.flg = flg
+				})
 			},
 			// 点名 在/不在
-			roll_cal(){
+			roll_cal(user_list,flg,fun){
 				// 用户ID
-				var user_list_id
+				//var user_list_id 
 				// 规则ID
-				var rull_id
+				//var rull_id
 				// 点名状态
-				var flg
+				//var flg
+				this.$api.SchoolAttendance.submit({
+					type:0,
+					task_id:this.$store.getters.task_now.id,
+					data:{
+						flg:flg,
+						rule_id:this.$data.rule_id,
+						user_list:user_list,
+						type:0
+					}
+				}).then(res=>{
+					// this.$data.user_list = res.data.data
+					fun(res.data.code)
+				})
 			},
 			// 批量点名
-			roll_cal_list(){
+			roll_cal_list(flg){
+				
 				// 选中的下标
-				this.$data.select_user_index
-				// 根据下标检索的用户ID
-				var user_list_id
-				// 点名状态
-				var flg
+				var indexs = this.$data.select_user_index
+				var user_list = new Array();
+				
+				indexs.forEach(i=>{
+					user_list.push(this.$data.user_list[i].username)
+				})
+				
+				let fun = this.batch_flg
+				this.roll_cal(user_list,flg,function(a){
+					fun(indexs,flg)
+				})
+				
+			},
+			batch_flg(indexs,flg){
+				indexs.forEach(i=>{
+					this.$data.user_list[i].flg = flg
+				})
 			}
+			
 		}
 	}
 </script>

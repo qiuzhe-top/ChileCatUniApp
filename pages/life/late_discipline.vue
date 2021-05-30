@@ -1,15 +1,15 @@
 <template>
 	<view class="">
 		<view class="input-username">
-			<u-input v-model="value" :type="type" scroll-y  scroll-top="30" :border="border" placeholder="请输入学号" />
+			<u-input v-model="username" :type="type" scroll-y  scroll-top="30" :border="border" placeholder="请输入学号" />
 			
-			<u-button >搜索</u-button>
+			<u-button @click="search()">搜索</u-button>
 		</view>
 		
 		
 		<view class="user-msg">
-			<text>19510144</text>
-			<text>张三</text>
+			<text>{{user.username}}</text>
+			<text>{{user.name}}</text>
 		</view>
 		
 		
@@ -35,7 +35,7 @@
 		</u-row>
 			
 			
-		<u-button class="submit">提交</u-button>
+		<u-button class="submit" @click="submit()">提交</u-button>
 	</view>
 </template>
 
@@ -57,6 +57,12 @@
 				old: {
 					scrollTop: 0
 				},
+				// 待搜索的用户名
+				username:'',
+				// 用户
+				user:{},
+				// 被选中的规则下标
+				select_role_index:[],
 				// 规则列表
 				rule_list:[
 					{
@@ -126,7 +132,43 @@
 		                icon:"none",
 		                title:"纵向滚动 scrollTop 值已被修改为 0"
 		            })
-		        }
+		        },
+				// 搜索用户
+				search(){
+					this.$api.SchoolAttendance.student_information({
+						username:this.$data.username
+					}).then(res=>{
+						this.$data.user = res.data.data
+					})
+				},
+				// 多选更新
+				table_change(e){
+					this.$data.select_role_index = e.detail
+					console.log(e.detail)
+				},
+				// 提交
+				submit(){
+					
+					var indexs = this.$data.select_role_index
+					var list = new Array()
+					indexs.forEach(n=>{
+					 list.push(	this.$data.rule_list[n].id)
+					})
+					
+					var username = this.$data.user.username
+					this.$api.SchoolAttendance.submit({
+						type:0,
+						task_id:this.$store.getters.task_now.id,
+						data:{
+							rule_id_list:list,
+							username: this.$data.user.username,
+							type:1
+						}
+					}).then(res=>{
+						// this.$data.user_list = res.data.data
+					})
+					
+				}
 		    }
 	}
 </script>

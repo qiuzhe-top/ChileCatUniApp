@@ -24,7 +24,7 @@
 						text: '违纪',
 					}
 				],
-				current: 0
+				current:1
 			}
 		},
 		components:{
@@ -53,7 +53,7 @@
 				},
 				// 加载班级列表
 				load_class(){
-					this.$api.SchoolAttendance.late_class({task_id:this.$store.getters.task_now.id}).then(res=>{
+					this.$api.SchoolAttendance.late_class({type:0,task_id:this.$store.getters.task_now.id}).then(res=>{
 						this.$store.commit('SchoolAttendance/SET_CLASS_LIST',res.data.data)
 					})
 				}

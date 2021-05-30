@@ -20,7 +20,7 @@ export const  task_room_info = (data) => {
     })
 }
 
-// 查寝提交
+// 考勤提交
 export const  submit = (data) => {
      return http.request({
         url: 'school_attendance/submit',
@@ -46,10 +46,20 @@ export const  late_class = (data) => {
     })
 }
 
+// 搜索用户
+export const  student_information = (data) => {
+     return http.request({
+        url: 'school_information/student_information',
+        method: 'GET', 
+		data
+    })
+}
+
 export default{
 	task_executor,
 	rule,
 	submit,
 	task_room_info,
+	student_information,
 	late_class
 }

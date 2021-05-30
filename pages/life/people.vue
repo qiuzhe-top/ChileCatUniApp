@@ -251,9 +251,11 @@ export default {
 			this.$api.SchoolAttendance.submit({ 
 				task_id: this.$store.getters.task_now.id,
 				type: 0,
-				data: d, 
-				room_id: this.$store.getters.room_now.id, 
-				code: this.$store.getters.knowing_code ,
+				data: {
+					user_list:d,
+					room_id: this.$store.getters.room_now.id, 
+					code: this.$store.getters.knowing_code
+				}, 
 			}).then(res => {
 				if (res.data.code == 2000) {
 					uni.showToast({
