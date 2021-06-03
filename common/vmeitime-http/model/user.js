@@ -9,6 +9,15 @@ export const login = (data) => {
 		// handle:true
     })
 }
+// 修改密码
+export const ChangePassword = (data) => {
+    return http.request({
+        url: 'user/auth',
+        method: 'PUT', 
+        data,
+		// handle:true
+    })
+}
 // 验证token
 export const ValidationToken = (data) => {
     return http.request({
@@ -45,5 +54,6 @@ export default {
 	login,
 	ValidationToken,
 	getInformation,
+	ChangePassword,
 	activeity
 }

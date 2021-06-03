@@ -11,7 +11,7 @@
 			</u-col>
 			
 			<!-- 弹出层 选择班级 -->
-			<u-popup v-model="show" mode="center" length="80%" height="60%" border-radius="14">
+			<u-popup :open="popup_open()" v-model="show" mode="center" length="80%" height="60%" border-radius="14">
 				<radio-group @change="select_sclass" class="class-radio-group">
 					<view class="radio-box" v-for="(item, index) in items_class" :key="index">
 						<label class="uni-list-cell uni-list-cell-pd">
@@ -37,9 +37,10 @@
 		</u-row>
 
 
-		<u-row gutter="16" justify="space-around" class="class-list">
+		<u-row gutter="16" justify="space-around" class="class-list" >
 
-			<t-table @change="table_change" is-check>
+			<!-- is-check -->
+			<t-table  @change="table_change" v-if="table_show">
 				<t-tr>
 					<t-th>学号</t-th>
 					<t-th>姓名</t-th>
@@ -67,14 +68,14 @@
 		</u-row>
 
 		
-		
-		<u-row gutter="16" justify="space-around" class="class-list">
+		<!-- 组件问题 -->
+<!-- 		<u-row gutter="16" justify="space-around" class="class-list">
 			
 			<u-button @click="roll_cal_list(true)" >在</u-button>
 			<u-button @click="roll_cal_list(false)">不在</u-button>
 			
 		</u-row>
-
+ -->
 
 
 
@@ -102,12 +103,16 @@
 				user_list:[
 					
 				],
+				// 表格是否加载
+				table_show:true,
 				// 当前多选 选中的学生
 				select_user_index:[],
 				// 点名规则
 				roll_call_list:  this.$store.getters.roll_call_list,
 				// 当前规则ID
 				rule_id: 0,
+				// 表格对象
+				table_obj:null
 			}
 		},
 		components: {
@@ -117,9 +122,14 @@
 			pop,
 			tTd
 		},
+		
 		methods: {
 			open() {
 				this.show = true
+				uni.showLoading({
+					icon:'loading',
+					mask:true,
+				});
 			},
 			str(n){
 				return n+''
@@ -128,15 +138,18 @@
 			select_sclass: function(evt) {
 				this.class_index = Number.parseInt(evt.target.value);
 				this.$data.user_list=[]
+				this.$data.select_user_index = []
 			},
 			// 多选更新
 			table_change(e){
+				this.$data.table_obj = e
 				this.$data.select_user_index = e.detail
-				
 				console.log(e.detail)
 			},
-		
-			
+			// 弹出层打开
+			popup_open(){
+				uni.hideLoading();
+			},
 			// 选择规则
 			select_rule(e){
 				this.get_class_user(e.detail.value)
@@ -147,6 +160,10 @@
 				var class_id = this.$data.items_class[this.$data.class_index].id
 				var rule_id =  Number.parseInt(id)
 				this.$data.rule_id = rule_id
+				uni.showLoading({
+					icon:'loading',
+					mask:true,
+				});
 				this.$api.SchoolAttendance.late_class({
 					type:1,
 					rule_id:rule_id,
@@ -154,11 +171,13 @@
 					task_id:this.$store.getters.task_now.id
 				}).then(res=>{
 					this.$data.user_list = res.data.data
+					uni.hideLoading();
 				})
 				
 			},
 			submit(item,flg){
 				if(item.flg != null) return
+			
 				var user_id = item.username
 				this.roll_cal([user_id],flg,function(a){
 					item.flg = flg
@@ -172,6 +191,10 @@
 				//var rull_id
 				// 点名状态
 				//var flg
+				uni.showLoading({
+					icon:'loading',
+					mask:true,
+				});
 				this.$api.SchoolAttendance.submit({
 					type:0,
 					task_id:this.$store.getters.task_now.id,
@@ -184,6 +207,7 @@
 				}).then(res=>{
 					// this.$data.user_list = res.data.data
 					fun(res.data.code)
+					uni.hideLoading();
 				})
 			},
 			// 批量点名

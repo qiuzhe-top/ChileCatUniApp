@@ -24,7 +24,7 @@
 						text: '违纪',
 					}
 				],
-				current:0
+				current:1
 			}
 		},
 		components:{
@@ -35,6 +35,7 @@
 			console.log(11)
 			this.load_rull()
 			this.load_class()
+	
 		},
 		methods: {
 				beforeSwitch(index) {

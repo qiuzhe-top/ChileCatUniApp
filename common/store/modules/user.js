@@ -99,6 +99,16 @@ const actions = {
 				
 			})
 		})
+	},
+	// 修改密码
+	ChangePassword({commit},request){
+		return new Promise((resolve,reject)=>{
+			api.user.ChangePassword(request).then((res)=>{
+				resolve(res)
+			}).catch((error)=>{
+				reject(error)
+			})
+		})
 	}
 		
 }
