@@ -19,7 +19,10 @@ const getDefaultState = () => {
 		
 		// --- 晚自修 ---
 		// 班级
-		class_list:[],
+		class_list:[{
+			id:0,
+			name:'选择班级'
+		}],
 		// 点名规则
 		roll_call_list:[],
 		// 违纪规则

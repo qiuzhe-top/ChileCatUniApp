@@ -87,7 +87,7 @@
 				rule_list: this.$store.getters.vd_rull_list,
 
 				// 自定义规则
-				u_modal_show: true,
+				u_modal_show: false,
 				role_name: '',
 				role_score: 1
 			}
@@ -155,7 +155,7 @@
 						role_score:this.$data.role_score,
 					},
 					username: this.$data.user.username,
-					type: 2
+					type: 1
 				} )
 			},
 			// 提交
@@ -185,7 +185,7 @@
 				this.api(list, {
 					rule_id_list: list,
 					username: this.$data.user.username,
-					type: 0
+					type: 1
 				})
 
 			},
@@ -196,7 +196,7 @@
 						title: '请选择学生',
 						type: 'warnin',
 					})
-					return
+					return true
 				}
 				// 发起请求
 				this.$api.SchoolAttendance.submit({
@@ -204,7 +204,7 @@
 					task_id: this.$store.getters.task_now.id,
 					data:data
 				}).then(res => {
-					uni.hideLoading();
+					// uni.hideLoading();
 					this.$refs.uToast.show({
 						title: '提交成功',
 						type: 'success',

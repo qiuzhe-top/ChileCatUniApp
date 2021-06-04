@@ -49,7 +49,16 @@ export const  late_class = (data) => {
 // 搜索用户
 export const  student_information = (data) => {
      return http.request({
-        url: 'school_information/student_information',
+        url: 'School_information/student_information',
+        method: 'GET', 
+		data
+    })
+}
+
+// 查看公告
+export const  student_disciplinary = (data) => {
+     return http.request({
+        url: 'school_attendance/student_disciplinary',
         method: 'GET', 
 		data
     })
@@ -61,5 +70,6 @@ export default{
 	submit,
 	task_room_info,
 	student_information,
+	student_disciplinary,
 	late_class
 }
