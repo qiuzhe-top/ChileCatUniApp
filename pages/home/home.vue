@@ -15,96 +15,125 @@
 				<u-icon name="arrow-right" color="#969799" size="28"></u-icon>
 			</view>
 		</view>
-		
+
 		<view class="u-m-t-20" style="">
 			<u-cell-group>
 				<u-cell-item icon="setting" title="设置"></u-cell-item>
-				<u-cell-item v-if="name!=this.title" icon="setting" title="退出登录" v-on:tap="logout()"></u-cell-item>
+
+				<template v-if="name!=this.title">
+					<u-modal title="修改密码" v-model="up_password_show" @confirm="confirm" ref="uModal" :show-cancel-button="true"
+						:async-close="true">
+						<view class="up_password">
+							<u-input v-model="password_new" placeholder="请输入新密码" type="password" />
+							<u-input v-model="password_repeat" placeholder="再次输入密码" type="password" />
+						</view>
+					</u-modal>
+					<u-cell-item icon="setting" title="修改密码" @click="showModal"></u-cell-item>
+					<u-cell-item icon="setting" title="退出登录" v-on:tap="logout()"></u-cell-item>
+				</template>
 			</u-cell-group>
 		</view>
 		<view class="version">
 			V0.1
 		</view>
-		    <view>
-		        <view class="uni-padding-wrap uni-common-mt">
-		            <view class="uni-title uni-common-mt">
-		                flex-direction: row
-		                <text>\n横向布局</text>
-		            </view>
-		            <view class="uni-flex uni-row">
-		                <view class="flex-item uni-bg-red">A</view>
-		                <view class="flex-item uni-bg-green">B</view>
-		                <view class="flex-item uni-bg-blue">C</view>
-		            </view>
-		            <view class="uni-title uni-common-mt">
-		                flex-direction: column
-		                <text>\n纵向布局</text>
-		            </view>
-		            <view class="uni-flex uni-column">
-		                <view class="flex-item flex-item-V uni-bg-red">A</view>
-		                <view class="flex-item flex-item-V uni-bg-green">B</view>
-		                <view class="flex-item flex-item-V uni-bg-blue">C</view>
-		            </view>
-		        </view>
-		    </view>
 
+		<u-toast ref="uToast" />
 	</view>
 </template>
 
 <script>
-export default {
-	data() {
-		return {
-			pic:'https://img-cdn-tc.dcloud.net.cn/uploads/avatar/000/03/30/21_avatar_max.jpg',
-			show:true,
-			title: '请登录',
-		};
-	},
-	 computed: {
-		name: function () {
-		  return this.$store.getters.name ? this.$store.getters.name : this.title
-		}
-	  },
-	onLoad() {
-	},
-	methods: {
-		logout() {
-			this.$store.dispatch('user/logout')
+	export default {
+		data() {
+			return {
+				pic: 'https://img-cdn-tc.dcloud.net.cn/uploads/avatar/000/03/30/21_avatar_max.jpg',
+				up_password_show: false,
+				password_repeat: '',
+				password_new: '',
+				title: '请登录',
+			};
 		},
-		login(){
-			if(this.name ==this.title){
-				uni.navigateTo({
-					url:'/pages/auth/login'
-				})
+		computed: {
+			name: function() {
+				return this.$store.getters.name ? this.$store.getters.name : this.title
 			}
+		},
+		onLoad() {},
+		methods: {
+			logout() {
+				this.$store.dispatch('user/logout')
+			},
+			login() {
+				if (this.name == this.title) {
+					uni.navigateTo({
+						url: '/pages/auth/login'
+					})
+				}
+			},
+			showModal() {
+				this.up_password_show = true;
+			},
+			confirm() {
+				setTimeout(() => {
+					// 3秒后自动关闭
+					// this.up_password_show = false;
+					// 如果不想关闭，而单是清除loading状态，需要通过ref手动调用方法
+					// this.$refs.uModal.clearLoading();
+
+					this.$store.dispatch('user/ChangePassword', {
+							password_repeat: this.$data.password_repeat,
+							password_new: this.$data.password_new,
+						}).then(res => {
+							this.$store.dispatch('user/logout')
+							this.up_password_show = false;
+							this.$refs.uToast.show({
+								title: '修改成功',
+								type: 'success',
+								url: '/pages/auth/login'
+							})
+							
+						})
+						.catch(e => {
+							this.$refs.uModal.clearLoading();
+						})
+				}, 1000)
+
+
+			}
+	
 		}
-	}
-};
+	};
 </script>
 
 
 <style lang="scss">
-page{
-	background-color: $uni-bg-color-light;
-}
-
-.camera{
-	width: 54px;
-	height: 44px;
-	
-	&:active{
-		background-color: $uni-bg-color-hover;
+	page {
+		background-color: $uni-bg-color-light;
 	}
-}
-.user-box{
-	background-color: #fff;
-}
-.version{
-	position: absolute;
-	width: 100%;
-	text-align: center;
-	bottom: 5rpx;
-	font-size: 15rpx;
-	color: #dadada;
-}
+
+	// 修改密码框
+	.up_password {
+		padding: 30rpx;
+	}
+
+	.camera {
+		width: 54px;
+		height: 44px;
+
+		&:active {
+			background-color: $uni-bg-color-hover;
+		}
+	}
+
+	.user-box {
+		background-color: #fff;
+	}
+
+	.version {
+		position: absolute;
+		width: 100%;
+		text-align: center;
+		bottom: 5rpx;
+		font-size: 15rpx;
+		color: #dadada;
+	}
 </style>

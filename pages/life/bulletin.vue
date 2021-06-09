@@ -46,11 +46,12 @@ export default {
 		};
 	},
 	onLoad: function(option) {
-		api.life.bulletin_life().then(res => {
+		api.SchoolAttendance.student_disciplinary().then(res => {
 			var list = res.data.data;
 			var classname = this.$store.getters.grade
 			for (var i in list) {
 				var obj = list[i]
+				console.log(obj.classname,classname)
 				if (obj.classname==classname){
 					obj.is_active= true
 					list.unshift(obj)
@@ -60,7 +61,8 @@ export default {
 			this.$data.tableList = list
 			if (res.data.data.length <= 0) return;
 			var time_ = res.data.data[0].created_time;
-			var index = time_.indexOf('T');
+			console.log((time_))
+			var index = time_.indexOf(' ');
 			this.$data.time = time_.substring(0, index);
 		});
 	}
