@@ -23,7 +23,7 @@
 			@confirm="treeConfirm"
 			@cancel="treeCancel"
 		></tki-tree>
-			{{rule}}
+		
 		<!-- 基本示例（弹窗） -->
 		<pop ref="pop" direction="center" :is_close="true" :is_mask="true" :width="80">
 			<text class="user-name">姓名：{{ user_obj.name }}</text>
