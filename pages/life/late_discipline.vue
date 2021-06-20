@@ -204,13 +204,13 @@
 					task_id: this.$store.getters.task_now.id,
 					data:data
 				}).then(res => {
-					// uni.hideLoading();
+					uni.hideLoading();
 					this.$refs.uToast.show({
 						title: '提交成功',
 						type: 'success',
 					})
 					this.$data.select_role_index = []
-					// this.$data.user_list = res.data.data
+					this.$data.user_list = res.data.data
 				})
 			}
 		}

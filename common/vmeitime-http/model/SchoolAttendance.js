@@ -49,7 +49,7 @@ export const  late_class = (data) => {
 // 搜索用户
 export const  student_information = (data) => {
      return http.request({
-        url: 'School_information/student_information',
+        url: 'school_information/student_information',
         method: 'GET', 
 		data
     })
