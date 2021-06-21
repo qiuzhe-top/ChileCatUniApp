@@ -22,7 +22,7 @@
 		</view>
 
 		<view class="nav u-m-t-60 u-flex u-flex-wrap u-row-center u-row-around">
-			<view class="item" @tap="go_to('floor', 'absence')">
+			<view class="item" @tap="msg()">
 				<u-icon class="icon" name="fangjian1" custom-prefix="custom-icon"></u-icon>
 				<view class="u-m-t-10">晚查寝</view>
 			</view>
@@ -103,7 +103,7 @@ export default {
 	methods: {
 		msg() {
 			uni.showToast({
-				title: '功能开发中',
+				title: '维护中',
 				icon: 'none'
 			});
 		},

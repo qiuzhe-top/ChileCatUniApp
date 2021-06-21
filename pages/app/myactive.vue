@@ -15,12 +15,12 @@
 		data(){
 			return {
 				actives:[
-					{
-						active_name:'',
-						grade_name:'',
-					}
 				]
 			}
+		},
+		onShow() {
+			console.log('onShow')
+			this.init_actives()
 		},
 		created() {
 			this.init_actives()

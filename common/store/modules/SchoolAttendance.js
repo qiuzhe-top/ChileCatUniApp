@@ -21,7 +21,7 @@ const getDefaultState = () => {
 		// 班级
 		class_list:[{
 			id:0,
-			name:'选择班级'
+			name:'刷新页面'
 		}],
 		// 点名规则
 		roll_call_list:[],
