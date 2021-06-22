@@ -6,7 +6,7 @@
 			<Discipline v-show="current==1"></Discipline>
 		</view>
 		<!-- 与包裹页面所有内容的元素u-page同级，且在它的下方 -->
-		<u-tabbar height="40px" :before-switch="beforeSwitch" 	active-color='#303133' inactive-color='#606266' v-model="current" :list="list" ></u-tabbar>
+		<u-tabbar class="tab" height="40px" :before-switch="beforeSwitch" 	active-color='#303133' inactive-color='#434351' v-model="current" :list="list" ></u-tabbar>
 	</view>
 </template>
 
@@ -32,10 +32,8 @@
 			Discipline
 		},
 		onLoad() {
-			console.log(11)
 			this.load_rull()
 			this.load_class()
-	
 		},
 		methods: {
 				beforeSwitch(index) {
@@ -54,6 +52,7 @@
 				},
 				// 加载班级列表
 				load_class(){
+					console.log('加载班级列表')
 					this.$api.SchoolAttendance.late_class({type:0,task_id:this.$store.getters.task_now.id}).then(res=>{
 						this.$store.commit('SchoolAttendance/SET_CLASS_LIST',res.data.data)
 					})
@@ -62,3 +61,10 @@
 			}
 	}
 </script>
+
+<style>
+	.tab{
+		color: red;
+		padding: 15px;
+	}
+</style>
