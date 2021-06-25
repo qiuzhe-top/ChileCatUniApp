@@ -38,7 +38,6 @@
 		methods: {
 				beforeSwitch(index) {
 					// 只能切换偶数项
-					console.log(this.$data.current)
 					return true;					
 				},
 				// 加载规则

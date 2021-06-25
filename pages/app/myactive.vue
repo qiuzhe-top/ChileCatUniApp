@@ -1,6 +1,6 @@
 <template>
 	<view class="">
-		<view class="active" v-for="(item,index) in actives" :key="index">
+		<view class="" class="active" v-for="(item,index) in actives" :key="index">
 			
 			<view class="" @click="go_to(item)">
 				{{item.title}}
@@ -52,6 +52,7 @@
 	.active view{
 		height: 60rpx;
 		margin-bottom: 20rpx;
-		background-color: #dddddd;
+		background-color: #d3d9ff;
+		padding: 40rpx 5px;
 	}
 </style>

@@ -42,8 +42,8 @@
 		mounted() {
 			_this = this;
 			if (process.env.NODE_ENV === 'development') {
-				this.username = '19510101'
-				this.password = '19510101'
+				this.username = ''
+				this.password = ''
 			}
 			//this.isLogin();
 		},

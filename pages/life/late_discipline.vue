@@ -19,6 +19,7 @@
 			<scroll-view style="height: 600rpx;" :scroll-top="scrollTop" scroll-y="true" class="scroll-Y"
 				@scrolltoupper="upper" @scrolltolower="lower" @scroll="scroll">
 				<t-table @change="table_change" is-check>
+					
 					<t-tr>
 						<t-th>规则</t-th>
 						<t-th>分值</t-th>
@@ -35,6 +36,7 @@
 							<t-td>{{ item.score }}</t-td>
 						</template>
 					</t-tr>
+					
 				</t-table>
 			</scroll-view>
 
@@ -45,6 +47,7 @@
 		<u-toast ref="uToast" />
 
 		<u-button class="submit" @click="submit()">提交</u-button>
+		
 		<u-modal v-model="u_modal_show"  @confirm="confirm" :show-cancel-button="true">
 			<view>
 				<u-field v-model="role_name" label="名称" placeholder="请填违纪名称">
@@ -53,6 +56,7 @@
 				</u-field>
 			</view>
 		</u-modal>
+		
 		<u-button class="submit" @click="open_rule_box">
 			自定义提交
 		</u-button>
@@ -107,7 +111,6 @@
 				console.log(e)
 			},
 			scroll: function(e) {
-				console.log(e)
 				this.old.scrollTop = e.detail.scrollTop
 			},
 			goTop: function(e) {
@@ -133,7 +136,6 @@
 				this.$api.SchoolAttendance.student_information({
 					username: this.$data.username
 				}).then(res => {
-
 					this.$data.user = res.data.data
 					uni.hideLoading();
 				})
@@ -141,14 +143,18 @@
 			// 多选更新
 			table_change(e) {
 				this.$data.select_role_index = e.detail
-				console.log(e.detail)
 			},
 			// 显示自定义提交
 			open_rule_box(){
+				
 				this.$data.u_modal_show = true
 			},
 			// 自定义违纪规则提交
 			confirm() {
+				uni.showLoading({
+					icon: 'loading',
+					mask: true,
+				});
 				this.api(this.role_name, {
 					role_obj: {
 						role_name:this.$data.role_name,
@@ -187,17 +193,21 @@
 					username: this.$data.user.username,
 					type: 1
 				})
+				
 
 			},
 			api(list, data) {
 				var username = this.$data.user.username
+		
 				if (username == '' || username == null || username == undefined) {
 					this.$refs.uToast.show({
 						title: '请选择学生',
 						type: 'warnin',
 					})
-					return true
+					uni.hideLoading();
+					return
 				}
+			
 				// 发起请求
 				this.$api.SchoolAttendance.submit({
 					type: 0,
@@ -210,7 +220,10 @@
 						type: 'success',
 					})
 					this.$data.select_role_index = []
-					this.$data.user_list = res.data.data
+					// this.$data.user_list = res.data.data
+					this.$data.username = ''
+					this.$data.user = {}
+				}).catch(err =>{
 				})
 			}
 		}
