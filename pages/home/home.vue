@@ -34,7 +34,7 @@
 			</u-cell-group>
 		</view>
 		<view class="version">
-			V0.1
+			V1.1
 		</view>
 
 		<u-toast ref="uToast" />
