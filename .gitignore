@@ -13,3 +13,9 @@ tests/**/coverage/
 *.ntvs*
 *.njsproj
 *.sln
+manage
+node_moduales
+package.json
+package-lock.json
+Uni_app.js
+web.js
