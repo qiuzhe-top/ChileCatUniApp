@@ -38,8 +38,8 @@ function getToken(){
 }
 function getUrl(){
 	if(process.env.NODE_ENV === 'development'){
-		// return 'http://127.0.0.1:8000/api/'
-		return 'http://47.102.215.230:8000/api/'
+		return 'http://127.0.0.1:8000'
+		// return 'http://47.102.215.230:8000/api/'
 	}else{
 		// return 'http://47.100.95.58:8000/api/'
 		return 'http://47.102.215.230:8000/api/' 

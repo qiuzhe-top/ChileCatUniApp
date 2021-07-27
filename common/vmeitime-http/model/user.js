@@ -1,59 +1,92 @@
-import http from '../interface'
+import request from '../interface'
 
-// 登录
-export const login = (data) => {
-    return http.request({
-        url: 'user/auth',
-        method: 'POST', 
-        data,
-		// handle:true
-    })
-}
-// 修改密码
-export const ChangePassword = (data) => {
-    return http.request({
-        url: 'user/auth',
-        method: 'PUT', 
-        data,
-		// handle:true
-    })
-}
-// 验证token
-export const ValidationToken = (data) => {
-    return http.request({
-        url: 'life/validationToken',
-        method: 'POST', 
-    })
-}
-
-// 获取个人信息
-export const getInformation = (data) => {
-    return http.request({
-        url: 'user/information',
-        method: 'get', 
-    })
-}
-
-// 心情
-export const mood = (data) =>{
-	return http.request({
-		url:'user/mymood',
-		method: 'post',
-	})
-}
-
-// 活动打卡
-export const activeity = (data) =>{
-	return http.request({
-		url:'user/activeity',
-		method:'get',
-		data
-	})
-}
 export default {
-	login,
-	ValidationToken,
-	getInformation,
-	ChangePassword,
-	activeity
+	// TpiStart
+	/**
+	 * 登录
+	 * @param  [username, 用户名, Char, 是, , , max_length:25]
+	 * @param  [password, 密码, Char, 是, , , ]
+	 * @returns {} {"token":"Token"}
+	 */
+	login(data) {
+		return request({
+			url: '/api/user/login',
+			method: 'post',
+			data
+		})
+	},
+	/**
+	 * 退出登录
+	 * @returns {} null
+	 */
+	logout(data) {
+		return request({
+			url: '/api/user/logout',
+			method: 'post',
+			data
+		})
+	},
+	/**
+	 * 注册
+	 * @param  [username, 用户名, Char, 是, , , max_length:25]
+	 * @param  [password, 密码, Char, 是, , , ]
+	 * @param  [password_repaet, 重复密码, Char, 是, , , ]
+	 * @returns {} {"token":"Token"}
+	 */
+	register(data) {
+		return request({
+			url: '/api/user/register',
+			method: 'post',
+			data
+		})
+	},
+	/**
+	 * 修改个人信息
+	 * @returns {} null
+	 */
+	edit(data) {
+		return request({
+			url: '/api/user/edit',
+			method: 'post',
+			data
+		})
+	},
+	/**
+	 * 修改密码
+	 * @param  [password_old, 旧密码, Char, 是, , , max_length:30]
+	 * @param  [password_new, 新密码, Char, 是, , , max_length:30]
+	 * @param  [password_new_repaet, 重复新密码, Char, 是, , , max_length:30]
+	 * @returns {} {"token":"Token"}
+	 */
+	edit_password(data) {
+		return request({
+			url: '/api/user/edit/password',
+			method: 'post',
+			data
+		})
+	},
+	/**
+	 * 获取个人信息
+	 * @returns {} {"is_superuser":"超级用户状态","is_staff":"工作人员状态","permissions":"Permissions","roles":"Roles","grade":"Grade","avatar":"Avatar","username":"用户名"}
+	 */
+	information(data) {
+		return request({
+			url: '/api/user/information',
+			method: 'post',
+			data
+		})
+	},
+	/**
+	 * 绑定班级
+	 * @param  [grade_id, 班级ID, Char, 是, , , ]
+	 * @returns {} null
+	 */
+	bind_grade(data) {
+		return request({
+			url: '/api/user/bind/grade',
+			method: 'post',
+			data
+		})
+	}
+	// TpiEnd
 }

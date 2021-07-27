@@ -42,8 +42,8 @@
 		mounted() {
 			_this = this;
 			if (process.env.NODE_ENV === 'development') {
-				this.username = ''
-				this.password = ''
+				this.username = 'qiuzhe'
+				this.password = 'zhou24272592'
 			}
 			//this.isLogin();
 		},
@@ -98,7 +98,6 @@
 			},
 			web_login() {
 				var ps = {
-					type: 'web',
 					username: this.username,
 					password: this.password
 				};
@@ -109,12 +108,6 @@
 					})
 					.catch(err => {
 						_this.isRotate = false;
-						console.log(err.data.code)
-						if (err.data.code == 5506) {
-							this.up_password_show = true;
-						}
-
-
 					});
 			},
 			login_weixin() {
