@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "学生列表",
-  "usingComponents": {
-    "tki-tree": "/components/tki-tree/tki-tree",
-    "pop": "/components/ming-pop/ming-pop"
-  }
-}
