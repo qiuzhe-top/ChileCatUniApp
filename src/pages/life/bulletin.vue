@@ -48,8 +48,9 @@
 			};
 		},
 		onLoad: function(option) {
-			api.SchoolAttendance.student_disciplinary().then(res => {
-				var list = res.data.data;
+			this.$store.dispatch('school_attendance/student_disciplinary')
+			 .then((res) => {
+				var list = res.data;
 				var active_list = []
 				var classname = this.$store.getters.grade
 				for (var i in list) {
@@ -64,9 +65,8 @@
 					list.unshift(active_list[i])
 				}
 				this.$data.tableList = list
-				if (res.data.data.length <= 0) return;
-				var time_ = res.data.data[0].created_time;
-				// console.log((time_))
+				if (res.data.length <= 0) return;
+				var time_ = res.data[0].created_time;
 				var index = time_.indexOf(' ');
 				this.$data.time = time_.substring(0, index);
 			});

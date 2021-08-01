@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-08-01 09:51:07
+ * @LastEditTime: 2021-08-01 15:10:46
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \ChileCat-Vscode-uniapp-project\src\pages\app\myactive.vue
+-->
 <template>
 	<view class="">
 		<view class="" class="active" v-for="(item,index) in actives" :key="index">
@@ -34,6 +42,7 @@
 				};
 				// this.$store.commit('life/SET_WORK_TYPE', task.type);
 				this.$store.commit('school_attendance/SET_TASK_NOW', task);
+				console.log(task)
 				uni.navigateTo({
 					url: _url[task.type]
 				});
