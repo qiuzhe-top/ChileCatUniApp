@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-08-01 09:51:07
+ * @LastEditTime: 2021-08-03 18:46:42
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \ChileCat-Vscode-uniapp-project\src\pages\life\knowing_floor.vue
+-->
 <template>
 	<view class="floor">
 		<!-- 楼=>层 列表展示 -->
@@ -16,6 +24,9 @@ import uniPopupMessage from '@/components/uni-popup/uni-popup-message.vue';
 import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue';
 
 export default {
+	props:{
+		init_floor_store:String
+	},
 	data() {
 		return {
 			// 楼层数据
@@ -27,26 +38,24 @@ export default {
 		uniPopupMessage,
 		uniPopupDialog
 	},
-	onLoad(option) {
+	mounted() {
 		this.init_floor();
 	},
-	mounted() {
-
-	},
 	methods: {
-
 		// 加载楼层数据
-		init_floor(id) {
-			this.$store.dispatch('school_attendance/knowing_storey_info',{task_id:this.$store.getters.task_now.id,type:'0'}).then(res => {
+
+		init_floor() {
+			this.$store.dispatch('school_attendance/'+this.$props.init_floor_store,{task_id:this.$store.getters.task_now.id,type:'0'}).then(res => {
 				this.$data.floor_list = res.data;
 			});
 		},
+		
 		// 跳转到房间列表
 		to_room(floor, layer) {
 			this.$store.commit('school_attendance/SET_FLOOR_NOW', { id: floor.id, name: floor.name });
 			this.$store.commit('school_attendance/SET_LAYER_NOW', { id: layer.id, name: layer.name });
 			uni.navigateTo({
-				url: '/pages/life/room'
+				url: '/pages/school_attendance/knowing_room'
 			});
 		}
 	}
@@ -54,7 +63,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('./css/main.scss');
+@import url('../css/main.scss');
 .floor {
 	padding: 20rpx;
 }

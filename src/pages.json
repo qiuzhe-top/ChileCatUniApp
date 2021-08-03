@@ -55,7 +55,7 @@
 				// "navigationStyle": "custom"
 			}
 		}, {
-			"path": "pages/life/late",
+			"path": "pages/school_attendance/late",
 			"style": {
 				"navigationBarTitleText": "晚自修"
 				// "navigationStyle": "custom"
@@ -63,24 +63,24 @@
 		}, 
 		
 		{
-			"path": "pages/life/floor",
+			"path": "pages/school_attendance/knowing_floor",
 			"style": {
 				"navigationBarTitleText": "楼层列表"
 			}
 		},
 		{
-			"path": "pages/life/room",
+			"path": "pages/school_attendance/knowing_room",
 			"style": {
 				"navigationBarTitleText": "房间列表"
 			}
 		},
 		{
-			"path": "pages/life/people",
+			"path": "pages/school_attendance/knowing_people",
 			"style": {
 				"navigationBarTitleText": "学生列表"
 			}
 		}, {
-			"path": "pages/life/bulletin",
+			"path": "pages/school_attendance/bulletin",
 			"style": {
 				"navigationBarTitleText": "考勤公告"
 			}

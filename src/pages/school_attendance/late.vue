@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-08-01 09:51:07
+ * @LastEditTime: 2021-08-03 17:13:57
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \ChileCat-Vscode-uniapp-project\src\pages\school_attendance\late.vue
+-->
 <template>
 	<view>
 		<view class="u-page">
@@ -24,7 +32,7 @@
 						text: '违纪',
 					}
 				],
-				current:1
+				current:0
 			}
 		},
 		components:{

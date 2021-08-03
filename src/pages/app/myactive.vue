@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-01 09:51:07
- * @LastEditTime: 2021-08-01 15:10:46
+ * @LastEditTime: 2021-08-03 20:05:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \ChileCat-Vscode-uniapp-project\src\pages\app\myactive.vue
@@ -36,9 +36,9 @@
 		methods:{
 			go_to(task) {
 				var _url = {
-					'0': '/pages/life/floor', // 查寝
-					'1': '/pages/life/floor', // 卫生
-					'2': '/pages/life/late', // 晚自修
+					'0': '/pages/school_attendance/knowing_floor', // 查寝
+					'1': '/pages/school_attendance/health_floor', // 卫生
+					'2': '/pages/school_attendance/late', // 晚自修
 				};
 				// this.$store.commit('life/SET_WORK_TYPE', task.type);
 				this.$store.commit('school_attendance/SET_TASK_NOW', task);

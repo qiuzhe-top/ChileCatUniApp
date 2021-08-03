@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-08-01 09:51:07
+ * @LastEditTime: 2021-08-03 18:51:18
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \ChileCat-Vscode-uniapp-project\src\pages\school_attendance\knowing_room.vue
+-->
 <template>
 	<view class="room">
 		<view>
@@ -17,6 +25,9 @@
 
 <script>
 export default {
+	props:{
+		init_room_store:String
+	},
 	data() {
 		return {
 			// 楼
@@ -29,14 +40,14 @@ export default {
 			room_list: []
 		};
 	},
+	mounted() {
+		this.init_room();
+	},
 	methods: {
-		onLoad() {
-			this.init_room();
-		},
 		// 加载房间数据
 		init_room() {
 			let task_id = this.$store.getters.task_now.id
-			this.$store.dispatch('school_attendance/knowing_room_info', {
+			this.$store.dispatch('school_attendance/'+this.$props.init_room_store, {
 					task_id:task_id,
 					floor_id:this.$data.layer.id,
 				}).then(res => {
@@ -51,7 +62,7 @@ export default {
 		to_people(room) {
 			this.$store.commit('school_attendance/SET_ROOM_NOW',room);
 			uni.navigateTo({
-				url: '/pages/life/people'
+				url: '/pages/school_attendance/knowing_people'
 			});
 		}
 	},
@@ -69,7 +80,7 @@ export default {
 </script>
 
 <style>
-@import url('./css/main.scss');
+@import url('../css/main.scss');
 .room {
 	padding: 20rpx;
 }

@@ -1,0 +1,190 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-08-03 17:16:27
+ * @LastEditTime: 2021-08-03 20:15:19
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \ChileCat-Vscode-uniapp-project\src\pages\school_attendance\component\people.vue
+-->
+<template>
+	<view class="people-box">
+		<view v-for="item in people_list" class="box-map" v-bind:key="item.id" v-on:tap="to_people(item)">
+			<view class="level" v-bind:class="{ active: item.status == '1' }">{{ item.name }}</view>
+		</view>
+
+
+		<pop ref="pop" direction="center" :is_close="true" :is_mask="true" :width="80">
+			<text class="user-name">姓名：{{ user_obj.name }}</text>
+			<radio-group @change="radioChange">
+				<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in rule_list" :key="index">
+					<view>
+						<radio :value="''+item.id" />
+						{{ item.name }}
+					</view>
+				</label>
+				<label class="uni-list-cell uni-list-cell-pd">
+					<view>
+						<radio value="其他" />
+						其他
+						<input type="text" value="" @input="input_why" />
+					</view>
+				</label>
+			</radio-group>
+			<button type="default" v-on:tap="record()">确定</button>
+		</pop>
+{{form}}
+		
+	</view>
+</template>
+
+<script>
+import pop from '@/components/ming-pop/ming-pop.vue';
+
+export default {
+	props:{
+		init_people_store:String,
+		rule_codename_store:String,
+	},
+	emits: ['record'],
+	components: {
+		pop,
+	},
+	data() {
+		return {
+			people_list: [],
+			// 缺勤名单
+			form: [],
+			// 当前用户对象
+			user_obj: {},
+			// 规则列表
+			rule_list:[],
+		};
+	},
+	mounted(){
+		this.init_people()
+		this.rule()
+
+	},
+	methods:{
+		rule(){
+			this.$store.dispatch('school_attendance/rule', {  codename: this.$props.rule_codename_store }).then(res=>{
+				this.$data.rule_list = res.data
+			})
+		},
+		// 加载学生数据
+		init_people() {
+			console.log(this.$store.getters.room_now)
+			this.$store.dispatch('school_attendance/'+this.$props.init_people_store, { 
+				task_id:this.$store.getters.task_now.id,
+				room_id:this.$store.getters.room_now.id,
+			}).then(res=>{
+				var peo_list = res.data;
+				this.$data.people_list = peo_list;
+			})
+		},
+				// 点击姓名 打开原因/取消记录
+		to_people(item, done) {
+			if (item.status == '0') {
+				this.$data.form.push({
+					user_id: item.id,
+					status: '1'
+				});
+				item.status = '1';
+				uni.showToast({
+					title: '撤销',
+					icon: 'none'
+				});
+			} else {
+				this.$refs.pop.show();
+			}
+			this.$data.user_obj = item;
+		},
+		// 输入原因
+		input_why(evt) {
+			this.$data.user_obj.reason = evt.target.value;
+		},
+		// 单选选择原因
+		radioChange: function(evt) {
+			this.$data.user_obj.reason = evt.target.value;
+		},
+			
+		// 写入违纪表单
+		record() {
+			this.$emit('record')
+			this.$refs.pop.close();
+		},
+	},
+	// 页面返回时
+	onBackPress(e) {
+		console.log(e);
+		if (e.from == 'backbutton') {
+				if(this.$data.form.length!=0){
+					uni.showModal({
+					    title: '注意',
+					    content: '未提交记录是否返回',
+					    success: function (res) {
+					        if (res.confirm) {
+								uni.navigateBack({
+									delta: 1
+								});
+					        } else if (res.cancel) {
+								return true; //阻止默认返回行为
+					        }
+					    }
+					});
+				}else{
+					uni.navigateBack({
+						delta: 1
+					});
+				}
+			return true; //阻止默认返回行为
+		}
+	}
+	
+	
+};
+</script>
+
+<style lang="scss" scoped>
+
+.people-box {
+	--webkit-display: flex;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 100rpx;
+}
+
+.people-box .level {
+	min-width: 110rpx;
+	padding: 25rpx 60rpx;
+	margin-bottom: 60rpx;
+	margin-right: 15rpx;
+	display: inline-block;
+	box-shadow: #c3c3c3 1px 1px 10px;
+	
+}
+.box-map {
+	width: 50%;
+	text-align: center;
+}
+.active {
+	background-color: #04b8fc;
+	color: #f1f1f1;
+}
+.user-name {
+	display: inline-block;
+	margin-bottom: 20rpx;
+	/* min-width: 200rpx; */
+}
+.people .uni-list-cell input {
+	margin-top: 10rpx;
+	height: 80rpx;
+	border: #000000 solid 1rpx;
+}
+.people .uni-list-cell view {
+	/* width: 100%; */
+	margin-bottom: 40rpx;
+}
+</style>
