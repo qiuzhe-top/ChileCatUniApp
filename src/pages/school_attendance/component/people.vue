@@ -8,11 +8,7 @@
 -->
 <template>
 	<view class="people-box">
-		<view v-for="item in people_list" class="box-map" v-bind:key="item.id" v-on:tap="to_people(item)">
-			<view class="level" v-bind:class="{ active: item.status == '1' }">{{ item.name }}</view>
-		</view>
-
-
+		<PeopleList @to_people="to_people" ref="people_list_vue" :list="people_list"  ></PeopleList>
 		<pop ref="pop" direction="center" :is_close="true" :is_mask="true" :width="80">
 			<text class="user-name">姓名：{{ user_obj.name }}</text>
 			<radio-group @change="radioChange">
@@ -39,7 +35,7 @@
 
 <script>
 import pop from '@/components/ming-pop/ming-pop.vue';
-
+import PeopleList from './people_list.vue'
 export default {
 	props:{
 		init_people_store:String,
@@ -48,6 +44,7 @@ export default {
 	emits: ['record'],
 	components: {
 		pop,
+		PeopleList
 	},
 	data() {
 		return {
@@ -63,7 +60,7 @@ export default {
 	mounted(){
 		this.init_people()
 		this.rule()
-
+		// this.$refs.people_list_vue.initBed()
 	},
 	methods:{
 		rule(){
@@ -73,18 +70,20 @@ export default {
 		},
 		// 加载学生数据
 		init_people() {
-			console.log(this.$store.getters.room_now)
+			let commit = this.$store.commit
 			this.$store.dispatch('school_attendance/'+this.$props.init_people_store, { 
 				task_id:this.$store.getters.task_now.id,
 				room_id:this.$store.getters.room_now.id,
 			}).then(res=>{
 				var peo_list = res.data;
 				this.$data.people_list = peo_list;
+				commit("school_attendance/SET_ROOM_PEOPLES",peo_list)
 			})
 		},
-				// 点击姓名 打开原因/取消记录
-		to_people(item, done) {
-			if (item.status == '0') {
+		// 点击姓名 打开原因/取消记录
+		to_people(item) {
+			console.log(item)
+			if (item.status == '0' ) {
 				this.$data.form.push({
 					user_id: item.id,
 					status: '1'
@@ -94,7 +93,7 @@ export default {
 					title: '撤销',
 					icon: 'none'
 				});
-			} else {
+			} else if(item.status) {
 				this.$refs.pop.show();
 			}
 			this.$data.user_obj = item;
@@ -116,7 +115,6 @@ export default {
 	},
 	// 页面返回时
 	onBackPress(e) {
-		console.log(e);
 		if (e.from == 'backbutton') {
 				if(this.$data.form.length!=0){
 					uni.showModal({
@@ -148,35 +146,13 @@ export default {
 <style lang="scss" scoped>
 
 .people-box {
-	--webkit-display: flex;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	margin-top: 100rpx;
+
 }
 
-.people-box .level {
-	min-width: 110rpx;
-	padding: 25rpx 60rpx;
-	margin-bottom: 60rpx;
-	margin-right: 15rpx;
-	display: inline-block;
-	box-shadow: #c3c3c3 1px 1px 10px;
-	
-}
-.box-map {
-	width: 50%;
-	text-align: center;
-}
-.active {
-	background-color: #04b8fc;
-	color: #f1f1f1;
-}
+
 .user-name {
 	display: inline-block;
 	margin-bottom: 20rpx;
-	/* min-width: 200rpx; */
 }
 .people .uni-list-cell input {
 	margin-top: 10rpx;

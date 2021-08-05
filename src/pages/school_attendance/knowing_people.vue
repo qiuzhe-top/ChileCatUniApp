@@ -31,7 +31,8 @@ export default {
 		};
 	},
 	onLoad: function(option) {
-
+	},
+	mounted(){
 	},
 	methods: {
 		// 个人违纪添加

@@ -15,7 +15,8 @@ const getDefaultState = () => {
 		layer_now:{},
 		// 当前房间
 		room_now:{},
-		
+		// 当前房间的学生住户
+		room_peoples:[],
 		
 		// --- 晚自修 ---
 		// 班级
@@ -64,7 +65,11 @@ const mutations = {
 	},
 	SET_TASK_NOW: (state, obj) => {
 		state.task_now = obj
-	}
+	},
+	SET_ROOM_PEOPLES: (state, obj) => {
+		state.room_peoples = obj
+	},
+	
 }
 
 const actions = {
@@ -493,9 +498,19 @@ submit_late_discipline({ commit }, request) {
   
 // 寝室考勤 点名提交
 submit_knowing({ commit }, request) {
-		const {  task_id, room_id, rule_id, user_list } = request
+	const {  task_id, room_id, rule_id, user_list } = request
 	return new Promise((resolve, reject) => {
 		api.submit_knowing(request).then(response => {
+		resolve(response)
+		}).catch(error => {
+		reject(error)
+ 		})
+ 	})
+},
+// 个人违纪记录
+personal_discipline_query({ commit }, request) {
+	return new Promise((resolve, reject) => {
+		api.personal_discipline_query(request).then(response => {
 		resolve(response)
 		}).catch(error => {
 		reject(error)

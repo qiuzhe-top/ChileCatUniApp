@@ -311,5 +311,18 @@ record_query(data) {
  data
  })
 },
+
+/**
+ * 个人违纪记录
+ * @param {Object} data
+ */
+personal_discipline_query(data) {
+ return http.request({
+ url: '/api/school_attendance/personal/discipline/query',
+ method: 'post',
+ data
+ })
+},
+
 // TpiEnd
 }

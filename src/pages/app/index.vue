@@ -110,14 +110,11 @@ export default {
 		go_to(key, type) {
 			var _url = {
 				ask: '/pages/ask/index', // 请假
-				floor: '/pages/life/floor', //进行晚查寝
-				bulletin: '/pages/life/bulletin', // 缺勤公告
+				floor: '/pages/school_attendance/floor', //进行晚查寝
+				bulletin: '/pages/school_attendance/bulletin', // 缺勤公告
 				activity: '/pages/app/activity/index', // 活动打卡
 				mood: '/pages/app/mood/index' // 缺勤公告
 			};
-			if (key == 'floor') {
-				this.$store.commit('life/SET_WORK_TYPE', type);
-			}
 			uni.navigateTo({
 				url: _url[key]
 			});

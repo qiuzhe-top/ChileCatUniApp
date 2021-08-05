@@ -13,6 +13,7 @@ const getters = {
   floor_now: state => state.school_attendance.floor_now,
   layer_now: state => state.school_attendance.layer_now,
   room_now: state => state.school_attendance.room_now,
+  room_peoples: state => state.school_attendance.room_peoples,
   task_now: state => state.school_attendance.task_now,
   
   // 晚自修

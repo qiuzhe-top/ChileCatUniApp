@@ -19,6 +19,7 @@
 		<view class="u-m-t-20" style="">
 			<u-cell-group>
 				<u-cell-item icon="setting" title="设置"></u-cell-item>
+				<u-cell-item icon="setting" v-on:tap="toPage('./personal_discipline')" title="违纪记录"></u-cell-item>
 
 				<template v-if="name!=this.title">
 					<u-modal title="修改密码" v-model="up_password_show" @confirm="confirm" ref="uModal"
@@ -66,9 +67,7 @@
 			},
 			login() {
 				if (this.name == this.title) {
-					uni.navigateTo({
-						url: '/pages/auth/login'
-					})
+					this.toPage('/pages/auth/login')
 				}
 			},
 			showModal() {
@@ -89,6 +88,11 @@
 				}, 1000)
 
 
+			},
+			toPage(url){
+				uni.navigateTo({
+					url:url,
+				})
 			}
 
 		}
