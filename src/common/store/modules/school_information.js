@@ -25,6 +25,37 @@ const actions = {
         })
     })
   },
+  // 修改床位
+  update_beds({ commit }, request) {
+    return new Promise((resolve, reject) => {
+      api
+        .update_beds(request)
+        .then(response => {
+			uni.showToast({
+				title: '修改成功,请刷新页面',
+				icon: "none",
+				duration: 2000
+			});
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+  // 我的寝室信息
+  mybedroom({ commit }, request) {
+    return new Promise((resolve, reject) => {
+      api
+        .mybedroom(request)
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
 
   // TpiEnd
 }

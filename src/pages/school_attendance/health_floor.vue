@@ -4,11 +4,10 @@
  * @LastEditTime: 2021-08-03 18:49:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \ChileCat-Vscode-uniapp-project\src\pages\life\knowing_floor.vue
 -->
 <template>
 	<view class="floor">
-		<Floor :init_floor_store="'dorm_storey_info'" :room_url="'lnowing_room'"></Floor>
+		<Floor :init_floor_store="'dorm_storey_info'" :room_url="'health_room'"></Floor>
 	</view>
 </template>
 

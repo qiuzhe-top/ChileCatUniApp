@@ -8,7 +8,7 @@
 -->
 <template>
 	<view class="people-box">
-		<PeopleList @to_people="to_people" ref="people_list_vue" :list="people_list"  ></PeopleList>
+		<PeopleList @to_people="to_people" :request_data='people_list_request_data' :init_people_store='$props.init_people_store' ref="people_list_vue" ></PeopleList>
 		<pop ref="pop" direction="center" :is_close="true" :is_mask="true" :width="80">
 			<text class="user-name">姓名：{{ user_obj.name }}</text>
 			<radio-group @change="radioChange">
@@ -44,17 +44,21 @@ export default {
 	emits: ['record'],
 	components: {
 		pop,
-		PeopleList
+		PeopleList,
+	
 	},
 	data() {
 		return {
-			people_list: [],
 			// 缺勤名单
 			form: [],
 			// 当前用户对象
 			user_obj: {},
 			// 规则列表
 			rule_list:[],
+			people_list_request_data:{
+				task_id:this.$store.getters.task_now.id,
+				room_id:this.$store.getters.room_now.id,
+			}
 		};
 	},
 	mounted(){
@@ -70,15 +74,7 @@ export default {
 		},
 		// 加载学生数据
 		init_people() {
-			let commit = this.$store.commit
-			this.$store.dispatch('school_attendance/'+this.$props.init_people_store, { 
-				task_id:this.$store.getters.task_now.id,
-				room_id:this.$store.getters.room_now.id,
-			}).then(res=>{
-				var peo_list = res.data;
-				this.$data.people_list = peo_list;
-				commit("school_attendance/SET_ROOM_PEOPLES",peo_list)
-			})
+		
 		},
 		// 点击姓名 打开原因/取消记录
 		to_people(item) {

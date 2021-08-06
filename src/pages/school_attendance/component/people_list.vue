@@ -14,10 +14,15 @@
 <script>
 	export default{
 		props:{
+			// 是否为床位修改模式
 			is_position_mode:{
 				type:Boolean,
 				default:false
-			}
+			},
+			// 请求 store方法
+			init_people_store:String,
+			// 请求数据
+			request_data:Object
 		},
 		data(){
 			return {
@@ -30,29 +35,31 @@
 		},
 		methods:{
 			initBed(){
-				let len = this.$store.getters.room_peoples.length
-				if (len < 6){
-					len = 6
-				}
-				// 床铺位置排序
-				for (let i = 0; i < len; i++) {
-					var position = i+1;
-					var user = this.getUserByBed(position)
-					this.people_list.push(user)
-				}
-			},
-			getUserByBed(position){
-				var user = {"name":" 空 位 "}
-				this.$store.getters.room_peoples.forEach(e=>{
-					if (e.bed_position===position){
-						user['id'] = e.id
-						user['name'] = e.name
-						user['bed_position'] = position
-						user['status'] = e.status
+				this.$store.dispatch(this.$props.init_people_store, this.$props.request_data).then(res=>{
+					let list = res.data
+					let len = list.length
+					if (len < 6){
+						len = 6
 					}
+					// 床铺位置排序
+					for (let i = 0; i < len; i++) {
+						var position = i+1;
+						var user = {
+								"name":" 空 位 ",
+								"bed_position":position,
+							}
+						list.forEach(e=>{
+							if (e.bed_position===position){
+								user['id'] = e.id
+								user['name'] = e.name
+								user['status'] = e.status
+							}
+						})
+						this.people_list.push(user)
+					}
+				
 				})
-				return user
-			}
+			},
 		}
 	}
 </script>

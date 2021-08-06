@@ -345,13 +345,13 @@ rule({ commit }, request) {
         })
     })
   },
-  // 晚查寝-楼工作数据
-knowing_storey_info({ commit }, request) {
+  // 楼内的层
+dorm_storey_info({ commit }, request) {
 		const {  task_id } = request
 
     return new Promise((resolve, reject) => {
       api
-        .knowing_storey_info(request)
+        .dorm_storey_info(request)
         .then(response => {
           resolve(response)
         })
@@ -360,13 +360,13 @@ knowing_storey_info({ commit }, request) {
         })
     })
   },
-  // 晚查寝-层工作数据
-knowing_room_info({ commit }, request) {
-		const {  task_id, floor_id } = request
+  // 层内的房间
+dorm_room_info({ commit }, request) {
+	const {  task_id, floor_id } = request
 
     return new Promise((resolve, reject) => {
       api
-        .knowing_room_info(request)
+        .dorm_room_info(request)
         .then(response => {
           resolve(response)
         })
@@ -394,14 +394,14 @@ student_disciplinary({ commit }, request) {
         .catch(error => {
           reject(error)
         })
-    })
+    }) 
   },
   // 晚查寝-房间工作数据
-knowing_student_room_info({ commit }, request) {
+dorm_student_room_info({ commit }, request) {
 		const {  task_id, room_id } = request
     return new Promise((resolve, reject) => {
       api
-        .knowing_student_room_info(request)
+        .dorm_student_room_info(request)
         .then(response => {
           resolve(response)
         })

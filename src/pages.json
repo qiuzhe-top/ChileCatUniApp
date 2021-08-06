@@ -22,6 +22,11 @@
 			"style": {
 				"navigationBarTitleText": "违纪记录"
 			}
+		},{
+			"path": "pages/home/bed_position",
+			"style": {
+				"navigationBarTitleText": "床位修改"
+			}
 		},
 		{
 			"path": "pages/auth/login",
@@ -86,6 +91,23 @@
 		},
 		{
 			"path": "pages/school_attendance/knowing_people",
+			"style": {
+				"navigationBarTitleText": "学生列表"
+			}
+		},{
+			"path": "pages/school_attendance/health_floor",
+			"style": {
+				"navigationBarTitleText": "楼层列表"
+			}
+		},
+		{
+			"path": "pages/school_attendance/health_room",
+			"style": {
+				"navigationBarTitleText": "房间列表"
+			}
+		},
+		{
+			"path": "pages/school_attendance/health_people",
 			"style": {
 				"navigationBarTitleText": "学生列表"
 			}

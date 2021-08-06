@@ -9,7 +9,7 @@
 <template>
 	<view class="people">
 	
-		<People @record="record" ref="people" :rule_codename_store='"0#001"' :init_people_store="'knowing_student_room_info'"></People>
+		<People @record="record" ref="people" :rule_codename_store='"0#001"' :init_people_store="'school_attendance/dorm_student_room_info'"></People>
 		<view class="button-sp-area"><button type="mini" class="sub-button" v-on:tap="submint">提交</button></view>
 		<text class="msg">白色背景：学生不在寝室</text>
 		<!-- {{form_list}} -->

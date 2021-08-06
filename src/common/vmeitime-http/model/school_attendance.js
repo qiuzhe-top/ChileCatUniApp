@@ -234,39 +234,54 @@ submit_knowing(data) {
  })
 },
 /**
- * 晚查寝-楼工作数据
+ * 楼内的层
  * @param  [task_id, 任务id, Char, 是, , , max_length:8]
  * @returns {} null
 */
-knowing_storey_info(data) {
+dorm_storey_info(data) {
  return http.request({
- url: '/api/school_attendance/knowing/storey/info',
+ url: '/api/school_attendance/dorm/storey/info',
  method: 'post',
  data
  })
 },
+
 /**
- * 晚查寝-层工作数据
+ * 层内的房间
  * @param  [task_id, 任务ID, Char, 是, , , ]
  * @param  [floor_id, 楼层ID, Char, 是, , , ]
  * @returns {} null
 */
-knowing_room_info(data) {
+dorm_room_info(data) {
  return http.request({
- url: '/api/school_attendance/knowing/room/info',
+ url: '/api/school_attendance/dorm/room/info',
  method: 'post',
  data
  })
 },
+
 /**
  * 晚查寝-房间工作数据
  * @param  [task_id, 任务ID, Char, 是, , , ]
  * @param  [room_id, 房间ID, Char, 是, , , ]
  * @returns {} null
 */
-knowing_student_room_info(data) {
+dorm_student_room_info(data) {
  return http.request({
- url: '/api/school_attendance/knowing/student/room/info',
+ url: '/api/school_attendance/dorm/student/room/info',
+ method: 'post',
+ data
+ })
+},
+/**
+ * 卫士检查-房间工作数据
+ * @param  [task_id, 任务ID, Char, 是, , , ]
+ * @param  [room_id, 房间ID, Char, 是, , , ]
+ * @returns {} null
+*/
+health_student_room_info(data) {
+ return http.request({
+ url: '/api/school_attendance/health/student/room/info',
  method: 'post',
  data
  })

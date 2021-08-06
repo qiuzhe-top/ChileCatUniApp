@@ -25,7 +25,8 @@ import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue';
 
 export default {
 	props:{
-		init_floor_store:String
+		init_floor_store:String,
+		room_url:String
 	},
 	data() {
 		return {
@@ -55,7 +56,7 @@ export default {
 			this.$store.commit('school_attendance/SET_FLOOR_NOW', { id: floor.id, name: floor.name });
 			this.$store.commit('school_attendance/SET_LAYER_NOW', { id: layer.id, name: layer.name });
 			uni.navigateTo({
-				url: '/pages/school_attendance/knowing_room'
+				url: '/pages/school_attendance/'+this.$props.room_url
 			});
 		}
 	}

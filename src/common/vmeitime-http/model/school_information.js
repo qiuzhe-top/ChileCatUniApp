@@ -13,5 +13,28 @@ student_information(data) {
  data
  })
 },
+
+/**
+ * @param {Object} data
+ * 修改床位
+ */
+update_beds(data) {
+ return http.request({
+ url: '/api/school_information/update/beds',
+ method: 'post',
+ data
+ })
+},
+/**
+ * @param {Object} data
+ * 我的寝室信息
+ */
+mybedroom(data) {
+ return http.request({
+ url: '/api/school_information/mybedroom',
+ method: 'post',
+ data
+ })
+},
 // TpiEnd
 }

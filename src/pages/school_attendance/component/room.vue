@@ -26,7 +26,8 @@
 <script>
 export default {
 	props:{
-		init_room_store:String
+		init_room_store:String,
+		to_page_url:String
 	},
 	data() {
 		return {
@@ -62,7 +63,7 @@ export default {
 		to_people(room) {
 			this.$store.commit('school_attendance/SET_ROOM_NOW',room);
 			uni.navigateTo({
-				url: '/pages/school_attendance/knowing_people'
+				url: '/pages/school_attendance/'+this.$props.to_page_url
 			});
 		}
 	},
