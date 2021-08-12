@@ -183,13 +183,19 @@
 			submit(item, flg) {
 				if (item.flg != null) return
 
-				var user_id = item.username
-				this.roll_cal([user_id], flg, function(a) {
+				var records = {
+					"user_id":item.user_id,
+					"reason_is_custom":false,
+					"reason":this.$data.rule_id,
+					"status":0,
+				}
+				console.log(item)
+				this.roll_cal([records], flg, function(a) {
 					item.flg = flg
 				})
 			},
 			// 点名 在/不在
-			roll_cal(user_list, flg, fun) {
+			roll_cal(records, flg, fun) {
 				// 用户ID
 				//var user_list_id 
 				// 规则ID
@@ -203,8 +209,7 @@
 				this.$store.dispatch('school_attendance/submit_late', { 
 					task_id: this.$store.getters.task_now.id,
 					flg: flg,
-					rule_id: this.$data.rule_id,
-					user_list: user_list,
+					records: records,
 				}).then(res => {
 					// this.$data.user_list = res.data.data
 					fun(res.code)
@@ -219,7 +224,10 @@
 				var user_list = new Array();
 
 				indexs.forEach(i => {
-					user_list.push(this.$data.user_list[i].username)
+					user_list.push(
+					{
+						user_id:this.$data.user_list[i].id
+					})
 				})
 
 				let fun = this.batch_flg

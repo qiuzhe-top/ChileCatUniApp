@@ -82,7 +82,7 @@
 					scrollTop: 0
 				},
 				// 待搜索的用户名
-				username: '',
+				username: '19510112',
 				// 用户
 				user: {},
 				// 被选中的规则下标
@@ -155,10 +155,14 @@
 					icon: 'loading',
 					mask: true,
 				});
-				this.api(this.role_name, {
-						role_name:this.$data.role_name,
-						role_score:this.$data.role_score,
-				} )
+				
+				this.api([{
+					reason:this.$data.role_name,
+					score:this.$data.role_score,
+					user_id:this.$data.user.id,
+					reason_is_custom:true,
+					status:0,
+				}])
 			},
 			// 提交
 			submit() {
@@ -174,25 +178,28 @@
 					return
 				}
 				
-				var list = new Array()
+				var records = new Array()
 				indexs.forEach(n => {
-					list.push(this.$data.rule_list[n].id)
+					records.push({
+						"user_id":this.$data.user.id,
+						"reason_is_custom":false,
+						"reason":this.$data.rule_list[n].id,
+						"status":0,
+					})
 				})
 
 				uni.showLoading({
 					icon: 'loading',
 					mask: true,
 				});
-
-				this.api(list, {
-					rule_id_list: list,
-				})
+				
+				
+				this.api(records)
 				
 
 			},
-			api(list, data) {
+			api(data) {
 				var username = this.$data.user.username
-		
 				if (username == '' || username == null || username == undefined) {
 					this.$refs.uToast.show({
 						title: '请选择学生',
@@ -201,11 +208,11 @@
 					uni.hideLoading();
 					return
 				}
-				
-				data['task_id'] = this.$store.getters.task_now.id
-				data['username'] = username
+				var request = {}
+				request['task_id'] = this.$store.getters.task_now.id
+				request['records'] = data
 				// 发起请求
-				this.$store.dispatch('school_attendance/submit_late_discipline', data).then(res => {
+				this.$store.dispatch('school_attendance/submit_late_discipline', request).then(res => {
 					uni.hideLoading();
 					this.$refs.uToast.show({
 						title: '提交成功',

@@ -3,7 +3,7 @@
 		<image class="img_index"
 			src="http://ev20.oss-cn-hangzhou.aliyuncs.com/%E6%99%BA%E6%85%A7%E5%BD%A9%E4%BA%91/zhcy_index.png"
 			mode="aspectFit"></image>
-		<text class="title">今日缺勤名单</text>
+		<text class="title">今日考勤记录</text>
 		<text class="time">{{ time }}</text>
 		<view class="box" v-for="item in peo_list" v-bind:key="item.id">{{ item.stuname }} {{ item.roomname }}</view>
 		<view class="box">
@@ -47,6 +47,7 @@
 				time: ''
 			};
 		},
+
 		onLoad: function(option) {
 			this.$store.dispatch('school_attendance/student_disciplinary')
 			 .then((res) => {

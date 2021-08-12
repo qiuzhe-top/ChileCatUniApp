@@ -8,7 +8,7 @@
 		<view class="box password">
 			<u-input v-model="password" placeholder="密码" type="password" maxlength="20" />
 		</view>
-		<u-button class="login u-font-xs" type="primary" :loading="isRotate" v-on:tap="startLogin()">登录</u-button>
+		<u-button class="login u-font-xs" type="primary" :loading="isRotate" @click="startLogin()">登录</u-button>
 		<view class="forget u-text-center u-m-t-50 u-font-sm">忘记密码</view>
 
 		<u-modal title="修改密码" v-model="up_password_show" @confirm="confirm" ref="uModal" :show-cancel-button="true"
@@ -67,6 +67,7 @@
 			},
 			startLogin(e) {
 				//登录
+				console.log('web_login')
 				if (this.isRotate) {
 					//判断是否加载中，避免重复点击请求
 					return false;
@@ -93,7 +94,6 @@
 				// setTimeout(function() {
 				// 	_this.isRotate = false;
 				// }, 1000*10);
-
 				this.web_login();
 			},
 			web_login() {

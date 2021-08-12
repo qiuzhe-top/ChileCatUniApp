@@ -22,7 +22,7 @@
 		},
 		methods:{
 			to_people(item){
-				if(item.id){
+				if(item.user_id){
 					this.content = '确定和 ' + item.name +' 交换床位吗?'
 				}else{
 					this.content = '确定换到新的床位吗?'

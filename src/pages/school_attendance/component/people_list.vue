@@ -50,9 +50,10 @@
 							}
 						list.forEach(e=>{
 							if (e.bed_position===position){
-								user['id'] = e.id
+								user['user_id'] = e.id
 								user['name'] = e.name
 								user['status'] = e.status
+								user['reason_is_custom'] = false
 							}
 						})
 						this.people_list.push(user)

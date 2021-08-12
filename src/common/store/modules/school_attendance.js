@@ -361,12 +361,12 @@ dorm_storey_info({ commit }, request) {
     })
   },
   // 层内的房间
-dorm_room_info({ commit }, request) {
-	const {  task_id, floor_id } = request
+knowing_room_info({ commit }, request) {
+		const {  task_id, floor_id } = request
 
     return new Promise((resolve, reject) => {
       api
-        .dorm_room_info(request)
+        .knowing_room_info(request)
         .then(response => {
           resolve(response)
         })
@@ -397,11 +397,11 @@ student_disciplinary({ commit }, request) {
     }) 
   },
   // 晚查寝-房间工作数据
-dorm_student_room_info({ commit }, request) {
+knowing_student_room_info({ commit }, request) {
 		const {  task_id, room_id } = request
     return new Promise((resolve, reject) => {
       api
-        .dorm_student_room_info(request)
+        .knowing_student_room_info(request)
         .then(response => {
           resolve(response)
         })
@@ -507,6 +507,16 @@ submit_knowing({ commit }, request) {
  		})
  	})
 },
+
+submit_health({ commit }, request) {
+	return new Promise((resolve, reject) => {
+		api.submit_health(request).then(response => {
+		resolve(response)
+		}).catch(error => {
+		reject(error)
+ 		})
+ 	})
+},
 // 个人违纪记录
 personal_discipline_query({ commit }, request) {
 	return new Promise((resolve, reject) => {
@@ -517,6 +527,45 @@ personal_discipline_query({ commit }, request) {
  		})
  	})
 },
+// 层内房间列表
+dorm_student_room_info({ commit }, request) {
+	return new Promise((resolve, reject) => {
+		api.dorm_student_room_info(request).then(response => {
+		resolve(response)
+		}).catch(error => {
+		reject(error)
+ 		})
+ 	})
+},
+health_people({ commit }, request) {
+	return new Promise((resolve, reject) => {
+		api.health_people(request).then(response => {
+		resolve(response)
+		}).catch(error => {
+		reject(error)
+ 		})
+ 	})
+},
+
+knowing_people({ commit }, request) {
+	return new Promise((resolve, reject) => {
+		api.knowing_people(request).then(response => {
+		resolve(response)
+		}).catch(error => {
+		reject(error)
+ 		})
+ 	})
+},
+dorm_room_info({ commit }, request) {
+	return new Promise((resolve, reject) => {
+		api.dorm_room_info(request).then(response => {
+		resolve(response)
+		}).catch(error => {
+		reject(error)
+ 		})
+ 	})
+},
+
 // TpiEnd
 }
 

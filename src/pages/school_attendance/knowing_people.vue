@@ -9,7 +9,7 @@
 <template>
 	<view class="people">
 	
-		<People @record="record" ref="people" :rule_codename_store='"0#001"' :init_people_store="'school_attendance/dorm_student_room_info'"></People>
+		<People @record="record" ref="people"  :rule_codename_store='"0#001"' :init_people_store="'school_attendance/dorm_student_room_info'"></People>
 		<view class="button-sp-area"><button type="mini" class="sub-button" v-on:tap="submint">提交</button></view>
 		<text class="msg">白色背景：学生不在寝室</text>
 		<!-- {{form_list}} -->
@@ -41,12 +41,7 @@ export default {
 			var form = this.$refs.people.form
 			if (user_obj.reason != undefined) {
 				user_obj.status = '0';
-				form.push({
-					user_id: user_obj.id,
-					status: user_obj.status,
-					reason: user_obj.reason,
-					name:user_obj.name
-				});
+				form.push(user_obj)
 				uni.showToast({
 					title: '添加成功',
 					icon: 'none'
@@ -67,7 +62,7 @@ export default {
 			});
 			this.$store.dispatch('school_attendance/submit_knowing', {
 				task_id: this.$store.getters.task_now.id,
-				user_list:d,
+				records:d,
 				room_id: this.$store.getters.room_now.id, 
 			 
 			}).then(res => {

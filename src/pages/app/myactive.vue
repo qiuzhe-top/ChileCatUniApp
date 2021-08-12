@@ -7,11 +7,11 @@
  * @FilePath: \ChileCat-Vscode-uniapp-project\src\pages\app\myactive.vue
 -->
 <template>
-	<view class="">
-		<view class="" class="active" v-for="(item,index) in actives" :key="index">
+	<view class="actives">
+		<view class="active" v-for="(item,index) in actives" :key="index">
 			
 			<view class="" @click="go_to(item)">
-				{{item.title}}
+				<span>{{item.title}}</span>
 			</view>
 			
 		</view>
@@ -57,11 +57,20 @@
 	}
 </script>
 
-<style>
-	.active view{
-		height: 60rpx;
-		margin-bottom: 20rpx;
-		background-color: #d3d9ff;
-		padding: 40rpx 5px;
+<style lang="scss">
+	.active {
+		margin-top: 20rpx;
+		background-color: #ffffff;
+		padding: 50rpx 20rpx;
+		box-shadow: 0px 0px 5px gainsboro;
+		span{
+			color: #232323;
+			font-weight: 600;
+			font-size: 30rpx;
+		}
 	}
+	.actives{
+		padding-bottom: 30rpx;
+	}
+
 </style>

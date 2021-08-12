@@ -6,7 +6,7 @@
 			</view>
 			<view class="u-flex-1" v-on:tap="login()">
 				<view class="u-font-18 u-p-b-20">{{name}}</view>
-				<view class="u-font-14 u-tips-color" v-if="name!=this.title">班级:{{this.$store.getters.grade}}</view>
+				<!-- <view class="u-font-14 u-tips-color" v-if="name!=this.title && this.title">班级:{{this.$store.getters.grade}}</view> -->
 			</view>
 			<view class="u-m-l-10 u-p-10">
 				<u-icon name="scan" color="#969799" size="28"></u-icon>
@@ -18,7 +18,7 @@
 
 		<view class="u-m-t-20" style="">
 			<u-cell-group>
-				<u-cell-item icon="setting" title="设置"></u-cell-item>
+				<!-- <u-cell-item icon="setting" title="设置"></u-cell-item> -->
 				<u-cell-item icon="setting" v-on:tap="toPage('./personal_discipline')" title="违纪记录"></u-cell-item>
 				<u-cell-item icon="setting" v-on:tap="toPage('./bed_position')" title="修改床位"></u-cell-item>
 
@@ -37,7 +37,7 @@
 			</u-cell-group>
 		</view>
 		<view class="version">
-			V1.1
+			V2.0
 		</view>
 
 		<u-toast ref="uToast" />

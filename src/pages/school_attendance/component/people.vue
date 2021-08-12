@@ -8,7 +8,7 @@
 -->
 <template>
 	<view class="people-box">
-		<PeopleList @to_people="to_people" :request_data='people_list_request_data' :init_people_store='$props.init_people_store' ref="people_list_vue" ></PeopleList>
+		<PeopleList @to_people="to_people" :is_position_mode="true" :request_data='people_list_request_data' :init_people_store='$props.init_people_store' ref="people_list_vue" ></PeopleList>
 		<pop ref="pop" direction="center" :is_close="true" :is_mask="true" :width="80">
 			<text class="user-name">姓名：{{ user_obj.name }}</text>
 			<radio-group @change="radioChange">
@@ -28,8 +28,6 @@
 			</radio-group>
 			<button type="default" v-on:tap="record()">确定</button>
 		</pop>
-{{form}}
-		
 	</view>
 </template>
 
@@ -66,6 +64,7 @@ export default {
 		this.rule()
 		// this.$refs.people_list_vue.initBed()
 	},
+	
 	methods:{
 		rule(){
 			this.$store.dispatch('school_attendance/rule', {  codename: this.$props.rule_codename_store }).then(res=>{
@@ -81,7 +80,7 @@ export default {
 			console.log(item)
 			if (item.status == '0' ) {
 				this.$data.form.push({
-					user_id: item.id,
+					user_id: item.user_id,
 					status: '1'
 				});
 				item.status = '1';
@@ -97,6 +96,7 @@ export default {
 		// 输入原因
 		input_why(evt) {
 			this.$data.user_obj.reason = evt.target.value;
+			this.$data.user_obj.reason_is_custom = true
 		},
 		// 单选选择原因
 		radioChange: function(evt) {
@@ -108,32 +108,33 @@ export default {
 			this.$emit('record')
 			this.$refs.pop.close();
 		},
-	},
-	// 页面返回时
-	onBackPress(e) {
-		if (e.from == 'backbutton') {
-				if(this.$data.form.length!=0){
-					uni.showModal({
-					    title: '注意',
-					    content: '未提交记录是否返回',
-					    success: function (res) {
-					        if (res.confirm) {
-								uni.navigateBack({
-									delta: 1
-								});
-					        } else if (res.cancel) {
-								return true; //阻止默认返回行为
-					        }
-					    }
-					});
-				}else{
-					uni.navigateBack({
-						delta: 1
-					});
-				}
-			return true; //阻止默认返回行为
+		// 是否返回
+		is_onBackPress(e){
+			if (e.from === 'navigateBack') {
+					if(this.form.length!=0){
+						console.log(this.form.length!=0,e.from )
+						uni.showModal({
+							title: '注意',
+							content: '未提交记录是否返回',
+							success: function (res) {
+								if (res.confirm) {
+									uni.navigateBack({
+										delta: 1
+									});
+								} else if (res.cancel) {
+									return true; //阻止默认返回行为
+								}
+							}
+						});
+					}else{
+						uni.navigateBack({
+							delta: 1
+						});
+					}
+				return true; //阻止默认返回行为
+			}
 		}
-	}
+	},
 	
 	
 };

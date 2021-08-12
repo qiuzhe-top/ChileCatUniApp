@@ -8,7 +8,7 @@
 -->
 <template>
 	<view class="floor">
-		<Floor :init_floor_store="'dorm_storey_info'" :room_url="'lnowing_room'"></Floor>
+		<Floor :init_floor_store="'dorm_storey_info'" :room_url="'knowing_room'"></Floor>
 	</view>
 </template>
 

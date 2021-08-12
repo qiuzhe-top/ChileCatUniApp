@@ -233,6 +233,13 @@ submit_knowing(data) {
  data
  })
 },
+submit_health(data) {
+ return http.request({
+ url: '/api/school_attendance/submit/health',
+ method: 'post',
+ data
+ })
+},
 /**
  * 楼内的层
  * @param  [task_id, 任务id, Char, 是, , , max_length:8]
@@ -261,7 +268,7 @@ dorm_room_info(data) {
 },
 
 /**
- * 晚查寝-房间工作数据
+ * 房间工作数据
  * @param  [task_id, 任务ID, Char, 是, , , ]
  * @param  [room_id, 房间ID, Char, 是, , , ]
  * @returns {} null
@@ -332,6 +339,21 @@ record_query(data) {
  * @param {Object} data
  */
 personal_discipline_query(data) {
+ return http.request({
+ url: '/api/school_attendance/personal/discipline/query',
+ method: 'post',
+ data
+ })
+},
+
+knowing_people(data) {
+ return http.request({
+ url: '/api/school_attendance/personal/discipline/query',
+ method: 'post',
+ data
+ })
+},
+health_people(data) {
  return http.request({
  url: '/api/school_attendance/personal/discipline/query',
  method: 'post',
