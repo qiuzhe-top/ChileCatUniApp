@@ -9,31 +9,29 @@
 <template>
 	<view class="actives">
 		<view class="active" v-for="(item,index) in actives" :key="index">
-			
+
 			<view class="" @click="go_to(item)">
 				<span>{{item.title}}</span>
 			</view>
-			
+
 		</view>
 	</view>
 </template>
 
 <script>
-	export default{
-		data(){
+	export default {
+		data() {
 			return {
-				actives:[
-				]
+				actives: []
 			}
 		},
-		onShow() {
-			console.log('onShow')
-			this.init_actives()
-		},
+
 		created() {
 			this.init_actives()
 		},
-		methods:{
+
+
+		methods: {
 			go_to(task) {
 				var _url = {
 					'0': '/pages/school_attendance/knowing_floor', // 查寝
@@ -46,14 +44,15 @@
 				uni.navigateTo({
 					url: _url[task.type]
 				});
-				
+
 			},
-			init_actives(){
-				this.$store.dispatch('school_attendance/task_executor',).then(res => {
+			init_actives() {
+				console.log('加载')
+				this.$store.dispatch('school_attendance/task_executor', ).then(res => {
 					this.$data.actives = res.data
 				})
 			}
-		}
+		},
 	}
 </script>
 
@@ -63,14 +62,15 @@
 		background-color: #ffffff;
 		padding: 50rpx 20rpx;
 		box-shadow: 0px 0px 5px gainsboro;
-		span{
+
+		span {
 			color: #232323;
 			font-weight: 600;
 			font-size: 30rpx;
 		}
 	}
-	.actives{
+
+	.actives {
 		padding-bottom: 30rpx;
 	}
-
 </style>

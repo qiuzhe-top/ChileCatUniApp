@@ -39,7 +39,7 @@
 			LateCall,
 			Discipline
 		},
-		onLoad() {
+		created() {
 			this.load_rull()
 			this.load_class()
 		},

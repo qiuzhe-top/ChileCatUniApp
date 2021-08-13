@@ -51,7 +51,7 @@
 
 
 		<!-- 任务列表 -->
-		<myactive></myactive>
+		<myactive ref="my_active"></myactive>
 		<!-- <view class="u-font-xl u-m-t-60 u-font-weight-bold">。</view> -->
 	</view>
 </template>
@@ -80,11 +80,15 @@
 				effect3d: false
 			};
 		},
-		onLoad() {
+		created() {
 			// this.$store.dispatch('user/getIdcode').then(res => {
 			// 	console.log(111, res);
 			// });
+			
 		},
+		onShow() {
+		},
+		
 		components: {
 			myactive
 		},

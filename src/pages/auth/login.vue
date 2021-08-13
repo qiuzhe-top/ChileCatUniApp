@@ -1,15 +1,17 @@
 <template>
 	<view class="u-p-50">
 		<view class="title">欢迎登录智慧彩云</view>
-		<view class="msg">校园管理平台</view>
+		<view class="msg">校园信息管理平台</view>
 		<view class="box username">
 			<u-input v-model="username" placeholder="账号" maxlength="20" />
 		</view>
 		<view class="box password">
 			<u-input v-model="password" placeholder="密码" type="password" maxlength="20" />
 		</view>
-		<u-button class="login u-font-xs" type="primary" :loading="isRotate" @click="startLogin()">登录</u-button>
-		<view class="forget u-text-center u-m-t-50 u-font-sm">忘记密码</view>
+		<view class="login u-font-xs">
+			<u-button class=" " type="primary" :loading="isRotate" @click="startLogin()">登录</u-button>
+		</view>
+		<!-- <view class="forget u-text-center u-m-t-50 u-font-sm">忘记密码</view> -->
 
 		<u-modal title="修改密码" v-model="up_password_show" @confirm="confirm" ref="uModal" :show-cancel-button="true"
 			:async-close="true">
@@ -212,7 +214,9 @@
 	.login {
 		margin-top: 40rpx;
 		border-radius: 2rpx;
-		height: 100rpx;
 		box-shadow: 0 0 10rpx $uni-text-color-disable;
+		button{
+			height: 100rpx;
+		}
 	}
 </style>
