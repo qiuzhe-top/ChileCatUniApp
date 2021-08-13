@@ -69,8 +69,10 @@ export default {
 	},
 	onHide() {
 		this.$data.flush_flg = true;
+		console.log('onHide',this.$data.flush_flg)
 	},
 	onShow() {
+		console.log('onHide',this.$data.flush_flg)
 		if (this.$data.flush_flg) {
 			this.$data.flush_flg = false;
 			this.init_room();

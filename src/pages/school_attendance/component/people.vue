@@ -127,12 +127,11 @@ export default {
 							}
 						});
 					}else{
-						uni.navigateBack({
-							delta: 1
-						});
+						return false
 					}
 				return true; //阻止默认返回行为
 			}
+			return false
 		}
 	},
 	

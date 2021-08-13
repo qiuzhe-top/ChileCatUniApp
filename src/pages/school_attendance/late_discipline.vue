@@ -82,7 +82,7 @@
 					scrollTop: 0
 				},
 				// 待搜索的用户名
-				username: '19510112',
+				username: '',
 				// 用户
 				user: {},
 				// 被选中的规则下标

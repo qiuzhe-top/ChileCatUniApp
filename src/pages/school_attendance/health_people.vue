@@ -71,10 +71,10 @@ export default {
 			})
 		})
 	},		
-	onBackPress(e){
-		console.log("关闭?")
-		this.$refs.people.is_onBackPress(e)
-	},
+	// onBackPress(e){
+	// 	console.log("关闭?")
+	// 	return this.$refs.people.is_onBackPress(e)
+	// },
 	methods: {
 		// 个人违纪添加
 		record(){
@@ -113,11 +113,18 @@ export default {
 					title:"提交成功",
 					duration: 6000
 				});
+				console.log(getCurrentPages())
+					// uni.navigateBack({
+					// 	delta: 1
+					// });
 				setTimeout(function() {
 					uni.navigateBack({
-						delta: 0.8
+						delta: 1,
+						animationType: 'pop-out',
+						animationDuration: 200
 					});
 				}, 1000);
+				console.log(getCurrentPages())
 			});
 		},
 
