@@ -37,7 +37,7 @@
 			</u-cell-group>
 		</view>
 		<view class="version">
-			V2.0
+			V2.1
 			<a href="https://beian.miit.gov.cn/" target="_blank">浙备2020045150-1</a>
 			<!-- https://s4.cnzz.com/z_stat.php?id=1280212062&web_id=1280212062 -->
 		</view>
