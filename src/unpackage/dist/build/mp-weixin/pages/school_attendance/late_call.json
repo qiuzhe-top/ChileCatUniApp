@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "u-row": "/uview-ui/components/u-row/u-row",
+    "u-col": "/uview-ui/components/u-col/u-col",
+    "u-button": "/uview-ui/components/u-button/u-button",
+    "u-popup": "/uview-ui/components/u-popup/u-popup",
+    "t-table": "/components/t-table/t-table",
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
+    "t-th": "/components/t-table/t-th",
+    "t-tr": "/components/t-table/t-tr",
+    "pop": "/components/ming-pop/ming-pop",
+    "t-td": "/components/t-table/t-td"
+  },
+  "component": true
+}

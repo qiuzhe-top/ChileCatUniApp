@@ -1,0 +1,1 @@
+<view class="actives"><block wx:for="{{actives}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="active"><view data-event-opts="{{[['tap',[['go_to',['$0'],[[['actives','',index]]]]]]]}}" bindtap="__e"><label class="_span">{{item.title}}</label></view></view></block></view>

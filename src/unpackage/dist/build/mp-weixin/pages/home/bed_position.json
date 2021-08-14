@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "床位修改",
+  "usingComponents": {
+    "u-modal": "/uview-ui/components/u-modal/u-modal",
+    "people-list": "/pages/school_attendance/component/people_list"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "晚自修",
+  "usingComponents": {
+    "u-tabbar": "/uview-ui/components/u-tabbar/u-tabbar",
+    "late-call": "/pages/school_attendance/late_call",
+    "discipline": "/pages/school_attendance/late_discipline"
+  }
+}

@@ -1,0 +1,1 @@
+<view class="room"><room vue-id="7380b0e8-1" init_room_store="dorm_room_info" to_page_url="health_people" bind:__l="__l"></room></view>

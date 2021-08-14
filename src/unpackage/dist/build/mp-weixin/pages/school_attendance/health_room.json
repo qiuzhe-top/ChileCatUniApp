@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "房间列表",
+  "usingComponents": {
+    "room": "/pages/school_attendance/component/room"
+  }
+}

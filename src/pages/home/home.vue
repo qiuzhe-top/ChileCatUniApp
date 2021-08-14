@@ -38,6 +38,8 @@
 		</view>
 		<view class="version">
 			V2.0
+			<a href="https://beian.miit.gov.cn/" target="_blank">浙备2020045150-1</a>
+			<!-- https://s4.cnzz.com/z_stat.php?id=1280212062&web_id=1280212062 -->
 		</view>
 
 		<u-toast ref="uToast" />
@@ -131,5 +133,8 @@
 		bottom: 5rpx;
 		font-size: 15rpx;
 		color: #dadada;
+		a{
+			color: #dadada;
+		}
 	}
 </style>
