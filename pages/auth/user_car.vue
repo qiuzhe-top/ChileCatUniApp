@@ -18,7 +18,7 @@
 			</view>
 
 			<!-- 设置 -->
-			<view class="set">
+			<view class="set b-c-1" v-on:click="to">
 				<u-icon class="u-skeleton-rect" name="setting"></u-icon>
 			</view>
 		</view>
@@ -67,7 +67,11 @@
 				if(!this.vuex_token){
 					this.$u.route('/pages/auth/login');
 				}
-					
+			},
+			to(){
+				this.$u.route({
+					url:'/pages/setting/index'
+				})
 			}
 		}
 	}

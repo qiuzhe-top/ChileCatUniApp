@@ -28,22 +28,24 @@ const saveLifeData = function(key, value) {
 	}
 }
 import {api}from '@/common/http.api.js'
+let vuex_user_defut = {
+	username: '',
+	college: '',
+	grade: '',
+	avatar:'https://s.pc.qq.com/tousu/img/20210823/4865226_1629724433.jpg',
+	experience:{
+		a:0,
+		b:1
+	}
+}
 const store = new Vuex.Store({
 	state: {
 		// 如果上面从本地获取的lifeData对象下有对应的属性，就赋值给state中对应的变量
 		// 加上vuex_前缀，是防止变量名冲突，也让人一目了然
-		vuex_user: lifeData.vuex_user ? lifeData.vuex_user : {
-			username: '......',
-			college: '------',
-			grade: '-------',
-			experience:{
-				a:0,
-				b:1
-			}
-		},
+		vuex_user: lifeData.vuex_user ? lifeData.vuex_user : vuex_user_defut,
 		vuex_token: lifeData.vuex_token ? lifeData.vuex_token : '',
 		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
-		vuex_version: '1.0.1',
+		vuex_version: 'V2.0.1',
 		vuex_demo: '绛紫',
 		vuex_index_loading:false,
 		// 自定义tabbar数据
@@ -129,9 +131,9 @@ const store = new Vuex.Store({
 		logout({
 			commit
 		}, request) {
-			// uni.setStorageSync('idcode', '');
 			uni.setStorageSync('token', '');
-			// this.commit('RESET_STATE')
+			commit('SET_TOKEN',undefined);
+			commit('SET_USER', vuex_user_defut)
 		},
 	}
 })
