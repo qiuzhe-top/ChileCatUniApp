@@ -4,20 +4,20 @@ Vue.use(Vuex)
 
 let lifeData = {};
 
-try{
+try {
 	// 尝试获取本地是否存在lifeData变量，第一次启动APP时是不存在的
 	lifeData = uni.getStorageSync('lifeData');
-}catch(e){
-	
+} catch (e) {
+
 }
 
 // 需要永久存储，且下次APP启动需要取出的，在state中的变量名
 let saveStateKeys = ['vuex_user', 'vuex_token'];
 
 // 保存变量到本地存储中
-const saveLifeData = function(key, value){
+const saveLifeData = function(key, value) {
 	// 判断变量名是否在需要存储的数组中
-	if(saveStateKeys.indexOf(key) != -1) {
+	if (saveStateKeys.indexOf(key) != -1) {
 		// 获取本地存储的lifeData对象，将变量添加到对象中
 		let tmp = uni.getStorageSync('lifeData');
 		// 第一次打开APP，不存在lifeData变量，故放一个{}空对象
@@ -27,15 +27,25 @@ const saveLifeData = function(key, value){
 		uni.setStorageSync('lifeData', tmp);
 	}
 }
+import {api}from '@/common/http.api.js'
 const store = new Vuex.Store({
 	state: {
 		// 如果上面从本地获取的lifeData对象下有对应的属性，就赋值给state中对应的变量
 		// 加上vuex_前缀，是防止变量名冲突，也让人一目了然
-		vuex_user: lifeData.vuex_user ? lifeData.vuex_user : {name: '明月'},
+		vuex_user: lifeData.vuex_user ? lifeData.vuex_user : {
+			username: '......',
+			college: '------',
+			grade: '-------',
+			experience:{
+				a:0,
+				b:1
+			}
+		},
 		vuex_token: lifeData.vuex_token ? lifeData.vuex_token : '',
 		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
 		vuex_version: '1.0.1',
 		vuex_demo: '绛紫',
+		vuex_index_loading:false,
 		// 自定义tabbar数据
 		vuex_tabbar: [{
 				iconPath: "/static/uview/example/component.png",
@@ -64,9 +74,9 @@ const store = new Vuex.Store({
 			let nameArr = payload.name.split('.');
 			let saveKey = '';
 			let len = nameArr.length;
-			if(len >= 2) {
+			if (len >= 2) {
 				let obj = state[nameArr[0]];
-				for(let i = 1; i < len - 1; i ++) {
+				for (let i = 1; i < len - 1; i++) {
 					obj = obj[nameArr[i]];
 				}
 				obj[nameArr[len - 1]] = payload.value;
@@ -78,7 +88,51 @@ const store = new Vuex.Store({
 			}
 			// 保存变量到本地，见顶部函数定义
 			saveLifeData(saveKey, state[saveKey])
-		}
+		},
+		SET_USER: (state, data) => {
+			state.vuex_user = data
+		},
+		SET_TOKEN: (state, data) => {
+			state.vuex_token = data
+		},
+		SET_INDEX_LOADING:(state,data)=>{
+			state.vuex_index_loading = data
+		},
+		INIT_INDEX_LOADING:(state,data)=>{
+			if(state.vuex_user.username){
+				state.vuex_index_loading = false
+			}
+		},
+	},
+	actions: {
+		// 获取个人信息
+		information({
+			commit,dispatch
+		}, request) {
+			commit('SET_INDEX_LOADING',true)
+			return new Promise((resolve, reject) => {
+				api.user_information(request)
+					.then(response => {
+						this.commit('SET_USER', response.data)
+						const token = uni.getStorageSync('token');
+						commit('SET_TOKEN',token)
+						resolve(response)
+					})
+					.catch(error => {
+						dispatch('logout')
+						commit("SET_INDEX_LOADING",false)
+						reject(error)
+					})
+			})
+		},
+		// 退出登录
+		logout({
+			commit
+		}, request) {
+			// uni.setStorageSync('idcode', '');
+			uni.setStorageSync('token', '');
+			// this.commit('RESET_STATE')
+		},
 	}
 })
 

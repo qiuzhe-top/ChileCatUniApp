@@ -11,12 +11,20 @@
 	// 	}]
 	// },
 	"pages": [{
-		"path": "pages/index/index",
-		"style": {
-			"navigationBarTitleText": "智慧彩云"
-			// "navigationStyle": "custom"
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "智慧彩云"
+				// "navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/auth/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"navigationStyle": "custom"
+			}
 		}
-	}],
+	],
 
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

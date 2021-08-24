@@ -95,3 +95,6 @@ const install = (Vue, vm) => {
 export default {
 	install
 }
+export {
+	api
+}

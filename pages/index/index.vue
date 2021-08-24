@@ -13,7 +13,7 @@
 				<qz-car class="u-p-30 " img_size="150rpx"
 					img="https://s.pc.qq.com/tousu/img/20210824/8449551_1629775280.jpg">
 					<text class="u-block u-font-xl  u-m-b-10 u-skeleton-rect">违纪公告</text>
-					<text class="u-font-xs u-m-b-20 u-type-info u-skeleton-rect">查看大家在一天\n里的违纪情况</text>
+					<text class="u-font-xs u-m-b-20 u-type-info u-skeleton-rect u-line-2">查看大家在一天\n里的违纪情况</text>
 				</qz-car>
 			</u-col>
 			<u-col span="6">
@@ -37,7 +37,7 @@
 		<attendanceCar></attendanceCar>
 
 		<!-- 骨架屏 -->
-		<u-skeleton :loading="loading" :animation="true" bgColor="#f8f8f8" ></u-skeleton>
+		<u-skeleton :loading="vuex_index_loading" :animation="true" bgColor="#f8f8f8" ></u-skeleton>
 	</view>
 </template>
 
@@ -48,7 +48,6 @@
 	export default {
 		data() {
 			return {
-				loading: true
 			}
 		},
 		components: {
@@ -56,11 +55,19 @@
 			taskCar,
 			attendanceCar
 		},
+		watch: {
+			vuex_token: function() {
+				this.init()
+				this.$store.commit('INIT_INDEX_LOADING')
+			}
+		},
+		methods:{
+			init(){
+			
+			}
+		},
 		onLoad() {
-			// 通过延时模拟向后端请求数据，调隐藏骨架屏
-			setTimeout(() => {
-				this.loading = false;
-			}, 800)
+			this.init()
 		}
 	}
 </script>
