@@ -5,19 +5,22 @@
 			<template v-if="vuex_token">
 				<u-cell-item icon="setting" v-on:tap="toPage('./personal_discipline')" title="违纪记录"></u-cell-item>
 				<u-cell-item icon="setting" v-on:tap="toPage('./bed_position')" title="修改床位"></u-cell-item>
-				<u-modal title="修改密码" v-model="up_password_show" @confirm="confirm" ref="uModal"
-					:show-cancel-button="true" :async-close="true">
-					<view class="up_password">
-						<u-input v-model="password_old" placeholder="登录密码" type="password" />
-						<u-input v-model="password_new" placeholder="新密码" type="password" />
-						<u-input v-model="password_new_repaet" placeholder="再次输入新密码" type="password" />
-					</view>
-				</u-modal>
-				<u-cell-item icon="setting" title="修改密码" @click="showModal"></u-cell-item>
+					
+			
+				<u-cell-item icon="setting" title="修改密码" @click="up_password_show = true"></u-cell-item>
 				<u-cell-item icon="setting" title="退出登录" @click="logout"></u-cell-item>
 			</template>
 		</u-cell-group>
-		
+	
+		<u-modal title="修改密码" v-model="up_password_show" @confirm="confirm" ref="uModal"
+			:show-cancel-button="true" :async-close="true">
+			<view class="up_password">
+				<u-input v-model="password_old" placeholder="登录密码" type="password" />
+				<u-input v-model="password_new" placeholder="新密码" type="password" />
+				<u-input v-model="password_new_repaet" placeholder="再次输入新密码" type="password" />
+			</view>
+		</u-modal>
+			
 		<!-- 版本 -->
 		<view class="version">
 			{{vuex_version}} | 
@@ -45,27 +48,33 @@
 				this.$store.dispatch('logout')
 				this.$u.route('pages/index/index')
 			},
+		
+			confirm() {
+				setTimeout(() => {
+					this.$u.api.user_edit_password({
+							password_old: this.$data.password_old,
+							password_new: this.$data.password_new,
+							password_new_repaet: this.$data.password_new_repaet,
+						}).then(res => {
+							this.up_password_show = false;
+							this.$refs.uToast.show({
+								title: e.data.message,
+								type: 'success',
+							})
+						})
+						.catch(e => {
+							this.$refs.uToast.show({
+								title: e.data.message,
+								type: 'error',
+							})
+							this.$refs.uModal.clearLoading();
+						})
+				}, 1000)
+			},
+			toPage(url) {
+				this.$u.route(url)
+			}
 		},
-		showModal() {
-			this.up_password_show = true;
-		},
-		confirm() {
-			setTimeout(() => {
-				this.$store.dispatch('user/edit_password', {
-						password_old: this.$data.password_old,
-						password_new: this.$data.password_new,
-						password_new_repaet: this.$data.password_new_repaet,
-					}).then(res => {
-						this.up_password_show = false;
-					})
-					.catch(e => {
-						this.$refs.uModal.clearLoading();
-					})
-			}, 1000)
-		},
-		toPage(url) {
-			this.$u.route(url)
-		}
 	}
 </script>
 
