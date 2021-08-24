@@ -48,9 +48,11 @@
 			},
 			init_actives() {
 				console.log('加载')
-				this.$store.dispatch('school_attendance/task_executor', ).then(res => {
-					this.$data.actives = res.data
-				})
+				if(this.$store.getters.token){
+					this.$store.dispatch('school_attendance/task_executor', ).then(res => {
+						this.$data.actives = res.data
+					})
+				}
 			}
 		},
 	}

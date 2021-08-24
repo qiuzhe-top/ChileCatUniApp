@@ -19,10 +19,10 @@
 		<view class="u-m-t-20" style="">
 			<u-cell-group>
 				<!-- <u-cell-item icon="setting" title="设置"></u-cell-item> -->
-				<u-cell-item icon="setting" v-on:tap="toPage('./personal_discipline')" title="违纪记录"></u-cell-item>
-				<u-cell-item icon="setting" v-on:tap="toPage('./bed_position')" title="修改床位"></u-cell-item>
 
 				<template v-if="name!=this.title">
+					<u-cell-item icon="setting" v-on:tap="toPage('./personal_discipline')" title="违纪记录"></u-cell-item>
+					<u-cell-item icon="setting" v-on:tap="toPage('./bed_position')" title="修改床位"></u-cell-item>
 					<u-modal title="修改密码" v-model="up_password_show" @confirm="confirm" ref="uModal"
 						:show-cancel-button="true" :async-close="true">
 						<view class="up_password">
@@ -37,9 +37,8 @@
 			</u-cell-group>
 		</view>
 		<view class="version">
-			V2.1
+			V2.1 -
 			<a href="https://beian.miit.gov.cn/" target="_blank">浙备2020045150-1</a>
-			<!-- https://s4.cnzz.com/z_stat.php?id=1280212062&web_id=1280212062 -->
 		</view>
 
 		<u-toast ref="uToast" />
