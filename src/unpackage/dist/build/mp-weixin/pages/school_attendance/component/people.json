@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "pop": "/components/ming-pop/ming-pop",
-    "people-list": "/pages/school_attendance/component/people_list"
-  }
-}

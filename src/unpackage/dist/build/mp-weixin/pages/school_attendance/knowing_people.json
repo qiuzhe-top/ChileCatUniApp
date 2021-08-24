@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "学生列表",
-  "usingComponents": {
-    "pop": "/components/ming-pop/ming-pop",
-    "people": "/pages/school_attendance/component/people"
-  }
-}

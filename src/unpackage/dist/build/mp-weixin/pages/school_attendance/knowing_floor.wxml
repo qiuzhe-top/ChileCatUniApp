@@ -1,1 +1,0 @@
-<view class="floor"><floor vue-id="7c675de6-1" init_floor_store="dorm_storey_info" room_url="knowing_room" bind:__l="__l"></floor></view>

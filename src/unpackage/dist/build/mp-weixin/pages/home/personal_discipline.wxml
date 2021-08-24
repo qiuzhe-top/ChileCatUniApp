@@ -1,1 +1,0 @@
-<view><block wx:for="{{list}}" wx:for-item="item" wx:for-index="__i0__" wx:key="id"><view class="_div"><view class="_p">{{''+item.rule_str+"\n\t\t\t"+item.score+"\n\t\t\t"+item.worker+"\n\t\t\t"+item.star_time+''}}</view></view></block></view>

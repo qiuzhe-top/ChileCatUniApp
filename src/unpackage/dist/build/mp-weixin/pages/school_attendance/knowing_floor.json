@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "楼层列表",
-  "usingComponents": {
-    "floor": "/pages/school_attendance/component/floor"
-  }
-}

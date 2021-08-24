@@ -1,0 +1,76 @@
+<template>
+	<view class="index u-p-20 u-skeleton">
+		<u-row class="u-m-b-30">
+			<u-col span="12">
+				<qz-car img_size="200rpx" img="https://s.pc.qq.com/tousu/img/20210824/2753663_1629771793.jpg">
+					<userCar></userCar>
+				</qz-car>
+			</u-col>
+		</u-row>
+
+		<u-row class="u-m-b-30">
+			<u-col span="6">
+				<qz-car class="u-p-30 " img_size="150rpx"
+					img="https://s.pc.qq.com/tousu/img/20210824/8449551_1629775280.jpg">
+					<text class="u-block u-font-xl  u-m-b-10 u-skeleton-rect">违纪公告</text>
+					<text class="u-font-xs u-m-b-20 u-type-info u-skeleton-rect">查看大家在一天\n里的违纪情况</text>
+				</qz-car>
+			</u-col>
+			<u-col span="6">
+				<qz-car class="u-p-30" img_size="150rpx"
+					img="https://s.pc.qq.com/tousu/img/20210824/8449551_1629775280.jpg">
+					<text class="u-block u-font-xl u-m-b-10 u-skeleton-rect">我的违纪</text>
+					<text class="u-font-xs u-m-b-20 u-type-info u-line-2 u-skeleton-rect">我的所有\n违纪记录 </text>
+				</qz-car>
+			</u-col>
+		</u-row>
+
+		<u-row>
+			<u-col span="12">
+				<qz-car class="u-m-b-30" img="https://s.pc.qq.com/tousu/img/20210824/7867424_1629773633.jpg"
+					img_size="320rpx">
+					<taskCar></taskCar>
+				</qz-car>
+			</u-col>
+		</u-row>
+
+		<attendanceCar></attendanceCar>
+
+		<!-- 骨架屏 -->
+		<u-skeleton :loading="loading" :animation="true" bgColor="#f8f8f8" ></u-skeleton>
+	</view>
+</template>
+
+<script>
+	import userCar from '../auth/user_car.vue';
+	import taskCar from '../task/task_car.vue'
+	import attendanceCar from '../attendance/attendance_car.vue'
+	export default {
+		data() {
+			return {
+				loading: true
+			}
+		},
+		components: {
+			userCar,
+			taskCar,
+			attendanceCar
+		},
+		onLoad() {
+			// 通过延时模拟向后端请求数据，调隐藏骨架屏
+			setTimeout(() => {
+				this.loading = false;
+			}, 800)
+		}
+	}
+</script>
+
+<style lang="scss">
+	.index {
+		.discipline {
+			text {
+				display: block;
+			}
+		}
+	}
+</style>

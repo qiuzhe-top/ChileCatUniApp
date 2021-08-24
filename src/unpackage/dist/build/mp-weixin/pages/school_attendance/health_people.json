@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "学生列表",
-  "usingComponents": {
-    "u-tag": "/uview-ui/components/u-tag/u-tag",
-    "tki-tree": "/components/tki-tree/tki-tree",
-    "pop": "/components/ming-pop/ming-pop",
-    "people": "/pages/school_attendance/component/people"
-  }
-}
