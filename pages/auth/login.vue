@@ -87,6 +87,13 @@
 				this.$u.api.user_login(ps).then(res => {
 						// 缓存token
 						uni.setStorageSync('token', res.data.token);
+						// 获取个人信息
+						this.$store.dispatch('information').then(res=>{
+							_this.isRotate = false
+						}).catch(e=>{
+							_this.isRotate = false
+						})
+						// 跳转页面
 						if (getCurrentPages().length == 1) {
 							this.$u.route('/pages/index/index')
 						} else {
@@ -94,14 +101,7 @@
 								delta: 1
 							});
 						}
-						// 获取个人信息
-						this.$store.dispatch('information').then(res=>{
-							_this.isRotate = false
-							// 跳转页面
-						
-						}).catch(e=>{
-							_this.isRotate = false
-						})
+					
 					})
 					.catch(error => {
 						uni.showToast({

@@ -34,6 +34,11 @@
 			"style": {
 				"navigationBarTitleText": "修改床位"
 			}
+		},	{
+			"path": "pages/auth/personal_discipline",
+			"style": {
+				"navigationBarTitleText": "违纪记录"
+			}
 		}
 	],
 

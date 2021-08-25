@@ -29,7 +29,7 @@
 				:height="8"></u-line-progress>
 			<view class="u-flex u-row-between u-font-xs u-type-info ">
 				<text>我的经验</text>
-				<!-- <text> {{vuex_user.experience.a}}/{{vuex_user.experience.b}}</text> -->
+				<text> {{vuex_user.experience.a}}/{{vuex_user.experience.b}}</text>
 			</view>
 		</view>
 
@@ -61,7 +61,7 @@
 				} else {
 					this.msg = '请登录'
 				}
-				// this.percent = (this.vuex_user.experience.a / this.vuex_user.experience.b) * 100
+				this.percent = (this.vuex_user.experience.a / this.vuex_user.experience.b) * 100
 			},
 			login() {
 				if(!this.vuex_token){
