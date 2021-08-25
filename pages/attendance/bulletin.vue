@@ -42,6 +42,7 @@
 			};
 		},
 		onLoad: function(option) {
+			let that = this
 			this.$u.api.school_attendance_student_disciplinary().then(res => {
 				var list = res.data;
 				var active_list = []
@@ -58,11 +59,11 @@
 					list.unshift(active_list[i])
 				}
 				this.$data.tableList = list
+				this.loading = false
 				if (res.data.length <= 0) return;
 				var time_ = res.data[0].created_time;
 				var index = time_.indexOf(' ');
 				this.$data.time = time_.substring(0, index);
-				this.loading = false
 			});
 		}
 	};
