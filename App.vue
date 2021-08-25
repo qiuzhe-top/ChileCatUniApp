@@ -13,7 +13,11 @@
 			/**
 			 * h5，app-plus(nvue下也为app-plus)，mp-weixin，mp-alipay......
 			 */
-			if(uni.getStorageSync('token'))this.$store.dispatch('information');
+			if(uni.getStorageSync('token')){
+				this.$store.dispatch('information').then(r=>{
+					this.$u.vuex('vuex_index_loading',false)
+				})
+			};
 		},
 	}
 </script>
