@@ -37,7 +37,7 @@
 		margin: 0;
 	}
 	body {
-		background: $u-bg-color !important;
+		// background: $u-bg-color !important;
 	}
 	
 	page {

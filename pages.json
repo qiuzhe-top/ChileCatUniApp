@@ -39,6 +39,11 @@
 			"style": {
 				"navigationBarTitleText": "违纪记录"
 			}
+		},	{
+			"path": "pages/attendance/bulletin",
+			"style": {
+				"navigationBarTitleText": "违纪公告"
+			}
 		}
 	],
 

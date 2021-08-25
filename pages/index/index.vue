@@ -8,7 +8,7 @@
 			</u-col>
 		</u-row>
 
-		<u-row class="u-m-b-30">
+		<u-row class="u-m-b-30" @click="ruter('pages/attendance/bulletin')">
 			<u-col span="6">
 				<qz-car class="u-p-30 " img_size="150rpx"
 					img="https://s.pc.qq.com/tousu/img/20210824/8449551_1629775280.jpg">
@@ -77,6 +77,7 @@
 
 <style lang="scss">
 	.index {
+		background-color: $u-bg-color;
 		.discipline {
 			text {
 				display: block;

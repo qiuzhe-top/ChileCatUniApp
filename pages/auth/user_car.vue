@@ -12,7 +12,7 @@
 						class="name u-font-xl u-m-b-10 u-main-color u-skeleton-rect">{{msg}}{{vuex_user.username}}</text>
 					<view class="organization u-type-info u-skeleton-rect">
 						<u-icon name="map u-m-r-5"></u-icon>
-						<text class="u-font-xs">浙江交通{{vuex_user.college}}{{vuex_user.grade}}</text>
+						<text class="u-font-xs">浙江交通 {{vuex_user.college}}  {{vuex_user.grade}}</text>
 					</view>
 				</view>
 			</view>
