@@ -15,7 +15,8 @@
 			 */
 			if(uni.getStorageSync('token')){
 				this.$store.dispatch('information').then(r=>{
-					this.$u.vuex('vuex_index_loading',false)
+					// this.$u.vuex('vuex_index_loading',false)
+					this.$store.dispatch('save',['vuex_index_loading',false])
 				})
 			};
 		},
