@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {
+	api
+} from '@/common/http.api.js'
 Vue.use(Vuex)
 
 let lifeData = {};
@@ -12,7 +15,8 @@ try {
 }
 
 // 需要永久存储，且下次APP启动需要取出的，在state中的变量名
-let saveStateKeys = ['vuex_user', 'vuex_token'];
+let saveStateKeys = [];
+// let saveStateKeys = ['vuex_user', 'vuex_token'];
 
 // 保存变量到本地存储中
 const saveLifeData = function(key, value) {
@@ -27,17 +31,18 @@ const saveLifeData = function(key, value) {
 		uni.setStorageSync('lifeData', tmp);
 	}
 }
-import {api}from '@/common/http.api.js'
+
 let vuex_user_defut = {
 	username: '',
 	college: '',
 	grade: '',
-	avatar:'https://s.pc.qq.com/tousu/img/20210823/4865226_1629724433.jpg',
-	experience:{
-		a:0,
-		b:1
+	avatar: 'https://s.pc.qq.com/tousu/img/20210823/4865226_1629724433.jpg',
+	experience: {
+		a: 0,
+		b: 1
 	}
 }
+
 const store = new Vuex.Store({
 	state: {
 		// 如果上面从本地获取的lifeData对象下有对应的属性，就赋值给state中对应的变量
@@ -46,29 +51,7 @@ const store = new Vuex.Store({
 		vuex_token: lifeData.vuex_token ? lifeData.vuex_token : '',
 		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
 		vuex_version: 'V2.0.1',
-		vuex_demo: '绛紫',
-		vuex_index_loading:false,
-		// 自定义tabbar数据
-		vuex_tabbar: [{
-				iconPath: "/static/uview/example/component.png",
-				selectedIconPath: "/static/uview/example/component_select.png",
-				text: '组件',
-				pagePath: '/pages/example/components'
-			},
-			{
-				iconPath: "/static/uview/example/js.png",
-				selectedIconPath: "/static/uview/example/js_select.png",
-				text: '工具',
-				midButton: true,
-				pagePath: '/pages/example/js'
-			},
-			{
-				iconPath: "/static/uview/example/template.png",
-				selectedIconPath: "/static/uview/example/template_select.png",
-				text: '模板',
-				pagePath: '/pages/example/template'
-			}
-		]
+		vuex_index_loading: false,
 	},
 	mutations: {
 		$uStore(state, payload) {
@@ -91,51 +74,64 @@ const store = new Vuex.Store({
 			// 保存变量到本地，见顶部函数定义
 			saveLifeData(saveKey, state[saveKey])
 		},
-		SET_USER: (state, data) => {
-			state.vuex_user = data
-		},
-		SET_TOKEN: (state, data) => {
-			state.vuex_token = data
-		},
-		SET_INDEX_LOADING:(state,data)=>{
-			state.vuex_index_loading = data
-		},
-		INIT_INDEX_LOADING:(state,data)=>{
-			if(state.vuex_user.username){
+		INIT_INDEX_LOADING: (state, data) => {
+			if (state.vuex_user.username) {
 				state.vuex_index_loading = false
 			}
 		},
+		
 	},
 	actions: {
+		save:({commit,dispatch},dict) => {
+			commit('$uStore',{name:dict[0],value:dict[1]})
+		},
 		// 获取个人信息
 		information({
-			commit,dispatch
+			commit,
+			dispatch
 		}, request) {
-			commit('SET_INDEX_LOADING',true)
+			dispatch('save', ['vuex_index_loading',true]);
 			return new Promise((resolve, reject) => {
 				api.user_information(request)
 					.then(response => {
-						this.commit('SET_USER', response.data)
+						dispatch('save', ['vuex_user',response.data])
 						const token = uni.getStorageSync('token');
-						commit('SET_TOKEN',token)
+						dispatch('save', ['vuex_token',token])
 						resolve(response)
 					})
 					.catch(error => {
+						dispatch('save', ['vuex_index_loading',false]);
 						dispatch('logout')
-						commit("SET_INDEX_LOADING",false)
 						reject(error)
 					})
 			})
 		},
 		// 退出登录
 		logout({
-			commit
+			commit,dispatch
 		}, request) {
 			uni.setStorageSync('token', '');
-			commit('SET_TOKEN',undefined);
-			commit('SET_USER', vuex_user_defut)
+			dispatch('save', ['vuex_token',undefined]);
+			dispatch('save', ['vuex_user',vuex_user_defut]);
+		},
+		// 我的寝室信息
+		mybedroom({
+			commit,dispatch
+		}, request) {
+			return new Promise((resolve, reject) => {
+				api.school_information_mybedroom(request)
+					.then(response => {
+						resolve(response)
+					})
+					.catch(error => {
+						reject(error)
+					})
+			})
 		},
 	}
 })
 
+const listToDict = function(list){
+	return {name:list[0],value:list[1]}
+}
 export default store

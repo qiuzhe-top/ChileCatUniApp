@@ -2,7 +2,7 @@
 // 同时，我们也可以在此使用getApp().globalData，如果你把token放在getApp().globalData的话，也是可以使用的
 function getUrl(){
 	if(process.env.NODE_ENV === 'development'){
-		return 'http://127.0.0.1:8000' 
+		return '' 
 	}else{
 		return 'https://www.qiuzhe.top:8000/'
 		// return 'http://47.102.215.230:8000/api/' 
@@ -17,7 +17,7 @@ const install = (Vue, vm) => {
 		// 设置自定义头部content-type
 		header: {
 			'Content-Type':'application/x-www-form-urlencoded',
-			'Access-Contro1-Allow-origin':'*'
+			'Access-Contro1-Allow-Origin':'*'
 		},  
 	});
 	// 请求拦截，配置Token等参数

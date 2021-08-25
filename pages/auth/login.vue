@@ -33,25 +33,20 @@
 				this.username = '19510145'
 				this.password = '19510145'
 			}
-			//this.isLogin();
+			this.isLogin();
 		},
 		methods: {
-			// ...mapActions(['Login']),
 			isLogin() {
-				//判断缓存中是否登录过，直接登录
-				// try {
-				// 	const value = uni.getStorageSync('setUserData');
-				// 	if (value) {
-				// 		//有登录信息
-				// 		console.log("已登录用户：",value);
-				// 		_this.$store.dispatch("setUserData",value); //存入状态
-				// 		uni.reLaunch({
-				// 			url: '../../../pages/index',
-				// 		});
-				// 	}
-				// } catch (e) {
-				// 	// error
-				// }
+				// 判断缓存中是否登录过，直接登录
+				try {
+					if (this.vuex_token) {
+						//有登录信息
+						this.$store.dispatch("setUserData",value); //存入状态
+						this.$u.route('pages/index/index')
+					}
+				} catch (e) {
+					// error
+				}
 			},
 			startLogin(e) {
 				//登录
@@ -90,30 +85,23 @@
 				};
 
 				this.$u.api.user_login(ps).then(res => {
-						const {
-							token
-						} = res.data
 						// 缓存token
-						try {
-							uni.setStorageSync('token', token);
-						} catch (e) {}
-						// 获取个人信息
-						this.$store.dispatch('information')
-						_this.isRotate = false;
-						// 跳转页面
+						uni.setStorageSync('token', res.data.token);
 						if (getCurrentPages().length == 1) {
-							this.$u.route({
-								type:'redirectTo',
-								url: '/pages/index/index',
-								params: {
-									loading: true
-								}
-							})
+							this.$u.route('/pages/index/index')
 						} else {
 							uni.navigateBack({
 								delta: 1
 							});
 						}
+						// 获取个人信息
+						this.$store.dispatch('information').then(res=>{
+							_this.isRotate = false
+							// 跳转页面
+						
+						}).catch(e=>{
+							_this.isRotate = false
+						})
 					})
 					.catch(error => {
 						uni.showToast({

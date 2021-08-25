@@ -4,7 +4,7 @@
 		<u-cell-group>
 			<template v-if="vuex_token">
 				<u-cell-item icon="setting" v-on:tap="toPage('./personal_discipline')" title="违纪记录"></u-cell-item>
-				<u-cell-item icon="setting" v-on:tap="toPage('./bed_position')" title="修改床位"></u-cell-item>
+				<u-cell-item icon="setting" v-on:tap="toPage('pages/setting/bed_position')" title="修改床位"></u-cell-item>
 					
 			
 				<u-cell-item icon="setting" title="修改密码" @click="up_password_show = true"></u-cell-item>
@@ -45,8 +45,8 @@
 		},
 		methods: {
 			logout() {
-				this.$store.dispatch('logout')
 				this.$u.route('pages/index/index')
+				this.$store.dispatch('logout')
 			},
 		
 			confirm() {
