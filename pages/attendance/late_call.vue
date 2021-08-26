@@ -1,8 +1,8 @@
 <template>
 	<view class="call">
-		<u-row gutter="16" justify="space-around">
+		<u-row justify="space-around">
 			<!-- 班级选择 -->
-			<u-col span="4">
+			<u-col span="3">
 				<u-button type="success" size="mini" @click="open()" plain>{{vuex_class_list[class_index]['name']}}
 				</u-button>
 			</u-col>
@@ -19,9 +19,8 @@
 				</radio-group>
 			</u-popup>
 
-
 			<!-- 点名规则 -->
-			<u-col span="6">
+			<u-col span="5">
 				<radio-group @change="select_rule" class="class-radio-group">
 
 					<label class="radio" v-for="(item,index) in vuex_call_rules" :key="index">
@@ -31,12 +30,22 @@
 				</radio-group>
 			</u-col>
 
+			<uni-col span="1">
+				<u-checkbox v-model="is_check" name="多选">
+					多选
+				</u-checkbox>
+			</uni-col>
 		</u-row>
 
 
 		<u-row gutter="16" justify="space-around" class="class-list u-table-height-70">
-			<u-table class="u-table u-m-t-0 " @change="change">
+			<u-table class="u-table u-m-t-0 " align="center" @change="table_change">
 				<u-tr>
+				<!-- 	<u-th  width="90rpx">
+						<u-checkbox v-model="is_check" v-if="is_check">
+						</u-checkbox>
+						<text v-else-if="!is_check">序号</text>
+					</u-th> -->
 					<u-th width="160rpx">学号</u-th>
 					<u-th width="140rpx">姓名</u-th>
 					<u-th width="100rpx">状态</u-th>
@@ -45,67 +54,34 @@
 				</u-tr>
 				<u-tr v-for="(item,index) in user_list" :key="index">
 					<template v-if="item">
-							<u-td width="160rpx">{{ item.username }}</u-td>
-							<u-td width="140rpx">{{ item.name }}</u-td>
-							<u-td width="100rpx">
-								<u-icon v-show="item.flg" name="checkmark" color="#2979ff" size="28"></u-icon>
-								<u-icon v-show="item.flg==false" name="close" color="#d30000" size="28"></u-icon>
-							</u-td>
-							<u-td>
-								<u-button type="default" v-show="item.flg==null" size="mini" @click="submit(item,true)">在
-								</u-button>
-							</u-td>
-							<u-td>
-								<u-button type="default" v-show="item.flg==null" size="mini" @click="submit(item,false)">不在
-								</u-button>
-							</u-td>
-						</template>
-				</u-tr>
-			</u-table>
-			<!-- is-check -->
-			<!-- 	<t-table @change="table_change" v-if="table_show">
-				<t-tr>
-					<t-th>学号</t-th>
-					<t-th>姓名</t-th>
-					<t-th>状态</t-th>
-					<t-th></t-th>
-					<t-th></t-th>
-				</t-tr>
-				<t-tr v-for="(item,index) in user_list" :key="index">
-
-					<template v-if="item">
-						<t-td>{{ item.username }}</t-td>
-						<t-td>{{ item.name }}</t-td>
-						<t-td>
+						<!-- <u-td v-show="is_check" width="90rpx">{{index+1}}</u-td> -->
+						<u-td width="160rpx">{{ item.username }}</u-td>
+						<u-td width="140rpx">{{ item.name }}</u-td>
+						<u-td width="100rpx">
 							<u-icon v-show="item.flg" name="checkmark" color="#2979ff" size="28"></u-icon>
 							<u-icon v-show="item.flg==false" name="close" color="#d30000" size="28"></u-icon>
-						</t-td>
-						<t-td>
+						</u-td>
+						<u-td >
 							<u-button type="default" v-show="item.flg==null" size="mini" @click="submit(item,true)">在
 							</u-button>
-						</t-td>
-						<t-td>
+						</u-td>
+						<u-td >
 							<u-button type="default" v-show="item.flg==null" size="mini" @click="submit(item,false)">不在
 							</u-button>
-						</t-td>
+						</u-td>
 					</template>
-
-				</t-tr>
-			</t-table> -->
-
+				</u-tr>
+			</u-table>
 		</u-row>
 
 
 		<!-- 组件问题 -->
-		<!-- 		<u-row gutter="16" justify="space-around" class="class-list">
-			
-			<u-button @click="roll_cal_list(true)" >在</u-button>
+		<u-row gutter="16" justify="space-around" class="class-list" v-show="is_check">
+
+			<u-button @click="roll_cal_list(true)">在</u-button>
 			<u-button @click="roll_cal_list(false)">不在</u-button>
-			
+
 		</u-row>
- -->
-
-
 
 
 	</view>
@@ -130,7 +106,9 @@
 				// 当前规则ID
 				rule_id: 0,
 				// 表格对象
-				table_obj: null
+				table_obj: null,
+				// 是否多选提交
+				is_check: false
 			}
 		},
 		methods: {
@@ -147,13 +125,13 @@
 			// 选择班级
 			select_sclass: function(evt) {
 				this.class_index = Number.parseInt(evt.target.value);
-				this.$data.user_list = []
-				this.$data.select_user_index = []
+				this.user_list = []
+				this.select_user_index = []
 			},
 			// 多选更新
 			table_change(e) {
-				this.$data.table_obj = e
-				this.$data.select_user_index = e.detail
+				this.table_obj = e
+				this.select_user_index = e.detail
 				console.log(e.detail)
 			},
 			// 弹出层打开
@@ -174,13 +152,13 @@
 					icon: 'loading',
 					mask: true,
 				});
-				this.$u.api.school_attendance_late_class( {
+				this.$u.api.school_attendance_late_class({
 					type: 1,
 					rule_id: rule_id,
 					class_id: class_id,
 					task_id: this.vuex_task.id
-				} ).then(res=>{
-					this.$data.user_list = res.data
+				}).then(res => {
+					this.user_list = res.data
 					uni.hideLoading();
 				})
 			},
@@ -190,7 +168,7 @@
 				var records = {
 					"user_id": item.user_id,
 					"reason_is_custom": false,
-					"reason": this.$data.rule_id,
+					"reason": this.rule_id,
 					"status": 0,
 				}
 				console.log(item)
@@ -210,12 +188,11 @@
 					icon: 'loading',
 					mask: true,
 				});
-				this.$store.dispatch('school_attendance/submit_late', {
-					task_id: this.$store.getters.task_now.id,
+				this.$u.api.school_attendance_submit_late({
+					task_id: this.vuex_task.id,
 					flg: flg,
 					records: records,
 				}).then(res => {
-					// this.$data.user_list = res.data.data
 					fun(res.code)
 					uni.hideLoading();
 				})
@@ -224,12 +201,12 @@
 			roll_cal_list(flg) {
 
 				// 选中的下标
-				var indexs = this.$data.select_user_index
+				var indexs = this.select_user_index
 				var user_list = new Array();
 
 				indexs.forEach(i => {
 					user_list.push({
-						user_id: this.$data.user_list[i].id
+						user_id: this.user_list[i].id
 					})
 				})
 
@@ -241,7 +218,7 @@
 			},
 			batch_flg(indexs, flg) {
 				indexs.forEach(i => {
-					this.$data.user_list[i].flg = flg
+					this.user_list[i].flg = flg
 				})
 			}
 
@@ -250,7 +227,6 @@
 </script>
 
 <style lang="scss" scoped>
-
 	.call {
 		.u-td {
 			padding: 6px 3px;
@@ -297,7 +273,7 @@
 		justify-content: center;
 		align-items: center;
 	}
-	
+
 	// .class-list ::v-deep .u-table {
 	// 	.u-tr{
 	// 		.u-td{
