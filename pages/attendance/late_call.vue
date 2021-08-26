@@ -34,8 +34,34 @@
 		</u-row>
 
 
-		<u-row gutter="16" justify="space-around" class="class-list">
-
+		<u-row gutter="16" justify="space-around" class="class-list u-table-height-70">
+			<u-table class="u-table u-m-t-0 " @change="change">
+				<u-tr>
+					<u-th width="160rpx">学号</u-th>
+					<u-th width="140rpx">姓名</u-th>
+					<u-th width="100rpx">状态</u-th>
+					<u-th></u-th>
+					<u-th height='100rpx'></u-th>
+				</u-tr>
+				<u-tr v-for="(item,index) in user_list" :key="index">
+					<template v-if="item">
+							<u-td width="160rpx">{{ item.username }}</u-td>
+							<u-td width="140rpx">{{ item.name }}</u-td>
+							<u-td width="100rpx">
+								<u-icon v-show="item.flg" name="checkmark" color="#2979ff" size="28"></u-icon>
+								<u-icon v-show="item.flg==false" name="close" color="#d30000" size="28"></u-icon>
+							</u-td>
+							<u-td>
+								<u-button type="default" v-show="item.flg==null" size="mini" @click="submit(item,true)">在
+								</u-button>
+							</u-td>
+							<u-td>
+								<u-button type="default" v-show="item.flg==null" size="mini" @click="submit(item,false)">不在
+								</u-button>
+							</u-td>
+						</template>
+				</u-tr>
+			</u-table>
 			<!-- is-check -->
 			<!-- 	<t-table @change="table_change" v-if="table_show">
 				<t-tr>
@@ -223,7 +249,8 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
 	.call {
 		.u-td {
 			padding: 6px 3px;
@@ -270,4 +297,12 @@
 		justify-content: center;
 		align-items: center;
 	}
+	
+	// .class-list ::v-deep .u-table {
+	// 	.u-tr{
+	// 		.u-td{
+	// 			height: 70rpx;
+	// 		}
+	// 	}
+	// }
 </style>

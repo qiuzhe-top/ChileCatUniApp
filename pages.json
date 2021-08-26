@@ -69,6 +69,16 @@
 			"style": {
 				"navigationBarTitleText": "晚自修"
 			}
+		},{
+			"path": "pages/attendance/late_call",
+			"style": {
+				"navigationBarTitleText": "晚自修点名"
+			}
+		},{
+			"path": "pages/attendance/late_discipline",
+			"style": {
+				"navigationBarTitleText": "晚自修违纪"
+			}
 		}
 	],
 

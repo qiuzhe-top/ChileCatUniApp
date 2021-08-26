@@ -135,6 +135,17 @@ text {
 	}
 }
 
+// 设置表格td高
+@for $i from 10 through 200 {
+	.u-table-height-#{$i} ::v-deep .u-table{
+		.u-tr{
+			.u-td{
+				height: $i + rpx;
+			}
+		}
+	}
+}
+
 // 定义内外边距，历遍1-200
 @for $i from 0 through 200 {
 	// 只要双数和能被5除尽的数

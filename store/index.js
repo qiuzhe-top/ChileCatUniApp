@@ -46,6 +46,9 @@ const store = new Vuex.Store({
 	state: {
 		// 如果上面从本地获取的lifeData对象下有对应的属性，就赋值给state中对应的变量
 		// 加上vuex_前缀，是防止变量名冲突，也让人一目了然
+		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
+		vuex_version: 'V2.0.1',
+		vuex_index_loading: false,
 		vuex_user: lifeData.vuex_user ? lifeData.vuex_user : vuex_user_defut,
 		vuex_token: lifeData.vuex_token ? lifeData.vuex_token : '',
 		vuex_tasks: lifeData.vuex_tasks ? lifeData.vuex_tasks : [],
@@ -56,9 +59,12 @@ const store = new Vuex.Store({
 		vuex_layer_now: lifeData.vuex_layer_now ? lifeData.vuex_layer_now : {},
 		// 当前房间
 		vuex_room_now: lifeData.vuex_room_now ? lifeData.vuex_room_now : {},
-		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
-		vuex_version: 'V2.0.1',
-		vuex_index_loading: false,
+		// 点名规则列表
+		vuex_call_rules:[],
+		// 违纪检查规则列表
+		vuex_discipline_rules:[],
+		// 点名时加载的班级列表
+		vuex_class_list:[{id:-1,name:''}]
 	},
 	mutations: {
 		$uStore(state, payload) {
