@@ -4,8 +4,9 @@ function getUrl(){
 	if(process.env.NODE_ENV === 'development'){
 		return '' 
 	}else{
-		return 'https://www.qiuzhe.top:8000/'
-		// return 'http://47.102.215.230:8000/api/' 
+		return 'https://www.qiuzhe.top:8000'
+		// return 'http://127.0.0.1:8000'
+		// return 'http://47.102.215.230:8000' 
 	}
 }
 const install = (Vue, vm) => {
@@ -16,7 +17,8 @@ const install = (Vue, vm) => {
 		originalData: true, 
 		// 设置自定义头部content-type
 		header: {
-			'Content-Type':'application/x-www-form-urlencoded',
+			'Content-Type':'application/json;charset=UTF-8',
+
 			'Access-Contro1-Allow-Origin':'*'
 		},  
 	});

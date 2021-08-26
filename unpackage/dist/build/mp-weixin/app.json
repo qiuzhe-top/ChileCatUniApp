@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/auth/login",
+    "pages/setting/index",
+    "pages/setting/bed_position",
+    "pages/auth/personal_discipline",
+    "pages/attendance/bulletin",
+    "pages/attendance/health_floor",
+    "pages/attendance/knowing_floor",
+    "pages/attendance/late"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uView",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#909399",
+    "selectedColor": "#303133",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index"
+      },
+      {
+        "pagePath": "pages/index/index"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

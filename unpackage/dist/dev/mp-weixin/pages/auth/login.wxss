@@ -1,0 +1,50 @@
+
+uni-page-body.data-v-cbd6070a,
+page.data-v-cbd6070a,
+page.data-v-cbd6070a {
+	height: auto;
+}
+
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.up_password {
+  padding: 30rpx;
+}
+.title {
+  padding-top: 220rpx;
+  font-size: 70rpx;
+  color: #333;
+}
+.msg {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+.box {
+  width: 100%;
+  padding: 20rpx;
+  background-color: #f1f1f1;
+  color: #333;
+  border-radius: 2rpx;
+  font-size: 24rpx;
+}
+.username {
+  margin-top: 120rpx;
+}
+.password {
+  margin-top: 20rpx;
+}
+.login {
+  margin-top: 40rpx;
+  border-radius: 2rpx;
+  -webkit-box-shadow: 0 0 10rpx #c0c0c0;
+          box-shadow: 0 0 10rpx #c0c0c0;
+}
+.login button {
+  height: 100rpx;
+}
+

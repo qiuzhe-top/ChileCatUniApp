@@ -34,27 +34,37 @@
 			"style": {
 				"navigationBarTitleText": "修改床位"
 			}
-		},	{
+		}, {
 			"path": "pages/auth/personal_discipline",
 			"style": {
 				"navigationBarTitleText": "违纪记录"
 			}
-		},	{
+		}, {
 			"path": "pages/attendance/bulletin",
 			"style": {
 				"navigationBarTitleText": "违纪公告"
 			}
-		},	{
-			"path": "pages/attendance/health_floor",
+		}, {
+			"path": "pages/attendance/floor",
 			"style": {
-				"navigationBarTitleText": "寝室卫生"
+				"navigationBarTitleText": "宿舍楼"
 			}
-		},	{
-			"path": "pages/attendance/knowing_floor",
+		}, {
+			"path": "pages/attendance/room",
 			"style": {
-				"navigationBarTitleText": "晚查寝"
+				"navigationBarTitleText": "宿舍楼层"
 			}
-		},	{
+		}, {
+			"path": "pages/attendance/knowing_people",
+			"style": {
+				"navigationBarTitleText": "查寝"
+			}
+		},{
+			"path": "pages/attendance/health_people",
+			"style": {
+				"navigationBarTitleText": "查卫生"
+			}
+		},{
 			"path": "pages/attendance/late",
 			"style": {
 				"navigationBarTitleText": "晚自修"
@@ -73,6 +83,13 @@
 		"selectedColor": "#303133",
 		"backgroundColor": "#FFFFFF",
 		"borderStyle": "black",
-		"list": []
+		"list": [
+			// {
+			// 	"pagePath": "pages/index/index"
+			// },	{
+			// 	"pagePath": "pages/index/index"
+			// },
+
+		]
 	}
 }

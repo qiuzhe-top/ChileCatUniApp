@@ -1,0 +1,21 @@
+
+.box-map {
+	width: 50%;
+}
+.active {
+	background-color: #04b8fc;
+	color: #f1f1f1;
+}
+.level {
+	min-width: 234rpx;
+	padding: 25rpx 60rpx;
+	margin-bottom: 60rpx;
+	margin-right: 15rpx;
+	display: inline-block;
+	-webkit-box-shadow: #c3c3c3 1px 1px 10px;
+	        box-shadow: #c3c3c3 1px 1px 10px;
+}
+.door {
+	width: 100%;
+}
+

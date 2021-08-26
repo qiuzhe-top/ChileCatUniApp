@@ -1,0 +1,1 @@
+<view class="car u-p-15 b-r-2 pr" style="{{(car_style)}}"><slot></slot></view>

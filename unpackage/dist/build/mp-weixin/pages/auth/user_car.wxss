@@ -1,0 +1,1 @@
+.user_car .username{height:180rpx;-webkit-box-align:start;-webkit-align-items:flex-start;align-items:flex-start}.user_car .username .name{font-weight:800}.user_car .set{width:70rpx;height:70rpx;text-align:center;line-height:70rpx}.user_car .progress{width:70%;margin-top:-8rpx}

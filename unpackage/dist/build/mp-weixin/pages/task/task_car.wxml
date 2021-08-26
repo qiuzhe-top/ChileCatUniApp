@@ -1,0 +1,1 @@
+<view class="task_car"><view class="u-p-t-20 u-p-l-40"><text class="msg1 u-font-xl ">{{msg1}}</text><view class="my-task u-m-t-40 "><view><text>我的任务</text></view><view class="task_size"><text class="size">{{vuex_tasks.length}}</text><text>个</text></view></view></view></view>
