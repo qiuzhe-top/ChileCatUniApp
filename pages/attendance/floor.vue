@@ -45,6 +45,7 @@
 					id: layer.id,
 					name: layer.name
 				}])
+				this.$u.route('/pages/attendance/room')
 				// uni.navigateTo({
 				// 	url: '/pages/school_attendance/' + this.$props.room_url
 				// });
