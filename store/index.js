@@ -91,15 +91,22 @@ const store = new Vuex.Store({
 		},
 		
 		// 初始化App
-		init_app:({commit,dispatch},dict) => {
-			dispatch('information').then(r=>{
-				dispatch('save',['vuex_index_loading',false])
-				dispatch('init_my_task')
+		init_app:({commit,dispatch},data) => {
+			return new Promise((resolve, reject) => {
+				dispatch('information').then(res=>{
+					
+					if(!data)dispatch('save',['vuex_index_loading',false])
+					dispatch('init_my_task')
+					resolve(res)
+				})
+				.catch(error => {
+					reject(error)
+				})
 			})
 		},
 		
 		// 获取个人信息
-		information({
+		 information({
 			commit,
 			dispatch
 		}, request) {
@@ -119,6 +126,7 @@ const store = new Vuex.Store({
 					})
 			})
 		},
+		
 		// 退出登录
 		logout({
 			commit,dispatch
@@ -129,6 +137,7 @@ const store = new Vuex.Store({
 			dispatch('save', ['vuex_tasks',[]]);
 			dispatch('save', ['vuex_task',{}]);
 		},
+		
 		// 我的寝室信息
 		mybedroom({
 			commit,dispatch

@@ -87,8 +87,8 @@
 				this.$u.api.user_login(ps).then(res => {
 						// 缓存token
 						uni.setStorageSync('token', res.data.token);
-						// 获取个人信息
-						this.$store.dispatch('information').then(res=>{
+						// 初始化App
+						this.$store.dispatch('init_app').then(res=>{
 							_this.isRotate = false
 						}).catch(e=>{
 							_this.isRotate = false

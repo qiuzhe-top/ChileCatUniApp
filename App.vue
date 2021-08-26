@@ -14,7 +14,7 @@
 			 * h5，app-plus(nvue下也为app-plus)，mp-weixin，mp-alipay......
 			 */
 			if(uni.getStorageSync('token')){
-				this.$store.dispatch('init_app')
+				this.$store.dispatch('init_app',false)
 			};
 		},
 	}
