@@ -49,12 +49,13 @@ export default {
 			uni.showLoading({
 				title: '加载中'
 			});
-			this.$store.dispatch('school_attendance/submit_knowing', {
-				task_id: this.$store.getters.task_now.id,
+			
+			this.$u.api.school_attendance_submit_knowing(  {
+				task_id: this.vuex_task.id,
 				records:d,
-				room_id: this.$store.getters.room_now.id, 
+				room_id: this.vuex_room_now.id, 
 			 
-			}).then(res => {
+			} ).then(res => {
 				uni.showToast({
 					title:"提交成功",
 					duration: 6000

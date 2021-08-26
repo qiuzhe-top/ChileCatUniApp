@@ -3,7 +3,7 @@
 		<PeopleList @to_people="to_people" :is_position_mode="true" :init_people_store='init_people_store'
 			ref="people_list_vue"></PeopleList>
 
-		<u-modal v-model="show" :title="user_obj.name" confirm="record" :show-cancel-button="true">
+		<u-modal v-model="show" :mask-close-able="true" :title="user_obj.name"  :show-confirm-button="false" >
 			<view class="slot-content">
 				<radio-group @change="radioChange" class="u-p-r-30">
 					<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in rule_list" :key="index">
@@ -20,6 +20,10 @@
 						</view>
 					</label>
 				</radio-group>
+				<view class="u-text-center u-m-r-30 u-p-b-30" @click="record()">
+					确定 
+				</view>
+				<!-- <button type="default" v-on:tap="record()">确定</button> -->
 			</view>
 		</u-modal>
 	</view>
@@ -62,7 +66,6 @@
 			},
 			// 点击姓名 打开原因/取消记录
 			to_people(item) {
-				console.log(item)
 				if (item.status == '0') {
 					this.$data.form.push({
 						user_id: item.user_id,
@@ -76,22 +79,24 @@
 				} else if (item.status) {
 					this.show=true;
 				}
-				this.$data.user_obj = item;
+				// 当前点击的学生 
+				this.user_obj = item;
+				console.log(this.$data.form,item)
 			},
 			// 输入原因
 			input_why(evt) {
-				this.$data.user_obj.reason = evt.target.value;
-				this.$data.user_obj.reason_is_custom = true
+				this.user_obj.reason = evt.target.value;
+				this.user_obj.reason_is_custom = true
 			},
 			// 单选选择原因
 			radioChange: function(evt) {
-				this.$data.user_obj.reason = evt.target.value;
+				this.user_obj.reason = evt.target.value;
 			},
 
 			// 写入违纪表单
 			record() {
 				this.$emit('record')
-				this.$refs.pop.close();
+				this.show = false
 			},
 			// 是否返回
 			is_onBackPress(e) {
