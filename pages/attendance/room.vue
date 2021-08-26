@@ -44,7 +44,11 @@
 			// 跳转到房间列表
 			to_people(room) {
 				this.$store.dispatch('save', ['vuex_room_now',room])
-				this.$u.route('')
+				var d = {
+					'0':'knowing_people',
+					'1':'health_people'
+				}
+				this.$u.route('/pages/attendance/'+d[this.vuex_task.type])
 			}
 		},
 		onHide() {
