@@ -20,12 +20,7 @@
 			return {
 			}
 		},
-		onLoad() {
-
-		},
-		created() {
-			this.$store.dispatch('init_my_task')
-		},
+ 
 		methods: {
 			go_to(task) {
 				var _url = {

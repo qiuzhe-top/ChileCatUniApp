@@ -16,7 +16,7 @@ try {
 
 // 需要永久存储，且下次APP启动需要取出的，在state中的变量名
 let saveStateKeys = [];
-// let saveStateKeys = ['vuex_user', 'vuex_token'];
+// let saveStateKeys = ['vuex_user', 'vuex_token','vuex_task'];
 
 // 保存变量到本地存储中
 const saveLifeData = function(key, value) {
@@ -49,6 +49,8 @@ const store = new Vuex.Store({
 		// 加上vuex_前缀，是防止变量名冲突，也让人一目了然
 		vuex_user: lifeData.vuex_user ? lifeData.vuex_user : vuex_user_defut,
 		vuex_token: lifeData.vuex_token ? lifeData.vuex_token : '',
+		vuex_tasks: lifeData.vuex_tasks ? lifeData.vuex_tasks : [],
+		vuex_task: lifeData.vuex_task ? lifeData.vuex_task : {},
 		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
 		vuex_version: 'V2.0.1',
 		vuex_index_loading: false,
@@ -82,9 +84,20 @@ const store = new Vuex.Store({
 		
 	},
 	actions: {
+		
+		//保存Vuex变量
 		save:({commit,dispatch},dict) => {
 			commit('$uStore',{name:dict[0],value:dict[1]})
 		},
+		
+		// 初始化App
+		init_app:({commit,dispatch},dict) => {
+			dispatch('information').then(r=>{
+				dispatch('save',['vuex_index_loading',false])
+				dispatch('init_my_task')
+			})
+		},
+		
 		// 获取个人信息
 		information({
 			commit,
@@ -94,8 +107,8 @@ const store = new Vuex.Store({
 			return new Promise((resolve, reject) => {
 				api.user_information(request)
 					.then(response => {
-						dispatch('save', ['vuex_user',response.data])
 						const token = uni.getStorageSync('token');
+						dispatch('save', ['vuex_user',response.data])
 						dispatch('save', ['vuex_token',token])
 						resolve(response)
 					})
@@ -113,6 +126,8 @@ const store = new Vuex.Store({
 			uni.setStorageSync('token', '');
 			dispatch('save', ['vuex_token',undefined]);
 			dispatch('save', ['vuex_user',vuex_user_defut]);
+			dispatch('save', ['vuex_tasks',[]]);
+			dispatch('save', ['vuex_task',{}]);
 		},
 		// 我的寝室信息
 		mybedroom({
@@ -128,6 +143,22 @@ const store = new Vuex.Store({
 					})
 			})
 		},
+		// 加载我的活动
+		init_my_task({
+			commit,dispatch
+		}, request) {
+			return new Promise((resolve, reject) => {
+				api.school_attendance_task_executor().then(res => {
+					res.data.forEach(i=>{
+						i.img='https://s.pc.qq.com/tousu/img/20210824/8449551_1629775280.jpg'
+						i.msg1='去寝室进行点名 看看有没有缺寝的同学'
+						i.msg2='智慧交通学院'
+					})
+					dispatch('save', ['vuex_tasks',res.data]);
+				})
+			})
+		},
+		
 	}
 })
 
