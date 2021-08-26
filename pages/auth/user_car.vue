@@ -18,7 +18,7 @@
 			</view>
 
 			<!-- 设置 -->
-			<view class="set b-c-1" v-on:click="to">
+			<view class="set " v-on:click="to">
 				<u-icon class="u-skeleton-rect" name="setting"></u-icon>
 			</view>
 		</view>

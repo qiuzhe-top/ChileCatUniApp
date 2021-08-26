@@ -1,5 +1,6 @@
 <template>
-	<view class="index u-p-20 u-skeleton">
+	<!--  -->
+	<view class="index u-p-20 u-skeleton"> 
 		<u-row class="u-m-b-30">
 			<u-col span="12">
 				<qz-car img_size="200rpx" img="https://s.pc.qq.com/tousu/img/20210824/2753663_1629771793.jpg">
@@ -38,7 +39,7 @@
 			</u-col>
 		</u-row>
 
-		<attendanceCar></attendanceCar>
+		<attendanceCar ></attendanceCar>
 
 		<!-- 骨架屏 -->
 		<u-skeleton :loading="vuex_index_loading" :animation="true" bgColor="#f8f8f8"></u-skeleton>
@@ -79,9 +80,11 @@
 </script>
 
 <style lang="scss">
-	.index {
+	page{
+		height: 100%;
 		background-color: $u-bg-color;
-
+	}
+	.index {
 		.discipline {
 			text {
 				display: block;

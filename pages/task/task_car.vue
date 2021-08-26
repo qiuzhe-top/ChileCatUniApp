@@ -1,22 +1,19 @@
 <template>
-	<view class="task_car ">
-		
+	<view class="task_car">
 		<view class="u-p-t-20 u-p-l-40 ">
-			<text class="msg1 u-font-xl u-skeleton-rect">{{msg1}}</text>
+			<text class="msg1 u-font-xl ">{{msg1}}</text>
 			<view class="my-task u-m-t-40 ">
 				<view class="">
-					<text class="u-skeleton-rect">
-					我的任务
-						
+					<text class="">
+						我的任务
 					</text>
 				</view>
 				<view class="task_size">
-					<text class="size">3</text>
+					<text class="size">{{vuex_tasks.length}}</text>
 					<text>个</text>
 				</view>
 			</view>
 		</view>
-		
 	</view>
 </template>
 
