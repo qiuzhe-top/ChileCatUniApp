@@ -44,6 +44,21 @@
 			"style": {
 				"navigationBarTitleText": "违纪公告"
 			}
+		},	{
+			"path": "pages/attendance/health_floor",
+			"style": {
+				"navigationBarTitleText": "寝室卫生"
+			}
+		},	{
+			"path": "pages/attendance/knowing_floor",
+			"style": {
+				"navigationBarTitleText": "晚查寝"
+			}
+		},	{
+			"path": "pages/attendance/late",
+			"style": {
+				"navigationBarTitleText": "晚自修"
+			}
 		}
 	],
 

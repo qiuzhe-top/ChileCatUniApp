@@ -3,11 +3,13 @@
 		<view class="attendanceCar" v-if="vuex_tasks.length!=0">
 			<u-row>
 				<u-col span="12" class="u-m-b-30" v-for="(task,index) in vuex_tasks" :key="index">
-					<qz-car class="u-p-30" img_size="150rpx" :img="task.img">
-						<text class="u-block u-skeleton-rect u-font-xl u-m-b-10">{{task.title}}</text>
-						<text class="u-block u-skeleton-rect u-font-xs u-m-b-20 u-type-info u-line-2">{{task.msg1}}</text>
-						<text class="u-block u-blok u-skeleton-rect u-font-xs u-m-b-10 u-type-info">{{task.msg2}}</text>
-					</qz-car>
+					<view class="" @click="go_to(task)">
+						<qz-car class="u-p-30" img_size="150rpx" :img="task.img">
+							<text class="u-block u-skeleton-rect u-font-xl u-m-b-10">{{task.title}}</text>
+							<text class="u-block u-skeleton-rect u-font-xs u-m-b-20 u-type-info u-line-2">{{task.msg1}}</text>
+							<text class="u-block u-blok u-skeleton-rect u-font-xs u-m-b-10 u-type-info">{{task.msg2}}</text>
+						</qz-car>
+					</view>
 				</u-col>
 			</u-row>
 		</view>
@@ -20,17 +22,16 @@
 			return {
 			}
 		},
- 
+		onLoad() {
+		},
 		methods: {
 			go_to(task) {
 				var _url = {
-					'0': '/pages/school_attendance/knowing_floor', // 查寝
-					'1': '/pages/school_attendance/health_floor', // 卫生
-					'2': '/pages/school_attendance/late', // 晚自修
+					'0': 'pages/attendance/knowing_floor', // 查寝
+					'1': 'pages/attendance/health_floor', // 卫生
+					'2': 'pages/attendance/late', // 晚自修
 				};
-				// this.$store.commit('life/SET_WORK_TYPE', task.type);
-				this.$store.commit('school_attendance/SET_TASK_NOW', task);
-				console.log(task)
+				this.$store.dispatch('save', ['vuex_task',task])
 				this.$u.route(_url[task.type])
 			},
 		}
