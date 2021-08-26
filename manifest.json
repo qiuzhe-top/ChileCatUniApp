@@ -1,7 +1,7 @@
 {
-    "name" : "WisdomClouds",
+    "name" : "智慧彩云",
     "appid" : "__UNI__4D5060D",
-    "description" : "多平台快速开发的UI框架",
+    "description" : "",
     "versionName" : "1.8.4",
     "versionCode" : "100",
     "transformPx" : false,
@@ -93,7 +93,7 @@
     },
     "quickapp" : {},
     "mp-weixin" : {
-        "appid" : "",
+		"appid" : "wxf4a2b76b90041ef3",
         "setting" : {
             "urlCheck" : true,
             "es6" : false,
@@ -126,14 +126,14 @@
     "h5" : {
         "template" : "template.h5.html",
         "router" : {
-            "mode" : "hash",
-            "base" : ""
+            "mode" : "history",
+            "base" : "./"
         },
         "optimization" : {
             "treeShaking" : {
                 "enable" : false
             }
         },
-        "title" : "uView UI"
+        "title" : "智慧彩云"
     }
 }
