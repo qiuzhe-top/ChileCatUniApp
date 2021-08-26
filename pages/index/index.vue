@@ -1,6 +1,6 @@
 <template>
 	<!--  -->
-	<view class="index u-p-20 u-skeleton"> 
+	<view class="index u-p-20 u-skeleton">
 		<u-row class="u-m-b-30">
 			<u-col span="12">
 				<qz-car img_size="200rpx" img="https://s.pc.qq.com/tousu/img/20210824/2753663_1629771793.jpg">
@@ -29,19 +29,19 @@
 				</view>
 			</u-col>
 		</u-row>
-
-		<u-row>
-			<u-col span="12">
-				<qz-car class="u-m-b-30" img="https://s.pc.qq.com/tousu/img/20210824/7867424_1629773633.jpg"
-					img_size="320rpx">
-					<taskCar></taskCar>
-				</qz-car>
-			</u-col>
-		</u-row>
-
-		<attendanceCar ></attendanceCar>
-
-		<!-- 骨架屏 -->
+		<transition name="fade">
+			<u-row v-if="vuex_tasks.length!=0">
+				<u-col span="12">
+					<qz-car class="u-m-b-30" img="https://s.pc.qq.com/tousu/img/20210824/7867424_1629773633.jpg"
+						img_size="320rpx">
+						<taskCar></taskCar>
+					</qz-car>
+				</u-col>
+			</u-row>
+		</transition>
+		
+		<attendanceCar></attendanceCar>
+		<!-- 骨架屏 vuex_index_loading -->
 		<u-skeleton :loading="vuex_index_loading" :animation="true" bgColor="#f8f8f8"></u-skeleton>
 	</view>
 </template>
@@ -80,10 +80,11 @@
 </script>
 
 <style lang="scss">
-	page{
+	page {
 		height: 100%;
 		background-color: $u-bg-color;
 	}
+
 	.index {
 		.discipline {
 			text {
@@ -91,4 +92,6 @@
 			}
 		}
 	}
+
+
 </style>

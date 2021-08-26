@@ -1,15 +1,17 @@
 <template>
-	<view class="attendanceCar">
-		<u-row>
-			<u-col span="12" class="u-m-b-30" v-for="(task,index) in vuex_tasks" :key="index">
-				<qz-car class="u-p-30" img_size="150rpx" :img="task.img">
-					<text class="u-block u-skeleton-rect u-font-xl u-m-b-10">{{task.title}}</text>
-					<text class="u-block u-skeleton-rect u-font-xs u-m-b-20 u-type-info u-line-2">{{task.msg1}}</text>
-					<text class="u-block u-blok u-skeleton-rect u-font-xs u-m-b-10 u-type-info">{{task.msg2}}</text>
-				</qz-car>
-			</u-col>
-		</u-row>
-	</view>
+	<transition name="slide-fade">
+		<view class="attendanceCar" v-if="vuex_tasks.length!=0">
+			<u-row>
+				<u-col span="12" class="u-m-b-30" v-for="(task,index) in vuex_tasks" :key="index">
+					<qz-car class="u-p-30" img_size="150rpx" :img="task.img">
+						<text class="u-block u-skeleton-rect u-font-xl u-m-b-10">{{task.title}}</text>
+						<text class="u-block u-skeleton-rect u-font-xs u-m-b-20 u-type-info u-line-2">{{task.msg1}}</text>
+						<text class="u-block u-blok u-skeleton-rect u-font-xs u-m-b-10 u-type-info">{{task.msg2}}</text>
+					</qz-car>
+				</u-col>
+			</u-row>
+		</view>
+	</transition>
 </template>
 
 <script>
@@ -40,5 +42,17 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
+	.slide-fade-enter-active {
+	  transition: all .3s ease;
+	  transition-delay: 1s;
+	}
+	.slide-fade-leave-active {
+	  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+	}
+	.slide-fade-enter, .slide-fade-leave-to
+	/* .slide-fade-leave-active for below version 2.1.8 */ {
+	  transform: translateX(10px);
+	  opacity: 0;
+	}
 </style>
