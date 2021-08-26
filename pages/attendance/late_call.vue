@@ -21,15 +21,15 @@
 
 
 			<!-- 点名规则 -->
-			<!-- 		<u-col span="6">
+			<u-col span="6">
 				<radio-group @change="select_rule" class="class-radio-group">
 
-					<label class="radio" v-for="(item,index) in roll_call_list" :key="index">
+					<label class="radio" v-for="(item,index) in vuex_call_rules" :key="index">
 						<radio :value="str(item.id)" /><text>{{item.name}}</text>
 					</label>
 
 				</radio-group>
-			</u-col> -->
+			</u-col>
 
 		</u-row>
 
@@ -101,8 +101,6 @@
 				table_show: true,
 				// 当前多选 选中的学生
 				select_user_index: [],
-				// 点名规则
-				roll_call_list: this.$store.getters.roll_call_list,
 				// 当前规则ID
 				rule_id: 0,
 				// 表格对象
@@ -143,23 +141,22 @@
 
 			// 获取班级名单
 			get_class_user(id) {
-				var class_id = this.vuex_class_list[this.$data.class_index].id
+				var class_id = this.vuex_class_list[this.class_index].id
 				var rule_id = Number.parseInt(id)
-				this.$data.rule_id = rule_id
+				this.rule_id = rule_id
 				uni.showLoading({
 					icon: 'loading',
 					mask: true,
 				});
-				this.$store.dispatch('school_attendance/late_class', {
+				this.$u.api.school_attendance_late_class( {
 					type: 1,
 					rule_id: rule_id,
 					class_id: class_id,
-					task_id: this.$store.getters.task_now.id
-				}).then(res => {
+					task_id: this.vuex_task.id
+				} ).then(res=>{
 					this.$data.user_list = res.data
 					uni.hideLoading();
 				})
-
 			},
 			submit(item, flg) {
 				if (item.flg != null) return
