@@ -27,8 +27,8 @@
 		methods: {
 			go_to(task) {
 				var _url = {
-					'0': 'pages/attendance/knowing_floor', // 查寝
-					'1': 'pages/attendance/health_floor', // 卫生
+					'0': 'pages/attendance/floor',
+					'1': 'pages/attendance/floor',
 					'2': 'pages/attendance/late', // 晚自修
 				};
 				this.$store.dispatch('save', ['vuex_task',task])
