@@ -18,17 +18,21 @@
 			<scroll-view style="height: 600rpx;" :scroll-top="scrollTop" scroll-y="true" class="scroll-Y"
 				@scrolltoupper="upper" @scrolltolower="lower" @scroll="scroll">
 				<u-table @change="table_change" is-check>
-
 					<u-tr>
-						<u-checkbox v-model="is_select_all"></u-checkbox>
+						<u-th width="90rpx"> 
+							<u-checkbox v-model="is_select_all"></u-checkbox>
+						</u-th>
 						<u-th>规则</u-th>
-						<u-th>分值</u-th>
+						<u-th width="90rpx">分值</u-th>
 					</u-tr>
 
 					<u-tr v-for="item in rule_list" :key="item.id">
 						<template v-if="item">
+							<u-td width="90rpx">
+								<u-checkbox v-model="item.checked"></u-checkbox>
+							</u-td>
 							<u-td>{{ item.name }}</u-td>
-							<u-td>{{ item.score }}</u-td>
+							<u-td width="90rpx">{{ item.score }}</u-td>
 						</template>
 					</u-tr>
 
@@ -51,7 +55,7 @@
 				</u-field>
 			</view>
 		</u-modal>
-
+		
 		<u-button class="submit" @click="open_rule_box">
 			自定义提交
 		</u-button>
@@ -77,7 +81,7 @@
 				// 被选中的规则下标
 				select_role_index: [],
 				// 规则列表
-				rule_list: this.vuex_discipline_rules,
+				rule_list: [],
 
 				// 自定义规则
 				u_modal_show: false,
@@ -89,10 +93,13 @@
 		},
 		watch: {
 			is_select_all: function(e) {
-				this.user_list.forEach(u => {
+				this.rule_list.forEach(u => {
 					u.checked = e
 				})
 			}
+		},
+		mounted() {
+			this.rule_list = this.vuex_discipline_rules
 		},
 		methods: {
 			upper: function(e) {
@@ -126,10 +133,10 @@
 				}).then(res => {
 					this.user = res.data
 					uni.hideLoading();
-				}).catch(e=>{
+				}).catch(e => {
 					this.user = {
-						username:'没有用户',
-						name:' '
+						username: '没有用户',
+						name: ' '
 					}
 				})
 			},
