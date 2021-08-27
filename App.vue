@@ -15,7 +15,9 @@
 			 */
 			if(uni.getStorageSync('token')){
 				this.$store.dispatch('init_app',false)
-			};
+			}else{
+				this.$store.dispatch('logout')
+			}
 		},
 	}
 </script>
