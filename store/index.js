@@ -15,7 +15,7 @@ try {
 }
 
 // 需要永久存储，且下次APP启动需要取出的，在state中的变量名
-let saveStateKeys = ['vuex_task', 'vuex_floor_now', 'vuex_layer_now', 'vuex_room_now'];
+let saveStateKeys = ['vuex_task', 'vuex_floor_now', 'vuex_layer_now', 'vuex_room_now','vuex_call_rules','vuex_discipline_rules'];
 
 // 保存变量到本地存储中
 const saveLifeData = function(key, value) {
@@ -49,6 +49,7 @@ const store = new Vuex.Store({
 		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
 		vuex_version: 'V2.0.1',
 		vuex_index_loading: false,
+		vuex_ali_icon:'https://zhcy-zjjt.oss-cn-beijing.aliyuncs.com/icon/',
 		vuex_user: lifeData.vuex_user ? lifeData.vuex_user : vuex_user_defut,
 		vuex_token: lifeData.vuex_token ? lifeData.vuex_token : '',
 		vuex_tasks: lifeData.vuex_tasks ? lifeData.vuex_tasks : [],
@@ -60,9 +61,9 @@ const store = new Vuex.Store({
 		// 当前房间
 		vuex_room_now: lifeData.vuex_room_now ? lifeData.vuex_room_now : {},
 		// 点名规则列表
-		vuex_call_rules:[],
+		vuex_call_rules: lifeData.vuex_call_rules ? lifeData.vuex_call_rules : [],
 		// 违纪检查规则列表
-		vuex_discipline_rules:[],
+		vuex_discipline_rules: lifeData.vuex_discipline_rules ? lifeData.vuex_discipline_rules : [],
 		// 点名时加载的班级列表
 		vuex_class_list:[{id:-1,name:''}]
 	},
@@ -179,11 +180,15 @@ const store = new Vuex.Store({
 			commit,
 			dispatch
 		}, request) {
+			var d = {
+				'0':'floor.png',
+				'1':'health.png',
+				'2':'book.png'
+			}
 			return new Promise((resolve, reject) => {
 				api.school_attendance_task_executor().then(res => {
 					res.data.forEach(i => {
-						i.img =
-							'https://s.pc.qq.com/tousu/img/20210824/8449551_1629775280.jpg'
+						i.img = store.state.vuex_ali_icon + d[i.type]
 						i.msg1 = '去寝室进行点名 看看有没有缺寝的同学'
 						i.msg2 = '智慧交通学院'
 					})

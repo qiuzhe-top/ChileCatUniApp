@@ -1,8 +1,6 @@
 <template>
 	<view class="floor">
 		<!-- 楼=>层 列表展示 -->
-		{{vuex_floor_now}}
-		{{vuex_layer_now}}
 		<view v-for="item in floor_list" v-bind:key="item.id">
 			<view class="title">{{ item.name }}</view>
 			<view class="box">

@@ -24,7 +24,7 @@
 						text: '违纪',
 					}
 				],
-				current:1
+				current:0
 			}
 		},
 		components:{
@@ -51,7 +51,6 @@
 				},
 				// 加载班级列表
 				load_class(){
-					console.log('加载班级列表')
 					this.$u.api.school_attendance_late_class( {  type:0,task_id:this.vuex_task.id } ).then(res=>{
 						this.$store.dispatch('save', ['vuex_class_list',res.data])
 					})

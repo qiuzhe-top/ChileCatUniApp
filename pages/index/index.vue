@@ -13,7 +13,7 @@
 			<u-col span="6">
 				<view @click="ruter('pages/attendance/bulletin')">
 					<qz-car class="u-p-30 " img_size="150rpx"
-						img="https://s.pc.qq.com/tousu/img/20210824/8449551_1629775280.jpg">
+						:img="vuex_ali_icon + 'announcement.png'">
 						<text class="u-block u-font-xl  u-m-b-10 u-skeleton-rect">违纪公告</text>
 						<text class="u-font-xs u-m-b-20 u-type-info u-skeleton-rect u-line-2">查看大家在一天\n里的违纪情况</text>
 					</qz-car>
@@ -22,7 +22,7 @@
 			<u-col span="6">
 				<view @click="ruter('pages/auth/personal_discipline')">
 					<qz-car class="u-p-30" img_size="150rpx"
-						img="https://s.pc.qq.com/tousu/img/20210824/8449551_1629775280.jpg">
+						:img="vuex_ali_icon + 'my_record.png'"> 
 						<text class="u-block u-font-xl u-m-b-10 u-skeleton-rect">我的违纪</text>
 						<text class="u-font-xs u-m-b-20 u-type-info u-line-2 u-skeleton-rect">我的所有\n违纪记录 </text>
 					</qz-car>

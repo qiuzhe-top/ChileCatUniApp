@@ -1,1 +1,1 @@
-<view class="car u-p-15 b-r-2 pr" style="{{(car_style)}}"><slot></slot></view>
+<view class="car u-p-15 b-r-2 pr"><view class="car_img" style="{{(car_style)}}"></view><slot></slot></view>

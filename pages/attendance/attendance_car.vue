@@ -4,7 +4,7 @@
 			<u-row>
 				<u-col span="12" class="u-m-b-30" v-for="(task,index) in vuex_tasks" :key="index">
 					<view class="" @click="go_to(task)">
-						<qz-car class="u-p-30" img_size="150rpx" :img="task.img">
+						<qz-car class="u-p-30" img_size="150rpx" :img="task.img" :opacity='0.2'>
 							<text class="u-block u-skeleton-rect u-font-xl u-m-b-10">{{task.title}}</text>
 							<text class="u-block u-skeleton-rect u-font-xs u-m-b-20 u-type-info u-line-2">{{task.msg1}}</text>
 							<text class="u-block u-blok u-skeleton-rect u-font-xs u-m-b-10 u-type-info">{{task.msg2}}</text>

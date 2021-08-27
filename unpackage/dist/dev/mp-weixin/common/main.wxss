@@ -763,6 +763,579 @@ text {
 .u-font-200 {
   font-size: 200rpx;
 }
+.u-table-height-10  .u-table .u-tr .u-td {
+  height: 10rpx;
+}
+.u-table-height-11  .u-table .u-tr .u-td {
+  height: 11rpx;
+}
+.u-table-height-12  .u-table .u-tr .u-td {
+  height: 12rpx;
+}
+.u-table-height-13  .u-table .u-tr .u-td {
+  height: 13rpx;
+}
+.u-table-height-14  .u-table .u-tr .u-td {
+  height: 14rpx;
+}
+.u-table-height-15  .u-table .u-tr .u-td {
+  height: 15rpx;
+}
+.u-table-height-16  .u-table .u-tr .u-td {
+  height: 16rpx;
+}
+.u-table-height-17  .u-table .u-tr .u-td {
+  height: 17rpx;
+}
+.u-table-height-18  .u-table .u-tr .u-td {
+  height: 18rpx;
+}
+.u-table-height-19  .u-table .u-tr .u-td {
+  height: 19rpx;
+}
+.u-table-height-20  .u-table .u-tr .u-td {
+  height: 20rpx;
+}
+.u-table-height-21  .u-table .u-tr .u-td {
+  height: 21rpx;
+}
+.u-table-height-22  .u-table .u-tr .u-td {
+  height: 22rpx;
+}
+.u-table-height-23  .u-table .u-tr .u-td {
+  height: 23rpx;
+}
+.u-table-height-24  .u-table .u-tr .u-td {
+  height: 24rpx;
+}
+.u-table-height-25  .u-table .u-tr .u-td {
+  height: 25rpx;
+}
+.u-table-height-26  .u-table .u-tr .u-td {
+  height: 26rpx;
+}
+.u-table-height-27  .u-table .u-tr .u-td {
+  height: 27rpx;
+}
+.u-table-height-28  .u-table .u-tr .u-td {
+  height: 28rpx;
+}
+.u-table-height-29  .u-table .u-tr .u-td {
+  height: 29rpx;
+}
+.u-table-height-30  .u-table .u-tr .u-td {
+  height: 30rpx;
+}
+.u-table-height-31  .u-table .u-tr .u-td {
+  height: 31rpx;
+}
+.u-table-height-32  .u-table .u-tr .u-td {
+  height: 32rpx;
+}
+.u-table-height-33  .u-table .u-tr .u-td {
+  height: 33rpx;
+}
+.u-table-height-34  .u-table .u-tr .u-td {
+  height: 34rpx;
+}
+.u-table-height-35  .u-table .u-tr .u-td {
+  height: 35rpx;
+}
+.u-table-height-36  .u-table .u-tr .u-td {
+  height: 36rpx;
+}
+.u-table-height-37  .u-table .u-tr .u-td {
+  height: 37rpx;
+}
+.u-table-height-38  .u-table .u-tr .u-td {
+  height: 38rpx;
+}
+.u-table-height-39  .u-table .u-tr .u-td {
+  height: 39rpx;
+}
+.u-table-height-40  .u-table .u-tr .u-td {
+  height: 40rpx;
+}
+.u-table-height-41  .u-table .u-tr .u-td {
+  height: 41rpx;
+}
+.u-table-height-42  .u-table .u-tr .u-td {
+  height: 42rpx;
+}
+.u-table-height-43  .u-table .u-tr .u-td {
+  height: 43rpx;
+}
+.u-table-height-44  .u-table .u-tr .u-td {
+  height: 44rpx;
+}
+.u-table-height-45  .u-table .u-tr .u-td {
+  height: 45rpx;
+}
+.u-table-height-46  .u-table .u-tr .u-td {
+  height: 46rpx;
+}
+.u-table-height-47  .u-table .u-tr .u-td {
+  height: 47rpx;
+}
+.u-table-height-48  .u-table .u-tr .u-td {
+  height: 48rpx;
+}
+.u-table-height-49  .u-table .u-tr .u-td {
+  height: 49rpx;
+}
+.u-table-height-50  .u-table .u-tr .u-td {
+  height: 50rpx;
+}
+.u-table-height-51  .u-table .u-tr .u-td {
+  height: 51rpx;
+}
+.u-table-height-52  .u-table .u-tr .u-td {
+  height: 52rpx;
+}
+.u-table-height-53  .u-table .u-tr .u-td {
+  height: 53rpx;
+}
+.u-table-height-54  .u-table .u-tr .u-td {
+  height: 54rpx;
+}
+.u-table-height-55  .u-table .u-tr .u-td {
+  height: 55rpx;
+}
+.u-table-height-56  .u-table .u-tr .u-td {
+  height: 56rpx;
+}
+.u-table-height-57  .u-table .u-tr .u-td {
+  height: 57rpx;
+}
+.u-table-height-58  .u-table .u-tr .u-td {
+  height: 58rpx;
+}
+.u-table-height-59  .u-table .u-tr .u-td {
+  height: 59rpx;
+}
+.u-table-height-60  .u-table .u-tr .u-td {
+  height: 60rpx;
+}
+.u-table-height-61  .u-table .u-tr .u-td {
+  height: 61rpx;
+}
+.u-table-height-62  .u-table .u-tr .u-td {
+  height: 62rpx;
+}
+.u-table-height-63  .u-table .u-tr .u-td {
+  height: 63rpx;
+}
+.u-table-height-64  .u-table .u-tr .u-td {
+  height: 64rpx;
+}
+.u-table-height-65  .u-table .u-tr .u-td {
+  height: 65rpx;
+}
+.u-table-height-66  .u-table .u-tr .u-td {
+  height: 66rpx;
+}
+.u-table-height-67  .u-table .u-tr .u-td {
+  height: 67rpx;
+}
+.u-table-height-68  .u-table .u-tr .u-td {
+  height: 68rpx;
+}
+.u-table-height-69  .u-table .u-tr .u-td {
+  height: 69rpx;
+}
+.u-table-height-70  .u-table .u-tr .u-td {
+  height: 70rpx;
+}
+.u-table-height-71  .u-table .u-tr .u-td {
+  height: 71rpx;
+}
+.u-table-height-72  .u-table .u-tr .u-td {
+  height: 72rpx;
+}
+.u-table-height-73  .u-table .u-tr .u-td {
+  height: 73rpx;
+}
+.u-table-height-74  .u-table .u-tr .u-td {
+  height: 74rpx;
+}
+.u-table-height-75  .u-table .u-tr .u-td {
+  height: 75rpx;
+}
+.u-table-height-76  .u-table .u-tr .u-td {
+  height: 76rpx;
+}
+.u-table-height-77  .u-table .u-tr .u-td {
+  height: 77rpx;
+}
+.u-table-height-78  .u-table .u-tr .u-td {
+  height: 78rpx;
+}
+.u-table-height-79  .u-table .u-tr .u-td {
+  height: 79rpx;
+}
+.u-table-height-80  .u-table .u-tr .u-td {
+  height: 80rpx;
+}
+.u-table-height-81  .u-table .u-tr .u-td {
+  height: 81rpx;
+}
+.u-table-height-82  .u-table .u-tr .u-td {
+  height: 82rpx;
+}
+.u-table-height-83  .u-table .u-tr .u-td {
+  height: 83rpx;
+}
+.u-table-height-84  .u-table .u-tr .u-td {
+  height: 84rpx;
+}
+.u-table-height-85  .u-table .u-tr .u-td {
+  height: 85rpx;
+}
+.u-table-height-86  .u-table .u-tr .u-td {
+  height: 86rpx;
+}
+.u-table-height-87  .u-table .u-tr .u-td {
+  height: 87rpx;
+}
+.u-table-height-88  .u-table .u-tr .u-td {
+  height: 88rpx;
+}
+.u-table-height-89  .u-table .u-tr .u-td {
+  height: 89rpx;
+}
+.u-table-height-90  .u-table .u-tr .u-td {
+  height: 90rpx;
+}
+.u-table-height-91  .u-table .u-tr .u-td {
+  height: 91rpx;
+}
+.u-table-height-92  .u-table .u-tr .u-td {
+  height: 92rpx;
+}
+.u-table-height-93  .u-table .u-tr .u-td {
+  height: 93rpx;
+}
+.u-table-height-94  .u-table .u-tr .u-td {
+  height: 94rpx;
+}
+.u-table-height-95  .u-table .u-tr .u-td {
+  height: 95rpx;
+}
+.u-table-height-96  .u-table .u-tr .u-td {
+  height: 96rpx;
+}
+.u-table-height-97  .u-table .u-tr .u-td {
+  height: 97rpx;
+}
+.u-table-height-98  .u-table .u-tr .u-td {
+  height: 98rpx;
+}
+.u-table-height-99  .u-table .u-tr .u-td {
+  height: 99rpx;
+}
+.u-table-height-100  .u-table .u-tr .u-td {
+  height: 100rpx;
+}
+.u-table-height-101  .u-table .u-tr .u-td {
+  height: 101rpx;
+}
+.u-table-height-102  .u-table .u-tr .u-td {
+  height: 102rpx;
+}
+.u-table-height-103  .u-table .u-tr .u-td {
+  height: 103rpx;
+}
+.u-table-height-104  .u-table .u-tr .u-td {
+  height: 104rpx;
+}
+.u-table-height-105  .u-table .u-tr .u-td {
+  height: 105rpx;
+}
+.u-table-height-106  .u-table .u-tr .u-td {
+  height: 106rpx;
+}
+.u-table-height-107  .u-table .u-tr .u-td {
+  height: 107rpx;
+}
+.u-table-height-108  .u-table .u-tr .u-td {
+  height: 108rpx;
+}
+.u-table-height-109  .u-table .u-tr .u-td {
+  height: 109rpx;
+}
+.u-table-height-110  .u-table .u-tr .u-td {
+  height: 110rpx;
+}
+.u-table-height-111  .u-table .u-tr .u-td {
+  height: 111rpx;
+}
+.u-table-height-112  .u-table .u-tr .u-td {
+  height: 112rpx;
+}
+.u-table-height-113  .u-table .u-tr .u-td {
+  height: 113rpx;
+}
+.u-table-height-114  .u-table .u-tr .u-td {
+  height: 114rpx;
+}
+.u-table-height-115  .u-table .u-tr .u-td {
+  height: 115rpx;
+}
+.u-table-height-116  .u-table .u-tr .u-td {
+  height: 116rpx;
+}
+.u-table-height-117  .u-table .u-tr .u-td {
+  height: 117rpx;
+}
+.u-table-height-118  .u-table .u-tr .u-td {
+  height: 118rpx;
+}
+.u-table-height-119  .u-table .u-tr .u-td {
+  height: 119rpx;
+}
+.u-table-height-120  .u-table .u-tr .u-td {
+  height: 120rpx;
+}
+.u-table-height-121  .u-table .u-tr .u-td {
+  height: 121rpx;
+}
+.u-table-height-122  .u-table .u-tr .u-td {
+  height: 122rpx;
+}
+.u-table-height-123  .u-table .u-tr .u-td {
+  height: 123rpx;
+}
+.u-table-height-124  .u-table .u-tr .u-td {
+  height: 124rpx;
+}
+.u-table-height-125  .u-table .u-tr .u-td {
+  height: 125rpx;
+}
+.u-table-height-126  .u-table .u-tr .u-td {
+  height: 126rpx;
+}
+.u-table-height-127  .u-table .u-tr .u-td {
+  height: 127rpx;
+}
+.u-table-height-128  .u-table .u-tr .u-td {
+  height: 128rpx;
+}
+.u-table-height-129  .u-table .u-tr .u-td {
+  height: 129rpx;
+}
+.u-table-height-130  .u-table .u-tr .u-td {
+  height: 130rpx;
+}
+.u-table-height-131  .u-table .u-tr .u-td {
+  height: 131rpx;
+}
+.u-table-height-132  .u-table .u-tr .u-td {
+  height: 132rpx;
+}
+.u-table-height-133  .u-table .u-tr .u-td {
+  height: 133rpx;
+}
+.u-table-height-134  .u-table .u-tr .u-td {
+  height: 134rpx;
+}
+.u-table-height-135  .u-table .u-tr .u-td {
+  height: 135rpx;
+}
+.u-table-height-136  .u-table .u-tr .u-td {
+  height: 136rpx;
+}
+.u-table-height-137  .u-table .u-tr .u-td {
+  height: 137rpx;
+}
+.u-table-height-138  .u-table .u-tr .u-td {
+  height: 138rpx;
+}
+.u-table-height-139  .u-table .u-tr .u-td {
+  height: 139rpx;
+}
+.u-table-height-140  .u-table .u-tr .u-td {
+  height: 140rpx;
+}
+.u-table-height-141  .u-table .u-tr .u-td {
+  height: 141rpx;
+}
+.u-table-height-142  .u-table .u-tr .u-td {
+  height: 142rpx;
+}
+.u-table-height-143  .u-table .u-tr .u-td {
+  height: 143rpx;
+}
+.u-table-height-144  .u-table .u-tr .u-td {
+  height: 144rpx;
+}
+.u-table-height-145  .u-table .u-tr .u-td {
+  height: 145rpx;
+}
+.u-table-height-146  .u-table .u-tr .u-td {
+  height: 146rpx;
+}
+.u-table-height-147  .u-table .u-tr .u-td {
+  height: 147rpx;
+}
+.u-table-height-148  .u-table .u-tr .u-td {
+  height: 148rpx;
+}
+.u-table-height-149  .u-table .u-tr .u-td {
+  height: 149rpx;
+}
+.u-table-height-150  .u-table .u-tr .u-td {
+  height: 150rpx;
+}
+.u-table-height-151  .u-table .u-tr .u-td {
+  height: 151rpx;
+}
+.u-table-height-152  .u-table .u-tr .u-td {
+  height: 152rpx;
+}
+.u-table-height-153  .u-table .u-tr .u-td {
+  height: 153rpx;
+}
+.u-table-height-154  .u-table .u-tr .u-td {
+  height: 154rpx;
+}
+.u-table-height-155  .u-table .u-tr .u-td {
+  height: 155rpx;
+}
+.u-table-height-156  .u-table .u-tr .u-td {
+  height: 156rpx;
+}
+.u-table-height-157  .u-table .u-tr .u-td {
+  height: 157rpx;
+}
+.u-table-height-158  .u-table .u-tr .u-td {
+  height: 158rpx;
+}
+.u-table-height-159  .u-table .u-tr .u-td {
+  height: 159rpx;
+}
+.u-table-height-160  .u-table .u-tr .u-td {
+  height: 160rpx;
+}
+.u-table-height-161  .u-table .u-tr .u-td {
+  height: 161rpx;
+}
+.u-table-height-162  .u-table .u-tr .u-td {
+  height: 162rpx;
+}
+.u-table-height-163  .u-table .u-tr .u-td {
+  height: 163rpx;
+}
+.u-table-height-164  .u-table .u-tr .u-td {
+  height: 164rpx;
+}
+.u-table-height-165  .u-table .u-tr .u-td {
+  height: 165rpx;
+}
+.u-table-height-166  .u-table .u-tr .u-td {
+  height: 166rpx;
+}
+.u-table-height-167  .u-table .u-tr .u-td {
+  height: 167rpx;
+}
+.u-table-height-168  .u-table .u-tr .u-td {
+  height: 168rpx;
+}
+.u-table-height-169  .u-table .u-tr .u-td {
+  height: 169rpx;
+}
+.u-table-height-170  .u-table .u-tr .u-td {
+  height: 170rpx;
+}
+.u-table-height-171  .u-table .u-tr .u-td {
+  height: 171rpx;
+}
+.u-table-height-172  .u-table .u-tr .u-td {
+  height: 172rpx;
+}
+.u-table-height-173  .u-table .u-tr .u-td {
+  height: 173rpx;
+}
+.u-table-height-174  .u-table .u-tr .u-td {
+  height: 174rpx;
+}
+.u-table-height-175  .u-table .u-tr .u-td {
+  height: 175rpx;
+}
+.u-table-height-176  .u-table .u-tr .u-td {
+  height: 176rpx;
+}
+.u-table-height-177  .u-table .u-tr .u-td {
+  height: 177rpx;
+}
+.u-table-height-178  .u-table .u-tr .u-td {
+  height: 178rpx;
+}
+.u-table-height-179  .u-table .u-tr .u-td {
+  height: 179rpx;
+}
+.u-table-height-180  .u-table .u-tr .u-td {
+  height: 180rpx;
+}
+.u-table-height-181  .u-table .u-tr .u-td {
+  height: 181rpx;
+}
+.u-table-height-182  .u-table .u-tr .u-td {
+  height: 182rpx;
+}
+.u-table-height-183  .u-table .u-tr .u-td {
+  height: 183rpx;
+}
+.u-table-height-184  .u-table .u-tr .u-td {
+  height: 184rpx;
+}
+.u-table-height-185  .u-table .u-tr .u-td {
+  height: 185rpx;
+}
+.u-table-height-186  .u-table .u-tr .u-td {
+  height: 186rpx;
+}
+.u-table-height-187  .u-table .u-tr .u-td {
+  height: 187rpx;
+}
+.u-table-height-188  .u-table .u-tr .u-td {
+  height: 188rpx;
+}
+.u-table-height-189  .u-table .u-tr .u-td {
+  height: 189rpx;
+}
+.u-table-height-190  .u-table .u-tr .u-td {
+  height: 190rpx;
+}
+.u-table-height-191  .u-table .u-tr .u-td {
+  height: 191rpx;
+}
+.u-table-height-192  .u-table .u-tr .u-td {
+  height: 192rpx;
+}
+.u-table-height-193  .u-table .u-tr .u-td {
+  height: 193rpx;
+}
+.u-table-height-194  .u-table .u-tr .u-td {
+  height: 194rpx;
+}
+.u-table-height-195  .u-table .u-tr .u-td {
+  height: 195rpx;
+}
+.u-table-height-196  .u-table .u-tr .u-td {
+  height: 196rpx;
+}
+.u-table-height-197  .u-table .u-tr .u-td {
+  height: 197rpx;
+}
+.u-table-height-198  .u-table .u-tr .u-td {
+  height: 198rpx;
+}
+.u-table-height-199  .u-table .u-tr .u-td {
+  height: 199rpx;
+}
+.u-table-height-200  .u-table .u-tr .u-td {
+  height: 200rpx;
+}
 .u-margin-0, .u-m-0 {
   margin: 0rpx !important;
 }
@@ -7788,6 +8361,7 @@ text {
 @font-face {
   font-family: 'YouShe';
   /* 重命名字体名 */
+  src: url(/uview-ui/libs/font/YouSheBiaoTiHe.ttf);
   font-weight: normal;
   font-style: normal;
 }

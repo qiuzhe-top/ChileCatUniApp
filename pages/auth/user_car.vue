@@ -41,7 +41,7 @@
 		data() {
 			return {
 			
-				msg: '请登录',
+				msg: '您好请登录',
 				portrait_height: '150rpx',
 				percent:0,
 			}
@@ -59,7 +59,7 @@
 				if (this.vuex_token) {
 					this.msg = 'Hello、'
 				} else {
-					this.msg = '请登录'
+					this.msg = '您好 请登录'
 				}
 				this.percent = (this.vuex_user.experience.a / this.vuex_user.experience.b) * 100
 			},

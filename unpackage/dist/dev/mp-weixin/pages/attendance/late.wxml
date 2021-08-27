@@ -1,1 +1,1 @@
-<view>晚自修</view>
+<view><view class="u-page"><late-call data-custom-hidden="{{!(current==0)}}" vue-id="524568c3-1" bind:__l="__l"></late-call><discipline data-custom-hidden="{{!(current==1)}}" vue-id="524568c3-2" bind:__l="__l"></discipline></view><u-tabbar bind:input="__e" class="tab" vue-id="524568c3-3" height="40px" before-switch="{{beforeSwitch}}" active-color="#303133" inactive-color="#434351" list="{{list}}" value="{{current}}" data-event-opts="{{[['^input',[['__set_model',['','current','$event',[]]]]]]}}" bind:__l="__l"></u-tabbar></view>

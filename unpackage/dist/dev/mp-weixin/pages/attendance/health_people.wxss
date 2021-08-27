@@ -1,0 +1,28 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.people .button-sp-area {
+  margin-top: 80rpx;
+}
+.sub-button {
+  width: 60%;
+  color: #ffffff;
+  background-color: #04b8fc;
+}
+.msg {
+  display: inline-block;
+  width: 100%;
+  margin: 20rpx;
+  color: #c0c0c0;
+  text-align: center;
+}
+.simpie_tag {
+  padding: 20rpx;
+}
+.simpie_tag .u-tag {
+  margin: 10rpx;
+}
+

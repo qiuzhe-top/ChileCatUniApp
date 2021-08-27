@@ -3,6 +3,7 @@
 function getUrl(){
 	if(process.env.NODE_ENV === 'development'){
 		return '' 
+		// return 'http://127.0.0.1:8000'
 	}else{
 		return 'https://www.qiuzhe.top:8000'
 		// return 'http://127.0.0.1:8000'
@@ -46,8 +47,9 @@ const install = (Vue, vm) => {
 		if(res.statusCode == 200) {
 			// 如果把originalData设置为了true，这里return回什么，this.$u.post的then回调中就会得到什么
 			return res.data;  
-		} else{
-			if(!res.data){
+		} else{ 
+			if(res.data){
+				console.log(res.data)
 				uni.showToast({
 					title: res.data.message,
 					icon: "none",

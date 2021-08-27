@@ -1,6 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/index/index"],{
 
-/***/ 49:
+/***/ 371:
 /*!****************************************************************************!*\
   !*** D:/Code/git/ChileCat_UniApp/main.js?{"page":"pages%2Findex%2Findex"} ***!
   \****************************************************************************/
@@ -96,16 +96,16 @@ var components
 try {
   components = {
     uRow: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-row/u-row */ "uview-ui/components/u-row/u-row").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-row/u-row.vue */ 115))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-row/u-row */ "uview-ui/components/u-row/u-row").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-row/u-row.vue */ 153))
     },
     uCol: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-col/u-col */ "uview-ui/components/u-col/u-col").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-col/u-col.vue */ 122))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-col/u-col */ "uview-ui/components/u-col/u-col").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-col/u-col.vue */ 160))
     },
     qzCar: function() {
-      return __webpack_require__.e(/*! import() | components/qz-car/qz-car */ "components/qz-car/qz-car").then(__webpack_require__.bind(null, /*! @/components/qz-car/qz-car.vue */ 129))
+      return __webpack_require__.e(/*! import() | components/qz-car/qz-car */ "components/qz-car/qz-car").then(__webpack_require__.bind(null, /*! @/components/qz-car/qz-car.vue */ 167))
     },
     uSkeleton: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-skeleton/u-skeleton */ "uview-ui/components/u-skeleton/u-skeleton").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-skeleton/u-skeleton.vue */ 136))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-skeleton/u-skeleton */ "uview-ui/components/u-skeleton/u-skeleton").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-skeleton/u-skeleton.vue */ 174))
     }
   }
 } catch (e) {
@@ -162,7 +162,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var userCar = function userCar() {__webpack_require__.e(/*! require.ensure | pages/auth/user_car */ "pages/auth/user_car").then((function () {return resolve(__webpack_require__(/*! ../auth/user_car.vue */ 143));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var taskCar = function taskCar() {__webpack_require__.e(/*! require.ensure | pages/task/task_car */ "pages/task/task_car").then((function () {return resolve(__webpack_require__(/*! ../task/task_car.vue */ 150));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var attendanceCar = function attendanceCar() {__webpack_require__.e(/*! require.ensure | pages/attendance/attendance_car */ "pages/attendance/attendance_car").then((function () {return resolve(__webpack_require__(/*! ../attendance/attendance_car.vue */ 157));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var userCar = function userCar() {__webpack_require__.e(/*! require.ensure | pages/auth/user_car */ "pages/auth/user_car").then((function () {return resolve(__webpack_require__(/*! ../auth/user_car.vue */ 181));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var taskCar = function taskCar() {__webpack_require__.e(/*! require.ensure | pages/task/task_car */ "pages/task/task_car").then((function () {return resolve(__webpack_require__(/*! ../task/task_car.vue */ 188));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var attendanceCar = function attendanceCar() {__webpack_require__.e(/*! require.ensure | pages/attendance/attendance_car */ "pages/attendance/attendance_car").then((function () {return resolve(__webpack_require__(/*! ../attendance/attendance_car.vue */ 195));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -272,5 +272,5 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ })
 
-},[[49,"common/runtime","common/vendor"]]]);
+},[[371,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/index/index.js.map
