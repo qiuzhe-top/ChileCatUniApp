@@ -30,11 +30,11 @@
 				</radio-group>
 			</u-col>
 
-			<uni-col span="1">
+			<u-col span="3">
 				<u-checkbox v-model="is_check" name="多选">
 					多选
 				</u-checkbox>
-			</uni-col>
+			</u-col>
 		</u-row>
 
 
@@ -186,19 +186,12 @@
 					"reason": this.rule_id,
 					"status": 0,
 				}
-				console.log(item)
 				this.roll_cal([records], flg, function(a) {
 					item.flg = flg
 				})
 			},
 			// 点名 在/不在
 			roll_cal(records, flg, fun) {
-				// 用户ID
-				//var user_list_id 
-				// 规则ID
-				//var rull_id
-				// 点名状态
-				//var flg
 				uni.showLoading({
 					icon: 'loading',
 					mask: true,
@@ -231,8 +224,6 @@
 						checked_list.push(e)
 					}
 				})
-				console.log(req_list)
-
 				this.roll_cal(req_list, flg, function(a) {
 					fun(checked_list, flg)
 				})
