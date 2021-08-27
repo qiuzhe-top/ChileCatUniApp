@@ -41,11 +41,11 @@
 		<u-row gutter="16" justify="space-around" class="class-list u-table-height-70">
 			<u-table class="u-table u-m-t-0 " align="center" @change="table_change">
 				<u-tr>
-				<!-- 	<u-th  width="90rpx">
-						<u-checkbox v-model="is_check" v-if="is_check">
+					<u-th width="90rpx">
+						<u-checkbox v-model="is_select_all" v-show="is_check">
 						</u-checkbox>
-						<text v-else-if="!is_check">序号</text>
-					</u-th> -->
+						<text v-show="!is_check">序号</text>
+					</u-th>
 					<u-th width="160rpx">学号</u-th>
 					<u-th width="140rpx">姓名</u-th>
 					<u-th width="100rpx">状态</u-th>
@@ -54,19 +54,25 @@
 				</u-tr>
 				<u-tr v-for="(item,index) in user_list" :key="index">
 					<template v-if="item">
-						<!-- <u-td v-show="is_check" width="90rpx">{{index+1}}</u-td> -->
+						<u-td width="90rpx">
+							<text v-show="!is_check">{{index+1}}</text>
+							<u-checkbox v-show="is_check && item.flg==null" v-model="item.checked">
+							</u-checkbox>
+						</u-td>
 						<u-td width="160rpx">{{ item.username }}</u-td>
 						<u-td width="140rpx">{{ item.name }}</u-td>
 						<u-td width="100rpx">
 							<u-icon v-show="item.flg" name="checkmark" color="#2979ff" size="28"></u-icon>
 							<u-icon v-show="item.flg==false" name="close" color="#d30000" size="28"></u-icon>
 						</u-td>
-						<u-td >
-							<u-button type="default" v-show="item.flg==null" size="mini" @click="submit(item,true)">在
+						<u-td>
+							<u-button type="default" v-show="item.flg==null && !is_check" size="mini"
+								@click="submit(item,true)">在
 							</u-button>
 						</u-td>
-						<u-td >
-							<u-button type="default" v-show="item.flg==null" size="mini" @click="submit(item,false)">不在
+						<u-td>
+							<u-button type="default" v-show="item.flg==null && !is_check" size="mini"
+								@click="submit(item,false)">不在
 							</u-button>
 						</u-td>
 					</template>
@@ -108,7 +114,16 @@
 				// 表格对象
 				table_obj: null,
 				// 是否多选提交
-				is_check: false
+				is_check: false,
+				// 是否全选
+				is_select_all: false
+			}
+		},
+		watch:{
+			is_select_all:function(e){
+				this.user_list.forEach(u=>{
+					u.checked = e
+				})
 			}
 		},
 		methods: {
@@ -200,25 +215,33 @@
 			// 批量点名
 			roll_cal_list(flg) {
 
-				// 选中的下标
-				var indexs = this.select_user_index
-				var user_list = new Array();
-
-				indexs.forEach(i => {
-					user_list.push({
-						user_id: this.user_list[i].id
-					})
-				})
-
+				var req_list = new Array();
+				var checked_list = new Array();
 				let fun = this.batch_flg
-				this.roll_cal(user_list, flg, function(a) {
-					fun(indexs, flg)
+				this.user_list.forEach(e => {
+					if (e.checked) {
+
+						req_list.push({
+							user_id: e.user_id,
+							status: '0',
+							reason_is_custom: false,
+							reason: this.rule_id
+						})
+
+						checked_list.push(e)
+					}
+				})
+				console.log(req_list)
+
+				this.roll_cal(req_list, flg, function(a) {
+					fun(checked_list, flg)
 				})
 
 			},
-			batch_flg(indexs, flg) {
-				indexs.forEach(i => {
-					this.user_list[i].flg = flg
+			// 改变页面多个显示状态
+			batch_flg(checked_list, flg) {
+				checked_list.forEach(i => {
+					i.flg = flg
 				})
 			}
 
