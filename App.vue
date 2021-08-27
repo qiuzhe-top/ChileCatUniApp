@@ -28,7 +28,7 @@
 	@import "common/demo.scss";
 	@font-face {
 	    font-family: 'YouShe'; /* 重命名字体名 */
-	    // src: url('uview-ui/libs/font/YouSheBiaoTiHe.ttf');
+	    src: url('uview-ui/libs/font/YouSheBiaoTiHe.ttf');
 	    font-weight: normal;
 	    font-style: normal;
 	}
