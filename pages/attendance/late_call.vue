@@ -119,9 +119,9 @@
 				is_select_all: false
 			}
 		},
-		watch:{
-			is_select_all:function(e){
-				this.user_list.forEach(u=>{
+		watch: {
+			is_select_all: function(e) {
+				this.user_list.forEach(u => {
 					u.checked = e
 				})
 			}

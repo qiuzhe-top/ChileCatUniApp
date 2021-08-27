@@ -19,7 +19,7 @@
 				@scrolltoupper="upper" @scrolltolower="lower" @scroll="scroll">
 				<u-table @change="table_change" is-check>
 					<u-tr>
-						<u-th width="90rpx"> 
+						<u-th width="90rpx">
 							<u-checkbox v-model="is_select_all"></u-checkbox>
 						</u-th>
 						<u-th>规则</u-th>
@@ -27,11 +27,11 @@
 					</u-tr>
 
 					<u-tr v-for="item in rule_list" :key="item.id">
-							<u-td width="90rpx">
-								<u-checkbox v-model="item.checked"></u-checkbox>
-							</u-td>
-							<u-td>{{ item.name }}</u-td>
-							<u-td width="90rpx">{{ item.score }}</u-td>
+						<u-td width="90rpx">
+							<u-checkbox v-model="item.checked"></u-checkbox>
+						</u-td>
+						<u-td>{{ item.name }}</u-td>
+						<u-td width="90rpx">{{ item.score }}</u-td>
 					</u-tr>
 
 				</u-table>
@@ -53,7 +53,7 @@
 				</u-field>
 			</view>
 		</u-modal>
-		
+
 		<u-button class="submit" @click="open_rule_box">
 			自定义提交
 		</u-button>
@@ -76,11 +76,8 @@
 				username: '',
 				// 用户
 				user: {},
-				// 被选中的规则下标
-				select_role_index: [],
 				// 规则列表
 				rule_list: [],
-
 				// 自定义规则
 				u_modal_show: false,
 				role_name: '',
@@ -164,11 +161,23 @@
 			},
 			// 提交
 			submit() {
+				var records = new Array();
+				var checked_list = new Array();
+				this.rule_list.forEach(e => {
+					if (e.checked) {
 
-				// 规则下标转id
-				var indexs = this.$data.select_role_index
+						records.push({
+							"user_id": this.$data.user.id,
+							"reason_is_custom": false,
+							"reason": e.id,
+							"status": 0,
+						})
 
-				if (indexs.length == 0) {
+						checked_list.push(e)
+					}
+				})
+
+				if (records.length == 0) {
 					this.$refs.uToast.show({
 						title: '请重新选择规则',
 						type: 'warnin',
@@ -176,15 +185,6 @@
 					return
 				}
 
-				var records = new Array()
-				indexs.forEach(n => {
-					records.push({
-						"user_id": this.$data.user.id,
-						"reason_is_custom": false,
-						"reason": this.$data.rule_list[n].id,
-						"status": 0,
-					})
-				})
 
 				uni.showLoading({
 					icon: 'loading',
@@ -207,10 +207,10 @@
 					return
 				}
 				var request = {}
-				request['task_id'] = this.$store.getters.task_now.id
+				request['task_id'] = this.vuex_task.id
 				request['records'] = data
 				// 发起请求
-				this.$store.dispatch('school_attendance/submit_late_discipline', request).then(res => {
+				this.$u.api.school_attendance_submit_late_discipline(request).then(res => {
 					uni.hideLoading();
 					this.$refs.uToast.show({
 						title: '提交成功',
@@ -221,7 +221,6 @@
 					this.$data.username = ''
 					this.$data.user = {}
 				}).catch(err => {})
-
 			}
 		}
 	}
