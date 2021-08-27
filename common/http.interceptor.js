@@ -51,6 +51,12 @@ const install = (Vue, vm) => {
 					icon: "none",
 					duration: 2000
 				});
+				if(res.data.code==3001){
+					vm.$store.dispatch('logout')
+					uni.navigateBack({
+						url:'/pages/index/index'
+					})
+				}
 			}
 		    return false
 		};

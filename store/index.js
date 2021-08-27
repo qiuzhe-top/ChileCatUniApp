@@ -15,7 +15,9 @@ try {
 }
 
 // 需要永久存储，且下次APP启动需要取出的，在state中的变量名
-let saveStateKeys = ['vuex_task', 'vuex_floor_now', 'vuex_layer_now', 'vuex_room_now','vuex_call_rules','vuex_discipline_rules'];
+let saveStateKeys = ['vuex_task', 'vuex_floor_now', 'vuex_layer_now', 'vuex_room_now', 'vuex_call_rules',
+	'vuex_discipline_rules'
+];
 
 // 保存变量到本地存储中
 const saveLifeData = function(key, value) {
@@ -49,7 +51,7 @@ const store = new Vuex.Store({
 		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
 		vuex_version: 'V2.0.1',
 		vuex_index_loading: false,
-		vuex_ali_icon:'https://zhcy-zjjt.oss-cn-beijing.aliyuncs.com/icon/',
+		vuex_ali_icon: 'https://zhcy-zjjt.oss-cn-beijing.aliyuncs.com/icon/',
 		vuex_user: lifeData.vuex_user ? lifeData.vuex_user : vuex_user_defut,
 		vuex_token: lifeData.vuex_token ? lifeData.vuex_token : '',
 		vuex_tasks: lifeData.vuex_tasks ? lifeData.vuex_tasks : [],
@@ -65,7 +67,10 @@ const store = new Vuex.Store({
 		// 违纪检查规则列表
 		vuex_discipline_rules: lifeData.vuex_discipline_rules ? lifeData.vuex_discipline_rules : [],
 		// 点名时加载的班级列表
-		vuex_class_list:[{id:-1,name:''}]
+		vuex_class_list: [{
+			id: -1,
+			name: ''
+		}]
 	},
 	mutations: {
 		$uStore(state, payload) {
@@ -181,9 +186,9 @@ const store = new Vuex.Store({
 			dispatch
 		}, request) {
 			var d = {
-				'0':'floor.png',
-				'1':'health.png',
-				'2':'book.png'
+				'0': 'floor.png',
+				'1': 'health.png',
+				'2': 'book.png'
 			}
 			return new Promise((resolve, reject) => {
 				api.school_attendance_task_executor().then(res => {
@@ -196,7 +201,7 @@ const store = new Vuex.Store({
 				})
 			})
 		},
-		
+
 		// 获取规则
 		school_attendance_rule({
 			commit,
@@ -204,11 +209,11 @@ const store = new Vuex.Store({
 		}, request) {
 			return new Promise((resolve, reject) => {
 				api.school_attendance_rule(request).then(res => {
-					resolve(res)
-				})
-				.catch(error => {
-					reject(error)
-				})
+						resolve(res)
+					})
+					.catch(error => {
+						reject(error)
+					})
 			})
 		},
 
@@ -224,11 +229,11 @@ const store = new Vuex.Store({
 					room_id: s.vuex_room_now.id
 				}
 				api.school_attendance_dorm_student_room_info(req).then(res => {
-					resolve(res)
-				})
-				.catch(error => {
-					reject(error)
-				})
+						resolve(res)
+					})
+					.catch(error => {
+						reject(error)
+					})
 			})
 		},
 
