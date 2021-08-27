@@ -27,13 +27,11 @@
 					</u-tr>
 
 					<u-tr v-for="item in rule_list" :key="item.id">
-						<template v-if="item">
 							<u-td width="90rpx">
 								<u-checkbox v-model="item.checked"></u-checkbox>
 							</u-td>
 							<u-td>{{ item.name }}</u-td>
 							<u-td width="90rpx">{{ item.score }}</u-td>
-						</template>
 					</u-tr>
 
 				</u-table>
