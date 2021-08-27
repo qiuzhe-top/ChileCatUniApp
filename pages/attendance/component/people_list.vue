@@ -6,7 +6,7 @@
 			</view>
 		</view>
 		<view v-for="(item,index) in people_list" class="box-map u-text-center" v-bind:key="item.id"
-			v-on:tap="$emit('to_people',item)">
+			v-on:click="toPeople(item,index)">
 			<view class="level" v-bind:class="{ active: item.status == '1' }">{{ item.name }}</view>
 		</view>
 	</view>
@@ -23,18 +23,29 @@
 			// 请求 store方法
 			init_people_store: String,
 			// 请求数据
-			request_data: Object
+			request_data: Object,
+		
 		},
 		data() {
 			return {
 				// k-v 床位-住户列表
-				people_list: []
+				people_list: [],
+				// 当前用户
+				current_user: {}
 			}
 		},
 		mounted() {
 			this.initBed()
+			this.getUser()
 		},
 		methods: {
+			toPeople(item,index){
+				this.current_user = index
+				this.$emit('to_people')
+			},
+			getUser(){
+				return this.current_user
+			},
 			// 获取 房间 学生数据
 			initBed() {
 				this.$store.dispatch(this.$props.init_people_store, this.$props.request_data).then(res => {
@@ -56,6 +67,8 @@
 								user['name'] = e.name
 								user['status'] = e.status
 								user['reason_is_custom'] = false
+								// 用作弹窗是否显示
+								user['is_open'] =!e.status
 							}
 						})
 						this.people_list.push(user)

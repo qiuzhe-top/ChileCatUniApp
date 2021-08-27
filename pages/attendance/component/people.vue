@@ -1,9 +1,10 @@
 <template>
 	<view class="people-box">
+
 		<PeopleList @to_people="to_people" :is_position_mode="true" :init_people_store='init_people_store'
 			ref="people_list_vue"></PeopleList>
 
-		<u-modal v-model="show" :mask-close-able="true" :title="user_obj.name"  :show-confirm-button="false" >
+		<u-modal v-model="show" :mask-close-able="true" :title="user_obj.name" :show-confirm-button="false">
 			<view class="slot-content">
 				<radio-group @change="radioChange" class="u-p-r-30">
 					<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in rule_list" :key="index">
@@ -21,7 +22,7 @@
 					</label>
 				</radio-group>
 				<view class="u-text-center u-m-r-30 u-p-b-30" @click="record()">
-					确定 
+					确定
 				</view>
 				<!-- <button type="default" v-on:tap="record()">确定</button> -->
 			</view>
@@ -64,24 +65,29 @@
 					this.$data.rule_list = res.data
 				})
 			},
+			
 			// 点击姓名 打开原因/取消记录
-			to_people(item) {
-				if (item.status == '0') {
+			to_people() {
+				// 这里用$emit事件传值存在问题 用一下方法代替选择的user的获取
+				var index_user = this.$refs.people_list_vue.current_user
+				var user_list = this.$refs.people_list_vue.people_list
+				var user = user_list[index_user]
+				if (user.is_open) {
 					this.$data.form.push({
-						user_id: item.user_id,
+						user_id: user.user_id,
 						status: '1'
 					});
-					item.status = '1';
+					user.status = '1';
 					uni.showToast({
 						title: '撤销',
 						icon: 'none'
 					});
-				} else if (item.status) {
-					this.show=true;
+				} else {
+					user.is_open = !user.is_open
+					this.show = true;
 				}
 				// 当前点击的学生 
-				this.user_obj = item;
-				console.log(this.$data.form,item)
+				this.user_obj = user;
 			},
 			// 输入原因
 			input_why(evt) {
