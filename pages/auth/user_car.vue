@@ -4,15 +4,17 @@
 
 			<view class="u-flex" v-on:click="login">
 				<!-- 头像 -->
-				<u-image  class="u-skeleton-rect" :width="portrait_height" :height="portrait_height" :src="vuex_user.avatar">
+				<u-image class="u-skeleton-rect" :width="portrait_height" :height="portrait_height"
+					:src="vuex_user.avatar">
 				</u-image>
 				<!-- 个人信息 -->
 				<view class="username u-flex u-flex-col u-row-center u-m-l-30 ">
-					<text
-						class="name u-font-xl u-m-b-10 u-main-color u-skeleton-rect">{{msg}}{{vuex_user.username}}</text>
+					
+					<view class="name u-font-xl u-m-b-10 u-main-color u-skeleton-rect"><button class="u-reset-button">{{msg}}{{vuex_user.username}}</button>
+					</view>
 					<view class="organization u-type-info u-skeleton-rect">
 						<u-icon name="map u-m-r-5"></u-icon>
-						<text class="u-font-xs">浙江交通 {{vuex_user.college}}  {{vuex_user.grade}}</text>
+						<text class="u-font-xs">浙江交通 {{vuex_user.college}} {{vuex_user.grade}}</text>
 					</view>
 				</view>
 			</view>
@@ -40,10 +42,10 @@
 	export default {
 		data() {
 			return {
-			
+
 				msg: '您好请登录',
 				portrait_height: '150rpx',
-				percent:0,
+				percent: 0,
 			}
 		},
 		watch: {
@@ -52,10 +54,10 @@
 			}
 		},
 		created() {
-			this.init() 
+			this.init()
 		},
 		methods: {
-			init(){
+			init() {
 				if (this.vuex_token) {
 					this.msg = 'Hello、'
 				} else {
@@ -64,13 +66,14 @@
 				this.percent = (this.vuex_user.experience.a / this.vuex_user.experience.b) * 100
 			},
 			login() {
-				if(!this.vuex_token){
+				console.log(!this.vuex_token)
+				if (!this.vuex_token) {
 					this.$u.route('/pages/auth/login');
 				}
 			},
-			to(){
+			to() {
 				this.$u.route({
-					url:'/pages/setting/index'
+					url: '/pages/setting/index'
 				})
 			}
 		}

@@ -2,11 +2,10 @@
 // 同时，我们也可以在此使用getApp().globalData，如果你把token放在getApp().globalData的话，也是可以使用的
 function getUrl(){
 	if(process.env.NODE_ENV === 'development'){
-		return '' 
-		// return 'http://127.0.0.1:8000'
+		// return 'https://www.qiuzhe.top:8000' 
+		return 'http://127.0.0.1:8000'
 	}else{
-		return ''
-		// return 'http://127.0.0.1:8000'
+		return 'https://www.qiuzhe.top:8000'
 		// return 'http://47.102.215.230:8000' 
 	}
 }
@@ -19,8 +18,6 @@ const install = (Vue, vm) => {
 		// 设置自定义头部content-type
 		header: {
 			'Content-Type':'application/json;charset=UTF-8',
-
-			'Access-Contro1-Allow-Origin':'*'
 		},  
 	});
 	// 请求拦截，配置Token等参数
@@ -37,7 +34,6 @@ const install = (Vue, vm) => {
 		// 方式四，如果token放在了Storage本地存储中，拦截是每次请求都执行的，所以哪怕您重新登录修改了Storage，下一次的请求将会是最新值
 		const token = uni.getStorageSync('token');
 		config.header.token = token;
-		
 		return config; 
 	}
 	// 响应拦截，判断状态码是否通过
