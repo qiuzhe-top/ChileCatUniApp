@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "查寝",
+  "usingComponents": {
+    "u-tag": "/uview-ui/components/u-tag/u-tag",
+    "people": "/pages/attendance/component/people"
+  }
+}

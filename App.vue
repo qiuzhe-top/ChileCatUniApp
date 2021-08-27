@@ -28,7 +28,8 @@
 	@import "common/demo.scss";
 	@font-face {
 	    font-family: 'YouShe'; /* 重命名字体名 */
-	    src: url('uview-ui/libs/font/YouSheBiaoTiHe.ttf');
+	    src: url('static/font/YouSheBiaoTiHe.ttf');
+	    // src: url('https://zhcy-zjjt.oss-cn-beijing.aliyuncs.com/static/font/YouSheBiaoTiHe.ttf');
 	    font-weight: normal;
 	    font-style: normal;
 	}

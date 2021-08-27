@@ -93,7 +93,7 @@
     },
     "quickapp" : {},
     "mp-weixin" : {
-		"appid" : "wxf4a2b76b90041ef3",
+        "appid" : "wxf4a2b76b90041ef3",
         "setting" : {
             "urlCheck" : true,
             "es6" : false,
@@ -131,7 +131,7 @@
         },
         "optimization" : {
             "treeShaking" : {
-                "enable" : false
+                "enable" : true
             }
         },
         "title" : "智慧彩云"

@@ -1,5 +1,4 @@
 <template>
-	<!--  -->
 	<view class="index u-p-20 u-skeleton">
 		<u-row class="u-m-b-30">
 			<u-col span="12">
