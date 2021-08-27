@@ -5,8 +5,8 @@ module.exports = {
 			// 调试时允许内网穿透，让外网的人访问到本地调试的H5页面
 			disableHostCheck: true,
 			proxy: {
-				'/apixx': {
-					target: 'http://192.168.42.66:8000/api',
+				'/api': {
+					target: 'https://www.qiuzhe.top:8000/api',
 					// target: 'http://127.0.0.1:8000/api',
 					ws: true,
 					changeOrigin: true,

@@ -5,7 +5,7 @@ function getUrl(){
 		return '' 
 		// return 'http://127.0.0.1:8000'
 	}else{
-		return 'https://www.qiuzhe.top:8000'
+		return ''
 		// return 'http://127.0.0.1:8000'
 		// return 'http://47.102.215.230:8000' 
 	}
