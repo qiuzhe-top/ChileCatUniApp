@@ -16,8 +16,6 @@
 			<text>{{user.name}}</text>
 		</view>
 
-
-
 		<u-row gutter="16" class="">
 			<u-col span="10" offset="1">
 				<scroll-view style="height: 600rpx;" :scroll-top="scrollTop" scroll-y="true" class="scroll-Y"
@@ -32,8 +30,8 @@
 						</u-tr>
 
 						<u-tr v-for="item in rule_list" :key="item.id">
-							<u-td width="20rpx">
-								<u-checkbox v-model="item.checked"></u-checkbox>
+							<u-td width="30rpx">
+							<u-checkbox v-model="item.checked"></u-checkbox>
 							</u-td>
 							<u-td>{{ item.name }}</u-td>
 							<u-td width="90rpx">{{ item.score }}</u-td>
@@ -45,16 +43,16 @@
 		</u-row>
 
 
-<u-row>
-	<u-col span="5" offset="1">
-		<u-button @click="submit()">提交</u-button>
-	</u-col>
-	<u-col span="5">
-		<u-button @click="open_rule_box">
-			自定义提交
-		</u-button>
-	</u-col>
-</u-row>
+		<u-row>
+			<u-col span="5" offset="1">
+				<u-button @click="submit()">提交</u-button>
+			</u-col>
+			<u-col span="5">
+				<u-button @click="open_rule_box">
+					自定义提交
+				</u-button>
+			</u-col>
+		</u-row>
 
 		<u-toast ref="uToast" />
 
@@ -104,7 +102,10 @@
 			}
 		},
 		mounted() {
-			this.rule_list = this.vuex_discipline_rules
+			this.vuex_discipline_rules.forEach(u => {
+				u.checked = false
+				this.rule_list.push(this.$u.deepClone(u))
+			})
 		},
 		methods: {
 			upper: function(e) {
