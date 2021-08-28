@@ -190,12 +190,23 @@ const store = new Vuex.Store({
 				'1': 'health.png',
 				'2': 'book.png'
 			}
+			var msg1 = {
+				'0': '去寝室进行点名 看看有没有缺寝的同学',
+				'1': '检查寝室卫生 维持寝室干净',
+				'2': '检查学生自习情况'
+			}		
+			var msg2 = {
+				'0': '去寝室进行点名 看看有没有缺寝的同学',
+				'1': 'health.png',
+				'2': 'book.png'
+			}
 			return new Promise((resolve, reject) => {
 				api.school_attendance_task_executor().then(res => {
 					res.data.forEach(i => {
 						i.img = store.state.vuex_ali_icon + d[i.type]
-						i.msg1 = '去寝室进行点名 看看有没有缺寝的同学'
-						i.msg2 = '智慧交通学院'
+						i.msg1 = msg1[i.type]
+						i.msg2 = i.title
+						console.log(i)
 					})
 					dispatch('save', ['vuex_tasks', res.data]);
 				})

@@ -24,12 +24,16 @@
 		created() {},
 		methods: {
 			to_people(item) {
-				if (item.user_id) {
-					this.content = '确定和 ' + item.name + ' 交换床位吗?'
+				var index_user = this.$refs.people_list_vue.current_user
+				var user_list = this.$refs.people_list_vue.people_list
+				var user_obj = user_list[index_user]
+				console.log('dispatch',user_obj)
+				if (user_obj.user_id) {
+					this.content = '确定和 ' + user_obj.name + ' 交换床位吗?'
 				} else {
 					this.content = '确定换到新的床位吗?'
 				}
-				this.bed = item
+				this.bed = user_obj
 				this.show = true
 			},
 			// 加载我的寝室数据

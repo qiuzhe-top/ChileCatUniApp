@@ -1,7 +1,7 @@
 <template>
 	<view class="car u-p-15 b-r-2 pr" >
 		<view class="car_img u-flex u-row-right u-col-bottom" :style="car_style">
-			<u-image :width="img_size" :height="img_size"  :src="img"> </u-image>
+			<u-image :show-loading="false" :show-error="false" :width="img_size" :height="img_size"  :src="img"> </u-image>
 		</view>
 		<slot></slot>
 	</view>

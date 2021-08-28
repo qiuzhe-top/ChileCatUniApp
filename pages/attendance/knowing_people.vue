@@ -32,6 +32,7 @@ export default {
 		record(){
 			var user_obj = this.$refs.people.user_obj
 			var form = this.$refs.people.form
+			console.log(user_obj)
 			if (user_obj.reason != undefined) {
 				user_obj.status = '0';
 				form.push(user_obj)

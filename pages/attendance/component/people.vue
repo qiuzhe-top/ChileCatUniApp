@@ -71,6 +71,7 @@
 			// 点击姓名 打开原因/取消记录
 			to_people() {
 				// 这里用$emit事件传值存在问题 用一下方法代替选择的user的获取
+				// 这里的获取用户应该放到people_llist 组件里面去
 				var index_user = this.$refs.people_list_vue.current_user
 				var user_list = this.$refs.people_list_vue.people_list
 				var user = user_list[index_user]

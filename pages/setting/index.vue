@@ -42,7 +42,9 @@
 		},
 		methods: {
 			logout() {
-				this.$u.route('pages/index/index')
+				this.$u.route({
+					url:'pages/index/index',type:"reLaunch"
+				})
 				this.$store.dispatch('logout')
 			},
 		
