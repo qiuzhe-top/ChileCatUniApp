@@ -3,11 +3,18 @@
 		<!-- 楼=>层 列表展示 -->
 		<view v-for="item in floor_list" v-bind:key="item.id">
 			<view class="title">{{ item.name }}</view>
-			<view class="box">
-				<view class="level" v-for="item2 in item.list" v-bind:key="item2.id" v-on:tap="to_room(item, item2)">
-					{{ item2.name }}</view>
-			</view>
+			
+			<u-row  gutter="1" class="box">
+				<u-col span="3"  v-for="item2 in item.list" v-bind:key="item2.id">
+					<view class="level" v-on:tap="to_room(item, item2)">
+					{{ item2.name }}
+					</view>
+				</u-col>
+			</u-row>
 		</view>
+
+
+
 	</view>
 </template>
 
@@ -35,11 +42,11 @@
 
 			// 跳转到房间列表
 			to_room(floor, layer) {
-				this.$store.dispatch('save', ['vuex_floor_now',{
+				this.$store.dispatch('save', ['vuex_floor_now', {
 					id: floor.id,
 					name: floor.name
 				}])
-				this.$store.dispatch('save', ['vuex_layer_now',{
+				this.$store.dispatch('save', ['vuex_layer_now', {
 					id: layer.id,
 					name: layer.name
 				}])

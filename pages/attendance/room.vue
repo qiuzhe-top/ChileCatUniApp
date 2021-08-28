@@ -4,12 +4,16 @@
 			<text>{{ vuex_floor_now.name }}</text>
 			<text>{{ vuex_layer_now.name }}</text>
 		</view>
-		<view class="box">
-			<view class="level" v-for="item in room_list" v-bind:key="item.id" v-on:tap="to_people(item)"
-				v-bind:class="{ active: item.status == '1' }">
-				{{ vuex_layer_now.name.substr(1, 1) }}{{ item.name }}
-			</view>
-		</view>
+
+		<u-row gutter="1" class="box">
+			<u-col span="3" v-for="item in room_list">
+				<view class="level" v-bind:key="item.id" v-on:tap="to_people(item)"
+					v-bind:class="{ active: item.status == '1' }">
+					{{ vuex_layer_now.name.substr(1, 1) }}{{ item.name }}
+				</view>
+			</u-col>
+		</u-row>
+
 	</view>
 </template>
 
@@ -32,8 +36,8 @@
 				let task_id = this.vuex_task.id
 				this.$u.api.school_attendance_dorm_room_info({
 					task_id: this.vuex_task.id,
-					floor_id:this.vuex_layer_now.id,
-				}).then(res=>{
+					floor_id: this.vuex_layer_now.id,
+				}).then(res => {
 					var room_list = res.data;
 					room_list.sort(function(a, b) {
 						return parseInt(a.name) - parseInt(b.name);
@@ -43,12 +47,12 @@
 			},
 			// 跳转到房间列表
 			to_people(room) {
-				this.$store.dispatch('save', ['vuex_room_now',room])
+				this.$store.dispatch('save', ['vuex_room_now', room])
 				var d = {
-					'0':'knowing_people',
-					'1':'health_people'
+					'0': 'knowing_people',
+					'1': 'health_people'
 				}
-				this.$u.route('/pages/attendance/'+d[this.vuex_task.type])
+				this.$u.route('/pages/attendance/' + d[this.vuex_task.type])
 			}
 		},
 		onHide() {
