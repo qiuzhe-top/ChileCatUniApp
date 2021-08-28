@@ -24,7 +24,7 @@
 						text: '违纪',
 					}
 				],
-				current:0
+				current:1
 			}
 		},
 		components:{

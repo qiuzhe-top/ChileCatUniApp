@@ -5,7 +5,7 @@
 			<text>{{ vuex_layer_now.name }}</text>
 		</view>
 
-		<u-row gutter="1" class="box">
+		<u-row gutter="1">
 			<u-col span="3" v-for="item in room_list">
 				<view class="level" v-bind:key="item.id" v-on:tap="to_people(item)"
 					v-bind:class="{ active: item.status == '1' }">

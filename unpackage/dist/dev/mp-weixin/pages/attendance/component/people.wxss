@@ -8,14 +8,8 @@
   display: inline-block;
   margin-bottom: 20rpx;
 }
-.people .uni-list-cell input.data-v-626364de {
-  margin-top: 10rpx;
-  height: 80rpx;
-  border: #000000 solid 1rpx;
-}
-.people .uni-list-cell view.data-v-626364de {
-  /* width: 100%; */
-  margin-bottom: 40rpx;
+.input.data-v-626364de {
+  border: #c5c5c5 solid 1rpx;
 }
 .slot-content.data-v-626364de {
   font-size: 28rpx;

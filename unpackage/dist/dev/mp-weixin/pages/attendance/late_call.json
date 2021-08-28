@@ -4,12 +4,12 @@
     "u-row": "/uview-ui/components/u-row/u-row",
     "u-col": "/uview-ui/components/u-col/u-col",
     "u-button": "/uview-ui/components/u-button/u-button",
-    "u-popup": "/uview-ui/components/u-popup/u-popup",
     "u-checkbox": "/uview-ui/components/u-checkbox/u-checkbox",
     "u-table": "/uview-ui/components/u-table/u-table",
     "u-tr": "/uview-ui/components/u-tr/u-tr",
     "u-th": "/uview-ui/components/u-th/u-th",
     "u-td": "/uview-ui/components/u-td/u-td",
-    "u-icon": "/uview-ui/components/u-icon/u-icon"
+    "u-icon": "/uview-ui/components/u-icon/u-icon",
+    "u-popup": "/uview-ui/components/u-popup/u-popup"
   }
 }

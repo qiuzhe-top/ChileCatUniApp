@@ -1,35 +1,22 @@
 <template>
-	<view class="call">
+	<view class="call u-p-t-20">
 		<u-row justify="space-around">
 			<!-- 班级选择 -->
 			<u-col span="3">
 				<u-button type="success" size="mini" @click="open()" plain>{{vuex_class_list[class_index]['name']}}
 				</u-button>
 			</u-col>
-
-			<!-- 弹出层 选择班级 -->
-			<u-popup :open="popup_open()" v-model="show" mode="center" length="80%" height="60%" border-radius="14">
-				<radio-group @change="select_sclass" class="class-radio-group">
-					<view class="radio-box" v-for="(item, index) in vuex_class_list" :key="index">
-						<label class="uni-list-cell uni-list-cell-pd">
-							<radio :value="str(index)" :checked="index === class_index" />
-							{{item.name}}
-						</label>
-					</view>
-				</radio-group>
-			</u-popup>
-
 			<!-- 点名规则 -->
 			<u-col span="5">
-				<radio-group @change="select_rule" class="class-radio-group">
+				<radio-group @change="select_rule">
 
-					<label class="radio" v-for="(item,index) in vuex_call_rules" :key="index">
+					<label class="radio u-m-r-20" v-for="(item,index) in vuex_call_rules" :key="index">
 						<radio :value="str(item.id)" /><text>{{item.name}}</text>
 					</label>
 
 				</radio-group>
-			</u-col>
 
+			</u-col>
 			<u-col span="3">
 				<u-checkbox v-model="is_check" name="多选">
 					多选
@@ -49,8 +36,8 @@
 					<u-th width="160rpx">学号</u-th>
 					<u-th width="140rpx">姓名</u-th>
 					<u-th width="100rpx">状态</u-th>
-					<u-th></u-th>
-					<u-th height='100rpx'></u-th>
+					<u-th>-</u-th>
+					<u-th height='100rpx'>-</u-th>
 				</u-tr>
 				<u-tr v-for="(item,index) in user_list" :key="index">
 					<template v-if="item">
@@ -80,12 +67,29 @@
 			</u-table>
 		</u-row>
 
+		<!-- 弹出层 选择班级 -->
+		<u-popup :open="popup_open()" v-model="show" mode="center" length="80%" height="60%" border-radius="14">
+			<radio-group @change="select_sclass" class="class-radio-group">
+				<view class="radio-box" v-for="(item, index) in vuex_class_list" :key="index">
+					<label class="uni-list-cell uni-list-cell-pd">
+						<radio :value="str(index)" :checked="index === class_index" />
+						{{item.name}}
+					</label>
+				</view>
+			</radio-group>
+		</u-popup>
 
-		<!-- 组件问题 -->
-		<u-row gutter="16" justify="space-around" class="class-list" v-show="is_check">
+		<!-- 批量提交 -->
+		<u-row gutter="16" class="class-list " v-show="is_check">
 
-			<u-button @click="roll_cal_list(true)">在</u-button>
-			<u-button @click="roll_cal_list(false)">不在</u-button>
+			<u-col span="5" offset="1">
+
+				<u-button @click="roll_cal_list(true)">在</u-button>
+			</u-col>
+			<u-col  span="5">
+
+				<u-button @click="roll_cal_list(false)">不在</u-button>
+			</u-col>
 
 		</u-row>
 
@@ -147,7 +151,6 @@
 			table_change(e) {
 				this.table_obj = e
 				this.select_user_index = e.detail
-				console.log(e.detail)
 			},
 			// 弹出层打开
 			popup_open() {

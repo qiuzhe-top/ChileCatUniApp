@@ -1,9 +1,10 @@
 {
   "navigationBarTitleText": "晚自修违纪",
   "usingComponents": {
+    "u-row": "/uview-ui/components/u-row/u-row",
+    "u-col": "/uview-ui/components/u-col/u-col",
     "u-input": "/uview-ui/components/u-input/u-input",
     "u-button": "/uview-ui/components/u-button/u-button",
-    "u-row": "/uview-ui/components/u-row/u-row",
     "u-table": "/uview-ui/components/u-table/u-table",
     "u-tr": "/uview-ui/components/u-tr/u-tr",
     "u-th": "/uview-ui/components/u-th/u-th",

@@ -129,14 +129,14 @@ text {
 }
 
 // 定义字体(rpx)单位，大于或等于200的都为rpx单位字体
-@for $i from 20 through 200 {
+@for $i from 20 through 100 {
 	.u-font-#{$i} {
 		font-size: $i + rpx;
 	}
 }
 
 // 设置表格td高
-@for $i from 10 through 200 {
+@for $i from 10 through 100 {
 	.u-table-height-#{$i} ::v-deep .u-table{
 		.u-tr{
 			.u-td{
@@ -147,7 +147,7 @@ text {
 }
 
 // 定义内外边距，历遍1-200
-@for $i from 0 through 200 {
+@for $i from 0 through 100 {
 	// 只要双数和能被5除尽的数
 	@if $i % 2 == 0 or $i % 5 == 0 {
 		// 得出：u-margin-30或者u-m-30

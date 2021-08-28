@@ -1,16 +1,16 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/attendance/late",
+    "pages/attendance/knowing_people",
+    "pages/attendance/floor",
     "pages/auth/login",
     "pages/setting/index",
     "pages/setting/bed_position",
     "pages/auth/personal_discipline",
     "pages/attendance/bulletin",
-    "pages/attendance/floor",
     "pages/attendance/room",
-    "pages/attendance/knowing_people",
     "pages/attendance/health_people",
-    "pages/attendance/late",
     "pages/attendance/late_call",
     "pages/attendance/late_discipline"
   ],
@@ -21,6 +21,5 @@
     "navigationBarBackgroundColor": "#FFFFFF",
     "backgroundColor": "#FFFFFF"
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

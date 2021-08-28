@@ -6,20 +6,22 @@
 
 		<u-modal v-model="show" :mask-close-able="true" :title="user_obj.name" :show-confirm-button="false">
 			<view class="slot-content">
-				<radio-group @change="radioChange" class="u-p-r-30">
-					<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in rule_list" :key="index">
-						<view>
+				<radio-group @change="radioChange">
+					<view class="u-p-30">
+						
+					<label class="uni-list-cell" v-for="(item, index) in rule_list" :key="index">
+						<view class="u-m-b-20">
 							<radio :value="''+item.id" />
 							{{ item.name }}
 						</view>
 					</label>
-					<label class="uni-list-cell uni-list-cell-pd">
-						<view>
-							<radio value="其他" />
-							其他
-							<input type="text" value="" @input="input_why" />
+					<label class="uni-list-cell">
+						<view class="u-m-b-20 u-flex">
+							<radio/>
+							<input class="input u-p-10" type="text" value="自定义" @input="input_why" />
 						</view>
 					</label>
+					</view>
 				</radio-group>
 				<view class="u-text-center u-m-r-30 u-p-b-30" @click="record()">
 					确定
@@ -144,16 +146,11 @@
 		margin-bottom: 20rpx;
 	}
 
-	.people .uni-list-cell input {
-		margin-top: 10rpx;
-		height: 80rpx;
-		border: #000000 solid 1rpx;
+	.input {
+		border: #c5c5c5 solid 1rpx;
 	}
 
-	.people .uni-list-cell view {
-		/* width: 100%; */
-		margin-bottom: 40rpx;
-	}
+
 
 	.slot-content {
 		font-size: 28rpx;

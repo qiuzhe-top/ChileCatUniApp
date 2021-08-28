@@ -1,11 +1,15 @@
 <template>
 	<view>
-		<view class="input-username">
-			<u-input v-model="username" :type="type" scroll-y scroll-top="30" :border="border" placeholder="请输入学号" />
 
-			<u-button @click="search()">搜索</u-button>
-		</view>
-
+		<u-row>
+			<u-col span="7" offset="1">
+				<u-input v-model="username" :type="type" scroll-y scroll-top="30" :border="border"
+					placeholder="请输入学号" />
+			</u-col>
+			<u-col span="3">
+				<u-button @click="search()">搜索</u-button>
+			</u-col>
+		</u-row>
 
 		<view class="user-msg">
 			<text>{{user.username}}</text>
@@ -14,36 +18,45 @@
 
 
 
-		<u-row gutter="16" justify="space-around" class="table-list">
-			<scroll-view style="height: 600rpx;" :scroll-top="scrollTop" scroll-y="true" class="scroll-Y"
-				@scrolltoupper="upper" @scrolltolower="lower" @scroll="scroll">
-				<u-table @change="table_change" is-check>
-					<u-tr>
-						<u-th width="90rpx">
-							<u-checkbox v-model="is_select_all"></u-checkbox>
-						</u-th>
-						<u-th>规则</u-th>
-						<u-th width="90rpx">分值</u-th>
-					</u-tr>
+		<u-row gutter="16" class="">
+			<u-col span="10" offset="1">
+				<scroll-view style="height: 600rpx;" :scroll-top="scrollTop" scroll-y="true" class="scroll-Y"
+					@scrolltoupper="upper" @scrolltolower="lower" @scroll="scroll">
+					<u-table @change="table_change" is-check>
+						<u-tr>
+							<u-th width="20rpx">
+								<u-checkbox v-model="is_select_all"></u-checkbox>
+							</u-th>
+							<u-th>规则</u-th>
+							<u-th width="90rpx">分值</u-th>
+						</u-tr>
 
-					<u-tr v-for="item in rule_list" :key="item.id">
-						<u-td width="90rpx">
-							<u-checkbox v-model="item.checked"></u-checkbox>
-						</u-td>
-						<u-td>{{ item.name }}</u-td>
-						<u-td width="90rpx">{{ item.score }}</u-td>
-					</u-tr>
+						<u-tr v-for="item in rule_list" :key="item.id">
+							<u-td width="20rpx">
+								<u-checkbox v-model="item.checked"></u-checkbox>
+							</u-td>
+							<u-td>{{ item.name }}</u-td>
+							<u-td width="90rpx">{{ item.score }}</u-td>
+						</u-tr>
 
-				</u-table>
-			</scroll-view>
-
+					</u-table>
+				</scroll-view>
+			</u-col>
 		</u-row>
 
 
+<u-row>
+	<u-col span="5" offset="1">
+		<u-button @click="submit()">提交</u-button>
+	</u-col>
+	<u-col span="5">
+		<u-button @click="open_rule_box">
+			自定义提交
+		</u-button>
+	</u-col>
+</u-row>
 
 		<u-toast ref="uToast" />
-
-		<u-button class="submit" @click="submit()">提交</u-button>
 
 		<u-modal v-model="u_modal_show" @confirm="confirm" :show-cancel-button="true">
 			<view>
@@ -54,9 +67,6 @@
 			</view>
 		</u-modal>
 
-		<u-button class="submit" @click="open_rule_box">
-			自定义提交
-		</u-button>
 	</view>
 </template>
 
@@ -228,12 +238,8 @@
 
 <style lang="scss">
 	.input-username {
-		display: flex;
-		width: 80%;
-		padding: 30rpx 0;
 
-		margin: 0 auto;
-
+		// width: 80%;
 		button {
 
 			height: 75rpx;
@@ -248,14 +254,5 @@
 			// display: block;
 			margin: 0 40rpx;
 		}
-	}
-
-	.table-list {
-		padding: 0 20rpx;
-	}
-
-	.submit {
-		width: 50%;
-		margin-top: 40rpx;
 	}
 </style>

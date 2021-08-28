@@ -3,13 +3,13 @@
 		<!-- 楼=>层 列表展示 -->
 		<view v-for="item in floor_list" v-bind:key="item.id">
 			<view class="title">{{ item.name }}</view>
-			
-			<u-row  gutter="1" class="box">
-				<u-col span="3"  v-for="item2 in item.list" v-bind:key="item2.id">
+
+			<u-row gutter="1" >
+				<u-col span="3" v-for="item2 in item.list" v-bind:key="item2.id">
 					<view class="level" v-on:tap="to_room(item, item2)">
-					{{ item2.name }}
+						{{ item2.name }}
 					</view>
-				</u-col>
+				</u-col>	
 			</u-row>
 		</view>
 
