@@ -1,6 +1,8 @@
 <template>
 	<view class="car u-p-15 b-r-2 pr" >
-		<view class="car_img" :style="car_style"></view>
+		<view class="car_img u-flex u-row-right u-col-bottom" :style="car_style">
+			<u-image :width="img_size" :height="img_size"  :src="img"> </u-image>
+		</view>
 		<slot></slot>
 	</view>
 </template>
@@ -16,10 +18,10 @@
 		data() {
 			return {
 				car_style: {
-					"background-image":"url(" + this.$props.img +")",
-					"background-size": this.$props.img_size,
+					// "background-image":"url(" + this.$props.img +")",
+					// "background-size": this.$props.img_size,
 					"opacity": this.$props.opacity
-				}
+				},
 			}
 		}
 	}
@@ -35,7 +37,6 @@
 
 	.car_img {
 		content: "";
-
 		top: 0;
 
 		left: 0;
@@ -47,6 +48,8 @@
 		position: absolute;
 		background-size: 100rpx;
 		z-index: 0;
+		// width: 300rpx;
+		// height: 300rpx;
 		background-repeat: no-repeat;
 		background-position: right bottom;
 	}

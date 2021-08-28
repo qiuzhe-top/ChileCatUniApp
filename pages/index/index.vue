@@ -1,5 +1,6 @@
 <template>
 	<view class="index u-p-20 u-skeleton">
+		
 		<u-row>
 			<u-col span="12">
 				<qz-car img_size="200rpx" img="https://s.pc.qq.com/tousu/img/20210824/2753663_1629771793.jpg">
@@ -11,10 +12,10 @@
 		<u-row>
 			<u-col span="6">
 				<view @click="ruter('pages/attendance/bulletin')">
-					<qz-car mg_size="150rpx" :img="vuex_ali_icon + 'announcement.png'">
+					<qz-car img_size="120rpx" :img="vuex_ali_icon + 'announcement.png'">
 						<view class="u-p-15">
-							<text class="u-block u-font-xl  u-m-b-10 u-skeleton-rect">违纪公告</text>
-							<text class="u-font-xs u-m-b-20 u-type-info u-skeleton-rect u-line-2">查看大家在一天\n里的违纪情况</text>
+							<text class="u-block u-font-xl u-m-b-10 u-skeleton-rect">我的违纪</text>
+							<text class="u-font-xs u-m-b-20 u-type-info u-line-2 u-skeleton-rect">查看大家在一天\n里的违纪情况</text>
 						</view>
 					</qz-car>
 				</view>
@@ -44,6 +45,7 @@
 			</u-row>
 		</transition>
 		<view  class="u-m-b-30"></view>
+		
 		<attendanceCar></attendanceCar>
 		<!-- 骨架屏 vuex_index_loading -->
 		<u-skeleton :loading="vuex_index_loading" :animation="true" bgColor="#f8f8f8"></u-skeleton>
