@@ -74,9 +74,10 @@
 				var index_user = this.$refs.people_list_vue.current_user
 				var user_list = this.$refs.people_list_vue.people_list
 				var user = user_list[index_user]
-				if (user.is_open) {
+				if (user.status == '0') {
 					this.$data.form.push({
 						user_id: user.user_id,
+						name:user.name,
 						status: '1'
 					});
 					user.status = '1';
@@ -85,10 +86,10 @@
 						icon: 'none'
 					});
 				} else {
-					user.is_open = !user.is_open
 					this.show = true;
 				}
 				// 当前点击的学生 
+				console.log(user)
 				this.user_obj = user;
 			},
 			// 输入原因

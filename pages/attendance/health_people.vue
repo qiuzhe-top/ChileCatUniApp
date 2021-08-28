@@ -88,6 +88,7 @@ export default {
 					status:0,
 				})
 				this.form_simple_list.push(user_obj.name)
+				user_obj.status = '0';
 				uni.showToast({
 					title: '添加成功',
 					icon: 'none'
