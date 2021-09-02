@@ -86,11 +86,10 @@
 						title: '撤销',
 						icon: 'none'
 					});
-				} else {
+				} else if(user.user_id) {
 					this.show = true;
 				}
 				// 当前点击的学生 
-				console.log(user)
 				this.user_obj = user;
 			},
 			// 输入原因
