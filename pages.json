@@ -88,6 +88,12 @@
 			"style": {
 				"navigationBarTitleText": "晚自修违纪"
 			}
+		},
+		{
+			"path": "pages/work/index",
+			"style": {
+				"navigationBarTitleText": "作业提交"
+			}
 		}
 	],
 	"globalStyle": {

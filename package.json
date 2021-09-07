@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/YanxinNet/uView#readme",
   "dependencies": {
-    "vue-i18n": "^8.20.0"
+    "vue-i18n": "^8.20.0",
+	"ali-oss": "^6.4.0",
+	"dateformat": "^3.0.3",
+	"js-base64": "^2.5.1",
+	"random-string": "^0.2.0" 
   }
 }

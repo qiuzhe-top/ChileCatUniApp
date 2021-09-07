@@ -49,6 +49,7 @@
 		<attendanceCar></attendanceCar>
 		<!-- 骨架屏 vuex_index_loading -->
 		<u-skeleton :loading="vuex_index_loading" :animation="true" bgColor="#f8f8f8"></u-skeleton>
+		<!-- <button class="cu-btn bg-cyan" @tap="uploadOne">上传一张图片</button> -->
 	</view>
 </template>
 
@@ -77,7 +78,11 @@
 			},
 			ruter(url) {
 				this.$u.route(url)
-			}
+			},
+			
+			uploadOne(){
+				this.$store.dispatch('upload')
+			},
 		},
 		onLoad() {
 			this.init()

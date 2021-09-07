@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import App from './App';
-
-Vue.config.productionTip = false;
-
 App.mpType = 'app';
+
+// 引入配置文件
+import config from "@/config/config.js";
+Vue.use(config);//全局可 通过 this.$config 访问 配置
+Vue.config.productionTip = false
 
 // 引入全局uView
 import uView from 'uview-ui';
@@ -18,6 +20,10 @@ Vue.mixin(vuexStore);
 // 引入uView对小程序分享的mixin封装
 let mpShare = require('uview-ui/libs/mixin/mpShare.js');
 Vue.mixin(mpShare);
+
+// 引入文件上传
+// import uploader from "@/common/uploader/uploader.js";
+// Vue.prototype.up = uploader;
 
 // i18n部分的配置
 // 引入语言包，注意路径

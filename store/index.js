@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import uploader from "@/common/uploader/uploader.js";
 import {
 	api
 } from '@/common/http.api.js'
@@ -194,7 +195,7 @@ const store = new Vuex.Store({
 				'0': '去寝室进行点名 看看有没有缺寝的同学',
 				'1': '检查寝室卫生 维持寝室干净',
 				'2': '检查学生自习情况'
-			}		
+			}
 			var msg2 = {
 				'0': '去寝室进行点名 看看有没有缺寝的同学',
 				'1': 'health.png',
@@ -245,6 +246,23 @@ const store = new Vuex.Store({
 					.catch(error => {
 						reject(error)
 					})
+			})
+		},
+
+		// 上传文件
+		upload({
+			commit,
+			dispatch
+		}) {
+			return new Promise((resolve, reject) => {
+				uni.chooseImage({
+					success: async (tempRes) => {
+						// console.log(tempRes.tempFiles);
+						let file = tempRes.tempFiles[0]
+						// 上传多张在这里写个for循环即可 因为是 await 所以会同步执行 一个个传完
+						let res = await uploader.upload_qiniu(file);
+					}
+				})
 			})
 		},
 
