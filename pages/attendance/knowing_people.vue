@@ -6,7 +6,7 @@
 		<text class="msg">白色背景：学生不在寝室</text>
 		<view  class="simpie_tag u-flex u-row-center u-col-center u-flex-wrap ">
 			<u-tag v-for="(item,index) in form_list" :key="item.id"
-					:text="item.name" type="info"  
+					:text="item.name + item.reason" type="info"  
 					:show="true" />
 		</view>
 	</view>
@@ -33,9 +33,15 @@ export default {
 			var user_obj = this.$refs.people.user_obj
 			var form = this.$refs.people.form
 			console.log(user_obj)
-			if (user_obj.reason != undefined) {
+			if (user_obj.reason != undefined && user_obj.reason.length!=0) {
 				user_obj.status = '0';
-				form.push(user_obj)
+				form.push({
+					'name':user_obj.name,
+					'user_id':user_obj.user_id,
+					'status':user_obj.status,
+					'reason_is_custom':user_obj.reason_is_custom,
+					'reason':user_obj.reason,
+				})
 				uni.showToast({
 					title: '添加成功',
 					icon: 'none'

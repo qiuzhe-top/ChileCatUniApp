@@ -18,7 +18,7 @@
 					<label class="uni-list-cell">
 						<view class="u-m-b-20 u-flex">
 							<radio/>
-							<input class="input u-p-10" type="text" value="自定义" @input="input_why" />
+							<input class="input u-p-10" type="text" value="自定义" @click="input_why" @input="input_why" />
 						</view>
 					</label>
 					</view>
@@ -79,7 +79,8 @@
 					this.$data.form.push({
 						user_id: user.user_id,
 						name:user.name,
-						status: '1'
+						status: '1',
+						reason:'撤销'
 					});
 					user.status = '1';
 					uni.showToast({
@@ -100,6 +101,7 @@
 			// 单选选择原因
 			radioChange: function(evt) {
 				this.user_obj.reason = evt.target.value;
+				this.user_obj.reason_is_custom = false;
 			},
 
 			// 写入违纪表单

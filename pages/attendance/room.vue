@@ -38,11 +38,7 @@
 					task_id: this.vuex_task.id,
 					floor_id: this.vuex_layer_now.id,
 				}).then(res => {
-					var room_list = res.data;
-					room_list.sort(function(a, b) {
-						return parseInt(a.name) - parseInt(b.name);
-					});
-					this.room_list = room_list;
+					this.room_list = res.data;
 				})
 			},
 			// 跳转到房间列表

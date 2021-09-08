@@ -80,14 +80,14 @@ export default {
 		record(){
 			var user_obj = this.$refs.people.user_obj
 			var form = this.$refs.people.form
-			if (user_obj.reason != undefined) {
+			if (user_obj.reason != undefined && user_obj.reason.length!=0) {
 				this.$data.form_list.push({
 					reason:user_obj.reason,
 					user_id:user_obj.user_id,
 					reason_is_custom:false,
 					status:0,
 				})
-				this.form_simple_list.push(user_obj.name)
+				this.form_simple_list.push(user_obj.name+' '+user_obj.reason)
 				user_obj.status = '0';
 				uni.showToast({
 					title: '添加成功',

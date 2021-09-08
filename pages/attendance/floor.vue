@@ -37,6 +37,7 @@
 					task_id: this.vuex_task.id
 				}).then(res => {
 					this.$data.floor_list = res.data;
+					console.log('dispatch',res.data)
 				})
 			},
 
