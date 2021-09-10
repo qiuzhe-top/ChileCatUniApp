@@ -54,26 +54,47 @@
 					if (len < 6) {
 						len = 6
 					}
-					// 床铺位置排序
+					let NAME_NULL = " 空 位 "
+					
+					// 初始化床位
 					for (let i = 0; i < len; i++) {
 						var position = i + 1;
-						var user = {
-							"name": " 空 位 ",
+						this.people_list.push({
+							"name": NAME_NULL,
 							"bed_position": position,
-						}
-						list.forEach(e => {
-							if (e.bed_position === position) {
-								user['user_id'] = e.id
-								user['name'] = e.name
-								user['status'] = e.status
-								user['reason_is_custom'] = false
-								// 用作弹窗是否显示
-								user['is_open'] =!e.status
-							}
 						})
-						this.people_list.push(user)
 					}
-
+					
+					// 没有床位的学生
+					var no_beds = []
+					
+					// 根据学生具体床位值放置到具体位置
+					list.forEach(e => {
+						var user = {}
+						user['user_id'] = e.id
+						user['name'] = e.name
+						user['status'] = e.status
+						user['reason_is_custom'] = false
+						user['is_open'] =!e.status// 用作弹窗是否显示
+						
+						
+						var bed_position = Number.parseInt(e.bed_position)
+						if(bed_position && bed_position<=len){
+							this.people_list[bed_position-1] = this.$u.deepClone(user)
+						}else{
+							no_beds.push(this.$u.deepClone(user))
+						}
+					})
+					
+					// 放置没有床位的学生 
+					for (let i = 0; i < this.people_list.length; i++) {
+						if(this.people_list[i].name==NAME_NULL && no_beds.length!=0){
+							var user = no_beds.shift()
+							user['bed_position'] = this.people_list[i].bed_position
+							this.people_list[i] = user 
+						}
+					}
+					
 				})
 			},
 		}
