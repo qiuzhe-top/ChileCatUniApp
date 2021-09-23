@@ -1,6 +1,6 @@
 <template>
 	<view class="index u-p-20 u-skeleton">
-		<view  class="u-m-b-40"></view>
+		<view  class="u-m-b-20"></view>
 		<u-row>
 			<u-col span="12">
 				<qz-car img_size="200rpx" img="https://s.pc.qq.com/tousu/img/20210824/2753663_1629771793.jpg">
