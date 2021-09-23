@@ -34,6 +34,7 @@
 				current_user: {}
 			}
 		},
+	
 		mounted() {
 			this.initBed()
 			this.getUser()
@@ -45,6 +46,11 @@
 			},
 			getUser(){
 				return this.current_user
+			},
+			// 改变学生样式状态
+			updata_style(index,state){
+				this.people_list[index].status = state
+				this.$set(this.people_list,index,this.people_list[index])
 			},
 			// 获取 房间 学生数据
 			initBed() {
@@ -76,7 +82,7 @@
 						user['status'] = e.status
 						user['reason_is_custom'] = false
 						user['is_open'] =!e.status// 用作弹窗是否显示
-						
+						user['bed_position'] = e.bed_position
 						
 						var bed_position = Number.parseInt(e.bed_position)
 						if(bed_position && bed_position<=len){
@@ -90,7 +96,7 @@
 					for (let i = 0; i < this.people_list.length; i++) {
 						if(this.people_list[i].name==NAME_NULL && no_beds.length!=0){
 							var user = no_beds.shift()
-							user['bed_position'] = this.people_list[i].bed_position
+							user.bed_position = i+1
 							this.people_list[i] = user 
 						}
 					}

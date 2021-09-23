@@ -7,7 +7,7 @@
 					placeholder="请输入学号" />
 			</u-col>
 			<u-col span="3">
-				<u-button @click="search()">搜索</u-button>
+				<u-button @click="search()">选择</u-button>
 			</u-col>
 		</u-row>
 
@@ -58,7 +58,7 @@
 
 		<u-modal v-model="u_modal_show" @confirm="confirm" :show-cancel-button="true">
 			<view>
-				<u-field v-model="role_name" label="名称" placeholder="请填违纪名称">
+				<u-field v-model="role_name" label="原因" placeholder="请填违纪原因">
 				</u-field>
 				<u-field v-model="role_score" label="分值" type="number" maxlength="1" placeholder="请填写对应分值">
 				</u-field>
@@ -106,6 +106,7 @@
 				u.checked = false
 				this.rule_list.push(this.$u.deepClone(u))
 			})
+			console.log(this.rule_list)
 		},
 		methods: {
 			upper: function(e) {
@@ -161,7 +162,25 @@
 					icon: 'loading',
 					mask: true,
 				});
-
+				
+				if(!this.$data.role_name){
+					this.$refs.uToast.show({
+						title: '原因不能为空',
+						type: 'warnin',
+					})
+					uni.hideLoading();
+					return
+				}
+				
+				if(!this.$data.role_score || this.$data.role_score==0){
+					this.$refs.uToast.show({
+						title: '分数不能为空',
+						type: 'warnin',
+					})
+					uni.hideLoading();
+					return
+				}
+				
 				this.api([{
 					reason: this.$data.role_name,
 					score: this.$data.role_score,

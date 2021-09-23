@@ -42,6 +42,12 @@
 			}
 		},
 		{
+			"path": "pages/auth/personal_discipline_room",
+			"style": {
+				"navigationBarTitleText": "违纪记录"
+			}
+		},
+		{
 			"path": "pages/attendance/bulletin",
 			"style": {
 				"navigationBarTitleText": "违纪公告"

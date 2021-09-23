@@ -20,12 +20,26 @@
 					</qz-car>
 				</view>
 			</u-col>
+			
 			<u-col span="6">
 				<view @click="ruter('pages/auth/personal_discipline')">
 					<qz-car img_size="150rpx" :img="vuex_ali_icon + 'my_record.png'">
 						<view class="u-p-15">
 							<text class="u-block u-font-xl u-m-b-10 u-skeleton-rect">我的违纪</text>
 							<text class="u-font-xs u-m-b-20 u-type-info u-line-2 u-skeleton-rect">我的所有\n违纪记录 </text>
+						</view>
+					</qz-car>
+				</view>
+			</u-col>	
+		</u-row>
+		<view  class="u-m-b-30"></view>
+		<u-row>
+			<u-col span="12">
+				<view @click="ruter('pages/auth/personal_discipline_room')">
+					<qz-car img_size="150rpx" :img="vuex_ali_icon + 'my_record.png'">
+						<view class="u-p-15">
+							<text class="u-block u-font-xl u-m-b-10 u-skeleton-rect">寝室违纪</text>
+							<text class="u-font-xs u-m-b-20 u-type-info u-line-2 u-skeleton-rect">查看自己寝室所有违纪情况</text>
 						</view>
 					</qz-car>
 				</view>

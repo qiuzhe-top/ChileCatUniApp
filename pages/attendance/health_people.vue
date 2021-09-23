@@ -8,7 +8,7 @@
 -->
 <template>
 	<view class="people">
-		<People @record="record" ref="people" :rule_codename_store='"0#007"' :init_people_store="'dorm_student_room_info'"></People>
+		<People @record="record" ref="people" :is_continuous="true" :is_custom_rule="false"  :rule_codename_store='"0#007"' :init_people_store="'dorm_student_room_info'"></People>
 		
 		<view class="button-sp-area">
 			<button type="mini" class="sub-button" v-on:tap="showTree">
@@ -26,10 +26,8 @@
 		
 		<tki-tree
 			ref="tkitree"
-			:selectParent="selectParent"
-			:multiple="multiple"
+			:multiple="true"
 			:range="dorm_point_rules"
-			:foldAll="flod"
 			rangeKey="name"
 			@confirm="treeConfirm"
 			@cancel="treeCancel"
@@ -51,12 +49,6 @@ export default {
 			form_simple_list:[],
 			// 寝室分数
 			score: 0,
-				// 切换单、多选
-			multiple: true,
-			// 切换父级可选
-			selectParent: false,
-			// 折叠已打开的子集
-			flod: false,
 			// 寝室卫生扣分规则 id name
 			dorm_point_rules: [],
 		};
@@ -65,10 +57,38 @@ export default {
 		this.$store.dispatch('school_attendance_rule', {
 			codename: "0#006"
 		}).then(res => {
-			res.data.forEach(e=>{
-				e.name = e.name + " -" + e.score
-				this.dorm_point_rules.push(e)
-			})
+			
+				var rule_list = {}
+				res.data.forEach(e => {
+					e.name = e.name + " -" + e.score
+					if (e.parent_id) {
+						// 子规则
+						e['showChild'] = true
+						rule_list[e.parent_id]['children'].push(e)
+					} else {
+						if (!rule_list[e.id]) {
+							rule_list[e.id] = e.id
+						}
+						e['show'] = true
+						rule_list[e.id] = e
+						// rule_list[e.id]['id'] = e.id
+						// rule_list[e.id]['name'] = e.name
+						// rule_list[e.id]['parent_id'] = e.parent_id
+						// rule_list[e.id]['score'] = e.score
+						if (!rule_list[e.id]['children']) {
+							rule_list[e.id]['children'] = []
+							// console.log(rule_list[e.id]['children'])
+
+						}
+					}
+				})
+				// console.log(rule_list)
+				for(var i in rule_list){
+					this.dorm_point_rules.push(rule_list[i])
+				
+				}
+				
+			
 		})
 	},		
 	// onBackPress(e){
@@ -76,10 +96,12 @@ export default {
 	// 	return this.$refs.people.is_onBackPress(e)
 	// },
 	methods: {
+		
+		
 		// 个人违纪添加
 		record(){
 			var user_obj = this.$refs.people.user_obj
-			var form = this.$refs.people.form
+			// var form = this.$refs.people.form
 			if (user_obj.reason != undefined && user_obj.reason.length!=0) {
 				this.$data.form_list.push({
 					reason:user_obj.reason,
@@ -93,6 +115,7 @@ export default {
 					title: '添加成功',
 					icon: 'none'
 				});
+				this.$refs.people.init_user_obj()
 			} else {
 				uni.showToast({
 					title: '添加失败，原因为空',
@@ -114,10 +137,9 @@ export default {
 					title:"提交成功",
 					duration: 6000
 				});
-				console.log(getCurrentPages())
-					// uni.navigateBack({
-					// 	delta: 1
-					// });
+				// uni.navigateBack({
+				// 	delta: 1
+				// });
 				setTimeout(function() {
 					uni.navigateBack({
 						delta: 1,
@@ -125,7 +147,6 @@ export default {
 						animationDuration: 200
 					});
 				}, 1000);
-				console.log(getCurrentPages())
 			});
 		},
 

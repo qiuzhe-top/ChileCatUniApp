@@ -63,11 +63,11 @@
 					return;
 				}
 
-				if (this.password.length < 5) {
+				if (this.password.length < 0) {
 					uni.showToast({
 						icon: 'none',
 						position: 'bottom',
-						title: '密码不正确'
+						title: '密码不能为空'
 					});
 					return;
 				}

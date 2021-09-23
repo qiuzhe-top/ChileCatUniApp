@@ -49,6 +49,22 @@
 			},
 		
 			confirm() {
+				if(this.$data.password_new.length<6){
+					this.$refs.uToast.show({
+						title: '密码最短6位',
+						type: 'error',
+					})
+					this.$refs.uModal.clearLoading();
+					return
+				}
+				if(this.$data.password_new != this.$data.password_new_repaet ){
+					this.$refs.uToast.show({
+						title: '两次密码不一样',
+						type: 'error',
+					})
+					this.$refs.uModal.clearLoading();
+					return
+				}
 				setTimeout(() => {
 					this.$u.api.user_edit_password({
 							password_old: this.$data.password_old,

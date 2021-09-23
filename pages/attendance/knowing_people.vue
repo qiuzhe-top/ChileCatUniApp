@@ -32,9 +32,8 @@ export default {
 		record(){
 			var user_obj = this.$refs.people.user_obj
 			var form = this.$refs.people.form
-			console.log(user_obj)
 			if (user_obj.reason != undefined && user_obj.reason.length!=0) {
-				user_obj.status = '0';
+				this.$refs.people.updata_style()
 				form.push({
 					'name':user_obj.name,
 					'user_id':user_obj.user_id,
@@ -46,6 +45,7 @@ export default {
 					title: '添加成功',
 					icon: 'none'
 				});
+				this.$refs.people.init_user_obj()
 			} else {
 				uni.showToast({
 					title: '添加失败，原因为空',

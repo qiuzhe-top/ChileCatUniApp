@@ -3,7 +3,8 @@
 function getUrl(){
 	if(process.env.NODE_ENV === 'development'){
 		// return 'https://www.qiuzhe.top:8000' 
-		return 'http://127.0.0.1:8000'
+		// return 'http://127.0.0.1:8000'
+		return 'http://django.qiuzhe.top'
 	}else{
 		return 'https://www.qiuzhe.top:8000'
 		// return 'http://47.102.215.230:8000' 
@@ -53,9 +54,9 @@ const install = (Vue, vm) => {
 				});
 				if(res.data.code==3001){
 					vm.$store.dispatch('logout')
-					uni.navigateBack({
-						url:'/pages/index/index'
-					})
+					// uni.navigateBack({
+					// 	url:'/pages/index/index'
+					// })
 				}
 			}
 		    return false

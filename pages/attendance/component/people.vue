@@ -11,11 +11,15 @@
 						
 					<label class="uni-list-cell" v-for="(item, index) in rule_list" :key="index">
 						<view class="u-m-b-20">
-							<radio :value="''+item.id" />
-							{{ item.name }}
+							<label class="radio  u-flex u-row-between">
+								<view class="">
+								<radio :value="''+item.id" />
+								{{ item.name }} -{{ item.score }}
+								</view>
+							</label>
 						</view>
 					</label>
-					<label class="uni-list-cell">
+					<label class="uni-list-cell" v-if="is_custom_rule">
 						<view class="u-m-b-20 u-flex">
 							<radio/>
 							<input class="input u-p-10" type="text" value="自定义" @click="input_why" @input="input_why" />
@@ -23,10 +27,9 @@
 					</label>
 					</view>
 				</radio-group>
-				<view class="u-text-center u-m-r-30 u-p-b-30" @click="record()">
+				<view class="u-text-center u-p-30 u-m-t-50" @click="record()" style="background-color: #d9e4f5;">
 					确定
 				</view>
-				<!-- <button type="default" v-on:tap="record()">确定</button> -->
 			</view>
 		</u-modal>
 	</view>
@@ -38,6 +41,16 @@
 		props: {
 			init_people_store: String,
 			rule_codename_store: String,
+			// 是否一直记录
+			is_continuous:{
+				type:Boolean,
+				default:false
+			} , 
+			// 是否自定义
+			is_custom_rule:{
+				type:Boolean,
+				default:true
+			} , 
 		},
 		emits: ['record'],
 		components: {
@@ -72,17 +85,20 @@
 			to_people() {
 				// 这里用$emit事件传值存在问题 用一下方法代替选择的user的获取
 				// 这里的获取用户应该放到people_llist 组件里面去
+				// 这一块的数据被多个组件使用应该考虑换成vuex
 				var index_user = this.$refs.people_list_vue.current_user
 				var user_list = this.$refs.people_list_vue.people_list
 				var user = user_list[index_user]
-				if (user.status == '0') {
+				if(this.$props.is_continuous && user.status == '0'){
+					this.show = true;
+				}else if (user.status == '0') {
 					this.$data.form.push({
 						user_id: user.user_id,
 						name:user.name,
 						status: '1',
 						reason:'撤销'
 					});
-					user.status = '1';
+					this.$refs.people_list_vue.updata_style(index_user,'1')
 					uni.showToast({
 						title: '撤销',
 						icon: 'none'
@@ -92,6 +108,12 @@
 				}
 				// 当前点击的学生 
 				this.user_obj = user;
+			},
+			// 改变学生样式状态
+			updata_style(){
+				var index_user = this.$refs.people_list_vue.current_user
+				this.user_obj.status = '0'
+				this.$refs.people_list_vue.updata_style(index_user,'0')
 			},
 			// 输入原因
 			input_why(evt) {
@@ -103,7 +125,13 @@
 				this.user_obj.reason = evt.target.value;
 				this.user_obj.reason_is_custom = false;
 			},
-
+			// 还原选中用户信息
+			init_user_obj(){
+				var index_user = this.$refs.people_list_vue.current_user
+				var user_list = this.$refs.people_list_vue.people_list
+				var user = user_list[index_user]
+				user.reason = undefined
+			},
 			// 写入违纪表单
 			record() {
 				this.$emit('record')
@@ -158,6 +186,5 @@
 	.slot-content {
 		font-size: 28rpx;
 		color: $u-content-color;
-		padding-left: 30rpx;
 	}
 </style>

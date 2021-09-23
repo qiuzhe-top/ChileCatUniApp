@@ -17,12 +17,14 @@
 						 :class="{
 							border: border === true,
 							show: item.show,
+							show: true,
 							last: item.lastRank,
 							showchild: item.showChild,
 							open: item.open,
 						}">
 							<view class="tki-tree-label" @tap.stop="_treeItemTap(item, index)">
-								<image class="tki-tree-icon" :src="item.lastRank ? lastIcon : item.showChild ? currentIcon : defaultIcon"></image>
+								<image class="tki-tree-icon" :src="item.lastRank ? lastIcon : currentIcon"></image>
+								<!-- <image class="tki-tree-icon" :src="item.lastRank ? lastIcon : item.showChild ? currentIcon : defaultIcon"></image> -->
 								{{item.name}}
 							</view>
 							<view class="tki-tree-check" @tap.stop="_treeItemSelect(item, index)" v-if="selectParent?true:item.lastRank">
@@ -64,7 +66,6 @@
 			multiple: { // 是否可以多选
 				type: Boolean,
 				default: false
-				// default: true
 			},
 			selectParent: { //是否可以选父级
 				type: Boolean,
@@ -100,7 +101,7 @@
 			},
 			border: { // 是否有分割线
 				type: Boolean,
-				default: false
+				default: !false
 			},
 		},
 		data() {
@@ -222,6 +223,7 @@
 							}
 						}
 						childItem.show = false;
+						childItem.show = !false;
 					} else {
 						// 打开子集
 						if (childItem.parentId[childItem.parentId.length - 1] === id) {
