@@ -10,6 +10,7 @@
 		</u-row>
 		<view  class="u-m-b-30"></view>
 		<u-row>
+			<!-- 违纪公告 -->
 			<u-col span="6">
 				<view @click="ruter('pages/attendance/bulletin')">
 					<qz-car img_size="120rpx" :img="vuex_ali_icon + 'announcement.png'">
@@ -20,7 +21,7 @@
 					</qz-car>
 				</view>
 			</u-col>
-			
+			<!-- 我的违纪 -->
 			<u-col span="6">
 				<view @click="ruter('pages/auth/personal_discipline')">
 					<qz-car img_size="150rpx" :img="vuex_ali_icon + 'my_record.png'">
@@ -33,7 +34,8 @@
 			</u-col>	
 		</u-row>
 		<view  class="u-m-b-30"></view>
-		<u-row>
+		<!-- 寝室违纪 -->
+<!-- 		<u-row>
 			<u-col span="12">
 				<view @click="ruter('pages/auth/personal_discipline_room')">
 					<qz-car img_size="150rpx" :img="vuex_ali_icon + 'my_record.png'">
@@ -44,8 +46,9 @@
 					</qz-car>
 				</view>
 			</u-col>
-		</u-row>
+		</u-row> -->
 		<view  class="u-m-b-30"></view>
+		<!-- 我的任务 -->
 		<transition name="fade">
 			<u-row v-if="vuex_tasks.length!=0">
 				<u-col span="12">
@@ -59,8 +62,8 @@
 			</u-row>
 		</transition>
 		<view  class="u-m-b-30"></view>
-		
 		<attendanceCar></attendanceCar>
+		<advertising1></advertising1>
 		<!-- 骨架屏 vuex_index_loading -->
 		<u-skeleton :loading="vuex_index_loading" :animation="true" bgColor="#f8f8f8"></u-skeleton>
 		<!-- <button class="cu-btn bg-cyan" @tap="uploadOne">上传一张图片</button> -->
@@ -71,6 +74,7 @@
 	import userCar from '../auth/user_car.vue';
 	import taskCar from '../task/task_car.vue'
 	import attendanceCar from '../attendance/attendance_car.vue'
+	import advertising1 from './component/advertising1.vue'
 	export default {
 		data() {
 			return {}
@@ -78,7 +82,8 @@
 		components: {
 			userCar,
 			taskCar,
-			attendanceCar
+			attendanceCar,
+			advertising1
 		},
 		watch: {
 			vuex_token: function() {
