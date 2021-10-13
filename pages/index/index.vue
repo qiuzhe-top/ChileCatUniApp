@@ -15,8 +15,8 @@
 				<view @click="ruter('pages/attendance/bulletin')">
 					<qz-car img_size="120rpx" :img="vuex_ali_icon + 'announcement.png'">
 						<view class="u-p-15">
-							<text class="u-block u-font-xl u-m-b-10 u-skeleton-rect">违纪公告</text>
-							<text class="u-font-xs u-m-b-20 u-type-info u-line-2 u-skeleton-rect">查看大家在一天\n里的违纪情况</text>
+							<text class="u-block u-font-xl u-m-b-10 u-skeleton-rect">考勤公告</text>
+							<text class="u-font-xs u-m-b-20 u-type-info u-line-2 u-skeleton-rect">查看大家在一天\n里的出勤情况</text>
 						</view>
 					</qz-car>
 				</view>

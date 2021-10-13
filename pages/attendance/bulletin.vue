@@ -4,7 +4,7 @@
 		src="http://ev20.oss-cn-hangzhou.aliyuncs.com/%E6%99%BA%E6%85%A7%E5%BD%A9%E4%BA%91/zhcy_index.png"
 		mode="aspectFit"></image>
 		<view class="u-m-t-60 u-m-b-40 u-font-40">
-			<text class="u-skeleton-rect">今日违纪记录(晚查寝)</text>
+			<text class="u-skeleton-rect">今日考勤记录(晚查寝)</text>
 		</view>
 		<view class="u-m-b-30">
 			<text class="u-skeleton-rect">{{ time }}</text>

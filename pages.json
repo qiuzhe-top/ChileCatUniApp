@@ -39,19 +39,19 @@
 		{
 			"path": "pages/auth/personal_discipline",
 			"style": {
-				"navigationBarTitleText": "违纪记录"
+				"navigationBarTitleText": "考勤记录"
 			}
 		},
 		{
 			"path": "pages/auth/personal_discipline_room",
 			"style": {
-				"navigationBarTitleText": "违纪记录"
+				"navigationBarTitleText": "考勤记录"
 			}
 		},
 		{
 			"path": "pages/attendance/bulletin",
 			"style": {
-				"navigationBarTitleText": "违纪公告"
+				"navigationBarTitleText": "考勤公告"
 			}
 		},
 		{
