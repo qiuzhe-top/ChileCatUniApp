@@ -26,8 +26,8 @@
 				<view @click="ruter('pages/auth/personal_discipline')">
 					<qz-car img_size="150rpx" :img="vuex_ali_icon + 'my_record.png'">
 						<view class="u-p-15">
-							<text class="u-block u-font-xl u-m-b-10 u-skeleton-rect">我的违纪</text>
-							<text class="u-font-xs u-m-b-20 u-type-info u-line-2 u-skeleton-rect">我的所有\n违纪记录 </text>
+							<text class="u-block u-font-xl u-m-b-10 u-skeleton-rect">我的记录</text>
+							<text class="u-font-xs u-m-b-20 u-type-info u-line-2 u-skeleton-rect">我的所有\n考勤记录 </text>
 						</view>
 					</qz-car>
 				</view>
