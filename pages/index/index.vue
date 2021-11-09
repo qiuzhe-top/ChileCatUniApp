@@ -63,7 +63,7 @@
 		</transition>
 		<view  class="u-m-b-30"></view>
 		<attendanceCar></attendanceCar>
-		<advertising1></advertising1>
+		<!-- <advertising1></advertising1> -->
 		<!-- 骨架屏 vuex_index_loading -->
 		<u-skeleton :loading="vuex_index_loading" :animation="true" bgColor="#f8f8f8"></u-skeleton>
 		<!-- <button class="cu-btn bg-cyan" @tap="uploadOne">上传一张图片</button> -->
