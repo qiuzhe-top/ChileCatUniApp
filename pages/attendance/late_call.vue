@@ -82,7 +82,7 @@
 		</u-popup>
 
 		<u-row>
-			<u-col span="12">总人数：{{user_list.length}} 	旷课：{{truancy_number}}</u-col>
+			<u-col span="12">总人数：{{user_list.length}}  已到：{{user_list.length - truancy_number}} 旷课：{{truancy_number}}</u-col>
 		</u-row>
 		<!-- 批量提交 -->
 		<u-row gutter="16" class="class-list " v-show="is_check">
