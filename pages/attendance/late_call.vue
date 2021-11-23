@@ -22,6 +22,8 @@
 					多选
 				</u-checkbox>
 			</u-col>
+
+
 		</u-row>
 
 
@@ -79,6 +81,9 @@
 			</radio-group>
 		</u-popup>
 
+		<u-row>
+			<u-col span="12">总人数：{{user_list.length}} 	旷课：{{truancy_number}}</u-col>
+		</u-row>
 		<!-- 批量提交 -->
 		<u-row gutter="16" class="class-list " v-show="is_check">
 
@@ -86,7 +91,7 @@
 
 				<u-button @click="roll_cal_list(true)">在</u-button>
 			</u-col>
-			<u-col  span="5">
+			<u-col span="5">
 
 				<u-button @click="roll_cal_list(false)">不在</u-button>
 			</u-col>
@@ -120,15 +125,33 @@
 				// 是否多选提交
 				is_check: false,
 				// 是否全选
-				is_select_all: false
+				is_select_all: false,
+				// 总人数
+				total_number: 99,
+				// 旷课
+				truancy_number: 99,
 			}
 		},
 		watch: {
+			user_list: {
+				handler(newData, old) {
+					this.truancy_number = 0;
+					for (let i in newData) {
+						if(newData[i].flg == false){
+							
+						this.truancy_number+=1;
+						}
+					}
+				},
+				immediate: true,
+				deep: true
+			},
 			is_select_all: function(e) {
 				this.user_list.forEach(u => {
 					u.checked = e
 				})
 			}
+
 		},
 		methods: {
 			open() {
