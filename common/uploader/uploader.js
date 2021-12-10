@@ -1,5 +1,5 @@
-const qiniu = require('qiniu-js')
-import config from "@/config/config.js"
+// const qiniu = require('qiniu-js')
+// import config from "@/config/config.js"
 
 class Uploader {
 	constructor() {}
