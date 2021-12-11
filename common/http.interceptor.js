@@ -6,7 +6,7 @@ function getUrl(){
 		return 'http://127.0.0.1:8000'
 		// return 'http://django.qiuzhe.top'
 	}else{
-		return 'https://www.qiuzhe.top:8000'
+		return 'https://django.qiuzhe.top'
 		// return 'http://47.102.215.230:8000' 
 	}
 }
