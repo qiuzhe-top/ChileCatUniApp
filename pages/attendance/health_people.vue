@@ -55,7 +55,7 @@ export default {
 	},
 	onLoad: function(option) {
 		this.$store.dispatch('school_attendance_rule', {
-			codename: "0#006"
+			codename: "00006"
 		}).then(res => {
 			
 				var rule_list = {}

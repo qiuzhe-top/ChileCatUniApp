@@ -42,10 +42,10 @@
 				},
 				// 加载规则
 				load_rull()	{
-					this.$u.api.school_attendance_rule( {  codename:"0#003" } ).then(res=>{
+					this.$u.api.school_attendance_rule( {  codename:"00003" } ).then(res=>{
 						this.$store.dispatch('save', ['vuex_discipline_rules',res.data])
 					})
-					this.$u.api.school_attendance_rule( {  codename:"0#002" } ).then(res=>{
+					this.$u.api.school_attendance_rule( {  codename:"00002" } ).then(res=>{
 						this.$store.dispatch('save', ['vuex_call_rules',res.data])
 					})
 				},
