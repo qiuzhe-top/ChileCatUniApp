@@ -31,7 +31,7 @@
 				:height="8"></u-line-progress>
 			<view class="u-flex u-row-between u-font-xs u-type-info ">
 				<text>我的经验</text>
-				<text> {{vuex_user.experience.a}}/{{vuex_user.experience.b}}z</text>
+				<text> {{vuex_user.experience.a}}/{{vuex_user.experience.b}}</text>
 			</view>
 		</view>
 
