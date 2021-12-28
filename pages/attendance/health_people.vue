@@ -8,7 +8,7 @@
 -->
 <template>
 	<view class="people">
-		<People @record="record" ref="people" :is_continuous="true" :is_custom_rule="false"  :rule_codename_store='"0#007"' :init_people_store="'dorm_student_room_info'"></People>
+		<People @record="record" ref="people" :is_continuous="true" :is_custom_rule="false"  :rule_codename_store='"00007"' :init_people_store="'dorm_student_room_info'"></People>
 		
 		<view class="button-sp-area">
 			<button type="mini" class="sub-button" v-on:tap="showTree">
