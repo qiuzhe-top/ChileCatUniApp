@@ -3,7 +3,7 @@
 function getUrl(){
 	if(process.env.NODE_ENV === 'development'){
 		// return 'https://www.qiuzhe.top:8000' 
-		return 'http://127.0.0.1:8000'
+		return 'http://127.0.0.1'
 		// return 'http://django.qiuzhe.top'
 	}else{
 		return 'http://django.qiuzhe.top'

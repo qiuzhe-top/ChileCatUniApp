@@ -31,7 +31,7 @@
 			_this = this;
 			if (process.env.NODE_ENV === 'development') {
 				this.username = '19510145'
-				this.password = '123456'
+				this.password = 'zhou24272592'
 			}
 			this.isLogin();
 		},

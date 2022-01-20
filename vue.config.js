@@ -5,23 +5,16 @@ module.exports = {
 			// 调试时允许内网穿透，让外网的人访问到本地调试的H5页面
 			disableHostCheck: true,
 			proxy: {
-				'/apix': {
+				'/api/user': {
 					// target: 'https://www.qiuzhe.top:8000',
-					target: 'http://127.0.0.1:8000/api',
+					target: 'http://127.0.0.1:8001/api/user',
 					ws: true,
 					changeOrigin: true,
+					secure : false,
 					pathRewrite: {
-						'^/api': ''
+						'^/api/user': ''
 					}
 				},
-				'/bpi': {
-					target: 'https://douban.uieee.com/',
-					ws: true,
-					changeOrigin: true,
-					pathRewrite: {
-						'^/bpi': ''
-					}
-				}
 			}
 		}
 	},
