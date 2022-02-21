@@ -10,7 +10,7 @@
 				<!-- 个人信息 -->
 				<view class="username u-flex u-flex-col u-row-center u-m-l-30 ">
 					
-					<view class="name u-font-xl u-m-b-10 u-main-color u-skeleton-rect"><button class="u-reset-button">{{msg}}{{vuex_user.username}}</button>
+					<view class="name u-font-xl u-m-b-10 u-main-color u-skeleton-rect"><button class="u-reset-button">{{msg}}{{vuex_user.name}}</button>
 					</view>
 					<view class="organization u-type-info u-skeleton-rect">
 						<u-icon name="map u-m-r-5"></u-icon>

@@ -106,14 +106,14 @@
 				u.checked = false
 				this.rule_list.push(this.$u.deepClone(u))
 			})
-			console.log(this.rule_list)
+			// // console.log(this.rule_list)
 		},
 		methods: {
 			upper: function(e) {
-				console.log(e)
+				// console.log(e)
 			},
 			lower: function(e) {
-				console.log(e)
+				// console.log(e)
 			},
 			scroll: function(e) {
 				this.old.scrollTop = e.detail.scrollTop
@@ -184,7 +184,7 @@
 				this.api([{
 					reason: this.$data.role_name,
 					score: this.$data.role_score,
-					user_id: this.$data.user.id,
+					user_id: this.$data.user.username,
 					reason_is_custom: true,
 					status: 0,
 				}])
@@ -197,7 +197,7 @@
 					if (e.checked) {
 
 						records.push({
-							"user_id": this.$data.user.id,
+							"user_id": this.$data.user.username,
 							"reason_is_custom": false,
 							"reason": e.id,
 							"status": 0,

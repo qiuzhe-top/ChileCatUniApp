@@ -33,7 +33,6 @@
 		},
 		created() {
 			this.load_rull()
-			this.load_class()
 		},
 		methods: {
 				beforeSwitch(index) {
@@ -49,12 +48,6 @@
 						this.$store.dispatch('save', ['vuex_call_rules',res.data])
 					})
 				},
-				// 加载班级列表
-				load_class(){
-					this.$u.api.school_attendance_late_class( {  type:0,task_id:this.vuex_task.id } ).then(res=>{
-						this.$store.dispatch('save', ['vuex_class_list',res.data])
-					})
-				}
 				
 			}
 	}

@@ -12,11 +12,16 @@
 	font-weight: bold;
 	color: #999;
 	box-shadow: #e8e8e8 1px 1px 10px;
+	position: relative;
 }
 .level:last-child {
     margin-right: auto;
 }
 .active {
 	background-color: #04b8fc;
+	color: #fff;
+}
+.error{
+	background-color: #ff557f;
 	color: #fff;
 }

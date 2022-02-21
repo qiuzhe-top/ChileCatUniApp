@@ -1,9 +1,7 @@
 <template>
 	<view class="people-box">
-
-		<PeopleList @to_people="to_people" :is_position_mode="true" :init_people_store='init_people_store'
+		<PeopleList @to_people="to_people" :init_people_store='init_people_store'
 			ref="people_list_vue"></PeopleList>
-
 		<u-modal v-model="show" :mask-close-able="true" :title="user_obj.name" :show-confirm-button="false">
 			<view class="slot-content">
 				<radio-group @change="radioChange">
@@ -14,11 +12,12 @@
 							<label class="radio  u-flex u-row-between">
 								<view class="">
 								<radio :value="''+item.id" />
-								{{ item.name }} -{{ item.score }}
+								{{ item.name }} - {{ item.score }}
 								</view>
 							</label>
 						</view>
 					</label>
+					
 					<label class="uni-list-cell" v-if="is_custom_rule">
 						<view class="u-m-b-20 u-flex">
 							<radio/>
@@ -41,7 +40,7 @@
 		props: {
 			init_people_store: String,
 			rule_codename_store: String,
-			// 是否一直记录
+			// 是否一直打开违纪面板
 			is_continuous:{
 				type:Boolean,
 				default:false
@@ -66,21 +65,17 @@
 				rule_list: [],
 				// 违纪记录显示状态
 				show: false,
+			
 			};
 		},
-		mounted() {
-			this.rule()
+		created(){
+				if(this.rule_codename_store==='00001'){
+					this.rule_list = this.vuex_rule_00001
+				}else if(this.rule_codename_store==='00007'){
+					this.rule_list = this.vuex_rule_00007
+				}
 		},
-
 		methods: {
-			rule() {
-				this.$store.dispatch('school_attendance_rule', {
-					codename: this.$props.rule_codename_store
-				}).then(res => {
-					this.$data.rule_list = res.data
-				})
-			},
-			
 			// 点击姓名 打开原因/取消记录
 			to_people() {
 				// 这里用$emit事件传值存在问题 用一下方法代替选择的user的获取
@@ -89,9 +84,13 @@
 				var index_user = this.$refs.people_list_vue.current_user
 				var user_list = this.$refs.people_list_vue.people_list
 				var user = user_list[index_user]
-				if(this.$props.is_continuous && user.status == '0'){
+				var user_status =  this.$refs.people_list_vue.get_user_status(user.user_id)
+				if(this.$props.is_continuous && user_status == '0'){
+					// 显示违纪面板
+					user.status = '0'
 					this.show = true;
-				}else if (user.status == '0') {
+					this.user_obj.reason = ''
+				}else if (user_status == '0') {
 					this.$data.form.push({
 						user_id: user.user_id,
 						name:user.name,
@@ -99,11 +98,11 @@
 						reason:'撤销'
 					});
 					this.$refs.people_list_vue.updata_style(index_user,'1')
-					uni.showToast({
-						title: '撤销',
-						icon: 'none'
-					});
-				} else if(user.user_id) {
+					this.user_obj.reason = '撤销'
+					this.$emit('record')
+				} else if(user.user_id && user_status == '1') {
+					user.status = '0'
+					user.reason = ''
 					this.show = true;
 				}
 				// 当前点击的学生 
@@ -112,7 +111,6 @@
 			// 改变学生样式状态
 			updata_style(){
 				var index_user = this.$refs.people_list_vue.current_user
-				this.user_obj.status = '0'
 				this.$refs.people_list_vue.updata_style(index_user,'0')
 			},
 			// 输入原因

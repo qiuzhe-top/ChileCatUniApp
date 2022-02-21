@@ -3,12 +3,21 @@
 function getUrl(){
 	if(process.env.NODE_ENV === 'development'){
 		// return 'https://www.qiuzhe.top:8000' 
-		return 'http://127.0.0.1'
+		// return 'http://zfcat.top:8001'
+		return 'http://127.0.0.1:8000'
 		// return 'http://django.qiuzhe.top'
 	}else{
-		return 'http://django.qiuzhe.top'
+		// return 'http://django.qiuzhe.top'
+		return 'http://124.223.43.151:8001'
 		// return 'http://47.102.215.230:8000' 
 	}
+}
+function show_msg(icon,msg){
+	uni.showToast({
+		title: msg,
+		icon: icon,
+		duration: 2000
+	});
 }
 const install = (Vue, vm) => {
 	Vue.prototype.$u.http.setConfig({
@@ -16,7 +25,6 @@ const install = (Vue, vm) => {
 		// 如果将此值设置为true，拦截回调中将会返回服务端返回的所有数据response，而不是response.data
 		// 设置为true后，就需要在this.$u.http.interceptor.response进行多一次的判断，请打印查看具体值
 		originalData: true, 
-		// 设置自定义头部content-type
 		header: {
 			'Content-Type':'application/json;charset=UTF-8',
 		},  
@@ -41,22 +49,19 @@ const install = (Vue, vm) => {
 	Vue.prototype.$u.http.interceptor.response = (res) => {
 		// 如果把originalData设置为了true，这里得到将会是服务器返回的所有的原始数据
 		// 判断可能变成了res.statueCode，或者res.data.code之类的，请打印查看结果
-		if(res.statusCode == 200) {
+		if(res.statusCode == 200 ) {
 			// 如果把originalData设置为了true，这里return回什么，this.$u.post的then回调中就会得到什么
-			return res.data;  
-		} else{ 
+			if(res.data.code == 0 || res.data.code == 2000){
+				return res.data;  
+			}else{
+				show_msg('none',res.data.message)
+				return false
+			}
+		} else{
+			show_msg('none',res.data.message)
 			if(res.data){
-				console.log(res.data)
-				uni.showToast({
-					title: res.data.message,
-					icon: "none",
-					duration: 2000
-				});
 				if(res.data.code==3001){
 					vm.$store.dispatch('logout')
-					// uni.navigateBack({
-					// 	url:'/pages/index/index'
-					// })
 				}
 			}
 		    return false

@@ -11,7 +11,7 @@
 		<view class="login u-font-xs">
 			<u-button class=" " type="primary" :loading="isRotate" @click="startLogin()">登录</u-button>
 		</view>
-		<!-- <view class="forget u-text-center u-m-t-50 u-font-sm">忘记密码</view> -->
+		<view class="forget u-text-center u-m-t-50 u-font-sm msg">账号：学号 密码：123456 登录后请及时修改密码</view>
 	</view>
 </template>
 
@@ -93,6 +93,7 @@
 						}).catch(e=>{
 							_this.isRotate = false
 						})
+						
 						// 跳转页面
 						if (getCurrentPages().length == 1) {
 							this.$u.route('/pages/index/index')
@@ -162,7 +163,7 @@
 
 	.msg {
 		margin-top: 20rpx;
-		font-size: $uni-font-size-base;
+		font-size: 10rpx;
 		color: $uni-text-color-grey;
 	}
 

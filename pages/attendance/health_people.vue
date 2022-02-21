@@ -8,7 +8,7 @@
 -->
 <template>
 	<view class="people">
-		<People @record="record" ref="people" :is_continuous="true" :is_custom_rule="false"  :rule_codename_store='"00007"' :init_people_store="'dorm_student_room_info'"></People>
+		<People @record="record" ref="people" :is_continuous="true" :is_custom_rule="false"  :rule_codename_store='"00007"' init_people_store="cache"></People>
 		
 		<view class="button-sp-area">
 			<button type="mini" class="sub-button" v-on:tap="showTree">
@@ -131,7 +131,7 @@ export default {
 			this.$u.api.school_attendance_submit_health( {
 				task_id: this.vuex_task.id,
 				records: this.form_list,
-				room_id: this.vuex_room_now.id, 
+				room_id: this.vuex_room_now, 
 			}).then(res => {
 				uni.showToast({
 					title:"提交成功",

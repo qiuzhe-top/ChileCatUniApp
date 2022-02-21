@@ -18,11 +18,6 @@
 			</view>
 		</u-modal>
 			
-	<!-- 	版本
-		<view class="version">
-			{{vuex_version}} | 
-			<a href="https://beian.miit.gov.cn/" target="_blank">浙备2020045150-1</a>|
-		</view> -->
 
 		<u-toast ref="uToast" />
 	</view>

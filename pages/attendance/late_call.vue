@@ -3,7 +3,7 @@
 		<u-row justify="space-around">
 			<!-- 班级选择 -->
 			<u-col span="3">
-				<u-button type="success" size="mini" @click="open()" plain>{{vuex_class_list[class_index]['name']}}
+				<u-button type="success" size="mini" @click="open()" plain>{{vuex_task['grades'][class_index]}}
 				</u-button>
 			</u-col>
 			<!-- 点名规则 -->
@@ -43,7 +43,7 @@
 				</u-tr>
 				<u-tr v-for="(item,index) in user_list" :key="index">
 					<template v-if="item">
-						<u-td width="90rpx">
+						<u-td width="90rpx">  
 							<text v-show="!is_check">{{index+1}}</text>
 							<u-checkbox v-show="is_check && item.flg==null" v-model="item.checked">
 							</u-checkbox>
@@ -68,14 +68,13 @@
 				</u-tr>
 			</u-table>
 		</u-row>
-
 		<!-- 弹出层 选择班级 -->
 		<u-popup :open="popup_open()" v-model="show" mode="center" length="80%" height="60%" border-radius="14">
 			<radio-group @change="select_sclass" class="class-radio-group">
-				<view class="radio-box" v-for="(item, index) in vuex_class_list" :key="index">
+				<view class="radio-box" v-for="(item, index) in vuex_task['grades']" :key="index">
 					<label class="uni-list-cell uni-list-cell-pd">
-						<radio :value="str(index)" :checked="index === class_index" />
-						{{item.name}}
+						<radio :value="str(index)" :checked="index === class_index"  />
+						{{item}}
 					</label>
 				</view>
 			</radio-group>
@@ -186,7 +185,7 @@
 
 			// 获取班级名单
 			get_class_user(id) {
-				var class_id = this.vuex_class_list[this.class_index].id
+				var class_id = this.vuex_task['grades'][this.class_index]
 				var rule_id = Number.parseInt(id)
 				this.rule_id = rule_id
 				uni.showLoading({
@@ -205,9 +204,10 @@
 			},
 			submit(item, flg) {
 				if (item.flg != null) return
-
+				var class_id = this.vuex_task['grades'][this.class_index]
 				var records = {
 					"user_id": item.user_id,
+					"grade":class_id,
 					"reason_is_custom": false,
 					"reason": this.rule_id,
 					"status": 0,
@@ -239,12 +239,13 @@
 				let fun = this.batch_flg
 				this.user_list.forEach(e => {
 					if (e.checked) {
-
+						var class_id = this.vuex_task['grades'][this.class_index]
 						req_list.push({
 							user_id: e.user_id,
 							status: '0',
 							reason_is_custom: false,
-							reason: this.rule_id
+							reason: this.rule_id,
+							grade:class_id
 						})
 
 						checked_list.push(e)
