@@ -6,12 +6,11 @@
 					寝室门
 				</view>
 			</view>
-			<!-- {{people_list}} -->
 			<view v-for="(item,index) in people_list" class="box-map u-text-center" v-bind:key="item.id"
 				v-on:click="toPeople(item,index)">
 				<view class="level"
 					v-bind:class="{ 
-						active: class_status(item.user_id) == '1' || is_position_mode,
+						active: class_status(item.user_id) == '1'  ,
 						error:  class_status(item.user_id) == '2' 
 						}"
 					>
@@ -77,15 +76,16 @@
 		mounted() {
 			if (this.$props.init_people_store == 'cache') {
 				this.initCacheBed()
+			this.current_floor_information()
 			} else {
 				this.initBed()
 			}
 			this.getUser()
-			this.current_floor_information()
 		},
 		methods: {
 			// 返回学生状态样式
 			class_status(username) {
+				if (this.$props.is_position_mode){return '1'}
 				if(username==-1){return '0'}
 				var style = this.get_user_status(username)
 				if(style!='1' && style!="0"){style='2'}
@@ -149,19 +149,26 @@
 					user['reason_is_custom'] = false
 					user['is_open'] = !e.status // 用作弹窗是否显示
 					user['bed_position'] = e.bed_position
-
+					
+					//获取床位
 					var bed_position = Number.parseInt(e.bed_position)
 					if (bed_position && bed_position <= len) {
+						// 有床位就按照床位覆盖people_list
 						this.people_list[bed_position - 1] = this.$u.deepClone(user)
 					} else {
+						// 没有床位先放到nobeds列表
 						no_beds.push(this.$u.deepClone(user))
 					}
 				})
 				// 放置没有床位的学生 
 				for (let i = 0; i < this.people_list.length; i++) {
+					// 判断当前位置是否为空 判断nobads是否还有值
 					if (this.people_list[i].name == NAME_NULL && no_beds.length != 0) {
+						// 取出一个
 						var user = no_beds.shift()
+						// 计算床位下标
 						user.bed_position = i + 1
+						// 学生放置指定位置 
 						this.people_list[i] = user
 					}
 				}
@@ -177,8 +184,7 @@
 			// 获取 房间 学生数据
 			initBed() {
 				this.$store.dispatch(this.$props.init_people_store, this.$props.request_data).then(res => {
-					let list = res.data
-					this.organize_student_information(list)
+					this.organize_student_information(res.data)
 
 				})
 			},
