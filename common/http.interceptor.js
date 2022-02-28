@@ -7,8 +7,8 @@ function getUrl(){
 		return 'http://127.0.0.1:8000'
 		// return 'http://django.qiuzhe.top'
 	}else{
-		// return 'http://django.qiuzhe.top'
-		return 'http://124.223.43.151:8001'
+		return 'http://django.zhcy.top'
+		//return 'http://124.223.43.151:8001'
 		// return 'http://47.102.215.230:8000' 
 	}
 }
