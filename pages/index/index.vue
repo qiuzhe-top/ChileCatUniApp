@@ -69,8 +69,8 @@
 			<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=xxx" target="_blank">浙ICP备xx号</a>
 		</view>
  class="cu-btn bg-cyan" @tap="uploadOne">上传一张图片</button> -->
-		<view class="beian">
-			<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=xxx" target="_blank">浙ICP备xx号</a>
+		<view class="beian u-m-t-100">
+			<a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2020045150号-2</a>
 		</view>
 
 	</view>
@@ -127,9 +127,9 @@
 		width: 100%;
 		text-align: center;
 		font-size: 10px;
-
+		
 		a {
-			color: #898989;
+			color: #c8c8c8;
 		}
 	}
 
