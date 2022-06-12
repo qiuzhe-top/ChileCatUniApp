@@ -8,7 +8,7 @@
 			<u-col span="3" v-for="item in room_list">
 				<view class="level" v-bind:key="item" v-on:tap="to_people(item)"
 					v-bind:class="{ active: is_status(item) == '1',error: is_status(item) == '2' }">
-					{{ item.substr(2) }}
+					{{  get_room(item) }}
 					<!-- {{ statistical(item) }} -->
 					<u-badge type="warning " size="mini" :count="statistical(item)" :offset="[-10,-15]"></u-badge>
 				</view>
@@ -39,9 +39,12 @@
 			this.init_room();
 		},
 		methods: {
+			get_room(room){
+				return room.split('#')[1]
+			},
 			statistical(item){
 				var b = this.b + this.f
-				var room = item.substr(3, 4)
+				var room = item.split("#")[1].slice(-2)
 				var list = this.vuex_call[this.vuex_task.type][b][room]
 				var complete = 0
 				for(var user in list){
@@ -52,7 +55,7 @@
 				return "-"+complete
 			},
 			is_status(item){
-				var key = item.substr(3)
+				var key = item.split("#")[1].slice(-2)
 				try{
 					return this.vuex_call[this.type][this.b+this.f][key]['status']
 				}catch(e){

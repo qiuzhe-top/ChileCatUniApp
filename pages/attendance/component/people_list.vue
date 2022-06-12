@@ -99,7 +99,7 @@
 			current_floor_information(){
 				this.b = this.vuex_floor_now.id + "#"
 				this.f = this.vuex_layer_now.id + ''
-				this.r = this.vuex_room_now.substr(3, 4)
+				this.r = this.vuex_room_now.slice(-2)
 				this.type = this.vuex_task.type
 			},
 			toPeople(item, index) {
