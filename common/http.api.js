@@ -87,6 +87,12 @@ const install = (Vue, vm) => {
 	// api转uViewsApi模板 
 	api['manage_apitouviews'] = (params = { }) => vm.$u.post('/api/manage/apitouviews', params) 
 
+	// 设置我的寝室门牌号
+	api['set_my_bedroom_number'] = (params = { }) => vm.$u.post('/api/school_information/set/mybedroom/number', params) 
+
+	// 我的寝室门牌号
+	api['mybedroom_number'] = (params = { }) => vm.$u.get('/api/school_information/mybedroom/number', params) 
+
 	// 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
 	
 	vm.$u.api = api
