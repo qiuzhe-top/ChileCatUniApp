@@ -4,11 +4,16 @@ function getUrl(){
 	if(process.env.NODE_ENV === 'development'){
 		// return 'https://www.qiuzhe.top:8000' 
 		// return 'http://zfcat.top:8001'
-		return 'http://127.0.0.1:8000'
+		return 'http://127.0.0.1:8888'
 		// return 'http://django.qiuzhe.top'
 	}else{
+<<<<<<< HEAD
 		return 'http://django.zhcy.top'
 		//return 'http://124.223.43.151:8001'
+=======
+		// return 'http://django.zhcy.top'
+		return 'http://124.223.43.151:8801'
+>>>>>>> Dev
 		// return 'http://47.102.215.230:8000' 
 	}
 }

@@ -5,19 +5,30 @@
 			<template v-if="vuex_token">
 				<u-cell-item icon="setting" v-on:tap="toPage('pages/setting/bed_position')" title="修改床位"></u-cell-item>
 				<u-cell-item icon="setting" title="修改密码" @click="up_password_show = true"></u-cell-item>
+				<u-cell-item icon="setting" title="我的寝室" :value="bedroom" @click="up_bedroom_show = true"></u-cell-item>
 				<u-cell-item icon="setting" title="退出登录" @click="logout"></u-cell-item>
+
+
+
 			</template>
 		</u-cell-group>
-	
-		<u-modal title="修改密码" v-model="up_password_show" @confirm="confirm" ref="uModal"
-			:show-cancel-button="true" :async-close="true">
+
+		<u-modal title="修改密码" v-model="up_password_show" @confirm="confirm" ref="uModal" :show-cancel-button="true"
+			:async-close="true">
 			<view class="up_password">
 				<u-input v-model="password_old" placeholder="登录密码" type="password" />
 				<u-input v-model="password_new" placeholder="新密码" type="password" />
 				<u-input v-model="password_new_repaet" placeholder="再次输入新密码" type="password" />
 			</view>
 		</u-modal>
-			
+
+		<u-modal title="修改寝室" v-model="up_bedroom_show" @confirm="bedroom_confirm" ref="bedroom_uModal"
+			:show-cancel-button="true" :async-close="true">
+			<view class="up_password">
+				<u-input v-model="input_bedroom" placeholder="寝室门牌号" />
+			</view>
+		</u-modal>
+
 
 		<u-toast ref="uToast" />
 	</view>
@@ -29,22 +40,50 @@
 			return {
 				pic: 'https://img-cdn-tc.dcloud.net.cn/uploads/avatar/000/03/30/21_avatar_max.jpg',
 				up_password_show: false,
+				up_bedroom_show: false,
 				password_new: '',
 				password_new_repaet: '',
 				password_old: '',
 				title: '请登录',
+				bedroom: '',
+				input_bedroom: ''
+
 			};
+		},
+		onLoad() {
+			this.$u.api.mybedroom_number().then(res=>{
+				this.bedroom = res.data
+			})
 		},
 		methods: {
 			logout() {
 				this.$u.route({
-					url:'pages/index/index',type:"reLaunch"
+					url: 'pages/index/index',
+					type: "reLaunch"
 				})
 				this.$store.dispatch('logout')
 			},
-		
+			bedroom_confirm() {
+
+				this.$u.api.set_my_bedroom_number({
+						id: this.input_bedroom
+					}).then(res => {
+						this.bedroom = this.input_bedroom
+						this.up_bedroom_show = false;
+						this.$refs.uToast.show({
+							title: '修改成功',
+							type: 'success',
+						})
+
+					})
+					.catch(e => {
+						this.$refs.bedroom_uModal.clearLoading();
+					})
+					
+
+			},
 			confirm() {
-				if(this.$data.password_new.length<6){
+				if (this.$data.password_new.length < 6) {
 					this.$refs.uToast.show({
 						title: '密码最短6位',
 						type: 'error',
@@ -52,7 +91,7 @@
 					this.$refs.uModal.clearLoading();
 					return
 				}
-				if(this.$data.password_new != this.$data.password_new_repaet ){
+				if (this.$data.password_new != this.$data.password_new_repaet) {
 					this.$refs.uToast.show({
 						title: '两次密码不一样',
 						type: 'error',
