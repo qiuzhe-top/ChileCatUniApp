@@ -79,20 +79,6 @@
 						title: "提交成功",
 						duration: 6000
 					});
-					// var room = this.vuex_room_now
-					// var b = room.substring(0,3)
-					// var r = room.substring(3,5)
-					// var t = this.vuex_task.type_name
-					
-					// try{
-					// 	this.$store.dispatch('save', ['vuex_call.'+b+'.'+r+'.'+t+'', 1])
-					// 	d.forEach(u=>{
-					// 		var username = u['user_id']
-					// 		this.$store.dispatch('save', ['vuex_call.'+b+'.'+r+'.'+username+'', 0])
-					// 	})
-					// }catch(e){
-						
-					// }
 					
 					setTimeout(function() {
 						uni.navigateBack({
