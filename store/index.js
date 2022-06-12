@@ -234,7 +234,7 @@ const store = new Vuex.Store({
 				'0': 'Knowing_Status'
 			}
 			if(!uni.getStorageSync('token')){return}
-			console.log('加载任务',this.state.vuex_token)
+			console.log('加载任务')
 			return new Promise((resolve, reject) => {
 				api.school_attendance_task_executor().then(res => {
 					var vuex_call = {}
@@ -261,7 +261,7 @@ const store = new Vuex.Store({
 									room_call[b + '#' + f] = {}
 								}
 								rooms[b][f].push(room)
-								room_call[b + '#' + f][room.substr(3, 4)] = {
+								room_call[b + '#' + f][room.slice(-2)] = {
 									'status': 0
 								}
 							})

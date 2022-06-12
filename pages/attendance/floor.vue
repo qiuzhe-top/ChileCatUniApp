@@ -55,7 +55,6 @@
 					}
 					len+=1
 				}
-
 				return [complete,len]
 			},
 
@@ -65,6 +64,7 @@
 				 this.websock = new WebSocket("ws://django.zhcy.top/ws/room/status")
 				//this.websock = new WebSocket("ws://124.223.43.151:8801/ws/room/status")
 				// this.websock = new WebSocket("ws://124.223.43.151:8801/ws/room/status")
+				// this.websock = new WebSocket("ws://127.0.0.1:8888/ws/room/status")
 				this.websock.onmessage =  this.message
 				this.websock.onopen = this.onopen;
 				this.websock.onerror = this.onerror;
@@ -79,7 +79,7 @@
 					if(!buildings){return}
 					var d = JSON.stringify({'buildings':buildings, 'type':this.type})
 					this.websock.send(d)
-					console.log('发送')
+					// console.log('发送')
 			},
 			onclose(e){
 					console.log("断开",e.code,e.reason,e.wasClean)
@@ -94,13 +94,14 @@
 					this.$store.dispatch('save', ['vuex_call.'+this.type,buildings])
 					this.$store.dispatch('save', ['vuex_room_user_info',info])
 				}else if('send_status' === data['type']){
+					console.log('接受新状态')
 					var info = data['data']
 					var status_type = info['status_type']
 					var task_type = "." + info['task_type']
 					var status = info['status']
 					var room = info['room']
-					var b = "." + room.substr(0, 3)
-					var r = "." + room.substr(3, 4)
+					var b = "." + room.substr(0, room.indexOf('#')+2)
+					var r = "." + room.slice(-2)
 					var key = ''
 					if(status_type==='room'){
 						key = 'vuex_call'+task_type+b+r+'.status'
@@ -118,6 +119,7 @@
 				// })
 				let _obj = JSON.stringify(this.vuex_call);
 				let vuex_call = JSON.parse(_obj);
+				console.log(vuex_call)
 				for(var k in status_dict){
 					var status = status_dict[k]
 					var ks = k.split('_')
