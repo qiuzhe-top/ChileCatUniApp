@@ -1,5 +1,6 @@
 // 这里的vm，就是我们在vue文件里面的this，所以我们能在这里获取vuex的变量，比如存放在里面的token
 // 同时，我们也可以在此使用getApp().globalData，如果你把token放在getApp().globalData的话，也是可以使用的
+
 function getUrl(){
 	if(process.env.NODE_ENV === 'development'){
 		// return 'https://www.qiuzhe.top:8000' 
@@ -7,8 +8,8 @@ function getUrl(){
 		return 'http://127.0.0.1:8888'
 		// return 'http://django.qiuzhe.top'
 	}else{
-		return 'http://django.zhcy.top'
-		//return 'http://124.223.43.151:8001'
+		// return 'http://django.zhcy.top'
+		return 'http://124.223.43.151:8801'
 		// return 'http://47.102.215.230:8000' 
 	}
 }
