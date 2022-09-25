@@ -70,7 +70,7 @@
 		</view>
  class="cu-btn bg-cyan" @tap="uploadOne">上传一张图片</button> -->
 		<view class="beian u-m-t-100">
-			<a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2020045150号-2</a>
+			<a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2020045150号-3</a>
 		</view>
 
 	</view>
