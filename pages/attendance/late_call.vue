@@ -2,24 +2,24 @@
 	<view class="call u-p-t-20">
 		<u-row justify="space-around">
 			<!-- 班级选择 -->
-			<u-col span="3">
+			<u-col span="2">
 				<u-button type="success" size="mini" @click="open()" plain>{{vuex_task['grades'][class_index]}}
 				</u-button>
 			</u-col>
 			<!-- 点名规则 -->
-			<u-col span="5">
+			<u-col span="7">
 				<radio-group @change="select_rule">
 
-					<label class="radio u-m-r-20" v-for="(item,index) in vuex_call_rules" :key="index">
+					<label class="radio radio-label u-m-r-20" v-for="(item,index) in vuex_call_rules" :key="index">
 						<radio :value="str(item.id)" /><text>{{item.name}}</text>
 					</label>
 
 				</radio-group>
 
 			</u-col>
-			<u-col span="3">
-				<u-checkbox v-model="is_check" name="多选">
-					多选
+			<u-col span="2">
+				<u-checkbox class="checkbox" v-model="is_check" name="多选">
+					<span ></span>多选
 				</u-checkbox>
 			</u-col>
 
@@ -279,6 +279,12 @@
 			position: relative;
 			background-clip: padding-box;
 		}
+		.radio-label{
+			.uni-radio-input{
+				widows: 15rpx;
+			}
+		}
+	
 	}
 
 	.class-radio-group {
@@ -322,4 +328,8 @@
 	// 		}
 	// 	}
 	// }
+	
+	.checkbox{
+		font-size: 13rpx;
+	}
 </style>

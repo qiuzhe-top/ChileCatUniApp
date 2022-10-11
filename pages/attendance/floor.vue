@@ -24,6 +24,7 @@
 </template>
 
 <script>
+	import {getIpAddres} from '@/common/http.interceptor.js'
 	export default {
 		data() {
 			return {
@@ -63,8 +64,8 @@
 				// this.websock = new WebSocket("ws://127.0.0.1:8000/ws/room/status")
 				//  this.websock = new WebSocket("ws://django.zhcy.top/ws/room/status")
 				//this.websock = new WebSocket("ws://124.223.43.151:8801/ws/room/status")
-				this.websock = new WebSocket("ws://124.223.43.151:8801/ws/room/status")
-				// this.websock = new WebSocket("ws://127.0.0.1:8888/ws/room/status")
+				// this.websock = new WebSocket("ws://124.223.43.151:8801/ws/room/status")
+				this.websock = new WebSocket("ws://"+getIpAddres()+"/ws/room/status")
 				this.websock.onmessage =  this.message
 				this.websock.onopen = this.onopen;
 				this.websock.onerror = this.onerror;
