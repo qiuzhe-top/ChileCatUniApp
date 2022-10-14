@@ -60,7 +60,7 @@
 			<view>
 				<u-field v-model="role_name" label="原因" placeholder="请填违纪原因">
 				</u-field>
-				<u-field v-model="role_score" label="分值" type="number" maxlength="1" placeholder="请填写对应分值">
+				<u-field v-model="role_score" label="分值" type="number" maxlength="3" placeholder="请填写对应分值">
 				</u-field>
 			</view>
 		</u-modal>

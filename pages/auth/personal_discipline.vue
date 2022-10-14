@@ -1,6 +1,6 @@
 <template>
 	<view class="u-skeleton">
-		<u-notice-bar mode="horizontal" :list="msg" @click="showToast"></u-notice-bar>
+		<!-- <u-notice-bar mode="horizontal" :list="msg" @click="showToast"></u-notice-bar> -->
 		<u-toast ref="uToast" />
 		<u-table class="u-m-t-0 ">
 			<u-tr>
