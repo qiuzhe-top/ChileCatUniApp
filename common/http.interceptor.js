@@ -4,13 +4,13 @@
 
 export function getIpAddres(){
 	if(process.env.NODE_ENV === 'development'){
-		// return "127.0.0.1:8888"
-		return "django.zhcy.top"
+		return "127.0.0.1:8888"
+		// return "django.zhcy.top"
 	}else{
 		// 正式后端
-		return "django.zhcy.top"
+		// return "django.zhcy.top"
 		// 开发测试后端
-		// return '124.223.43.151:8801'
+		return '124.223.43.151:8801'
 	}
 }
 
