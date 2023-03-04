@@ -10,7 +10,7 @@ export function getIpAddres(){
 		// 正式后端
 		// return "django.zhcy.top"
 		// 开发测试后端
-		return '124.223.43.151:8801'
+		return '8.130.73.188:8000'
 	}
 }
 
