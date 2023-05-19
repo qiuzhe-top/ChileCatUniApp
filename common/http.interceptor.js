@@ -1,22 +1,14 @@
 // 这里的vm，就是我们在vue文件里面的this，所以我们能在这里获取vuex的变量，比如存放在里面的token
 // 同时，我们也可以在此使用getApp().globalData，如果你把token放在getApp().globalData的话，也是可以使用的
+import {getConfig} from '@/common/js/common.js'
 
-
-export function getIpAddres(){
-	if(process.env.NODE_ENV === 'development'){
-		return "127.0.0.1:8888"
-		// return "django.zhcy.top"
-	}else{
-		// 正式后端
-		// return "django.zhcy.top"
-		// 开发测试后端
-		return '8.130.73.188:8000'
-	}
+function getIpAddres(){
+	return getConfig().baseURL
 }
 
 
 function getUrl(){
-	return "http://" + getIpAddres()
+	return "http://" + getConfig().baseURL
 }
 
 
@@ -78,5 +70,6 @@ const install = (Vue, vm) => {
 }
 
 export default {
-	install
+	install,
+	getIpAddres
 }

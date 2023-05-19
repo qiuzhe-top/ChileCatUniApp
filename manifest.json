@@ -126,14 +126,17 @@
     "h5" : {
         "template" : "template.h5.html",
         "router" : {
-            "mode" : "history",
-            "base" : ""
+            "mode" : "hash",
+            "base" : "/ChileCat/uni"
         },
         "optimization" : {
             "treeShaking" : {
                 "enable" : true
             }
         },
-        "title" : "智慧彩云"
+        "title" : "智慧彩云",
+        "devServer" : {
+            "https" : false
+        }
     }
 }

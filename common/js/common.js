@@ -19,3 +19,14 @@ export function format_date(date,fmt) {
     return fmt; 
 }       
 
+
+export function getConfig() {
+  let config
+  console.log('获取配置',window.config,process.env.NODE_ENV)
+  if (process.env.NODE_ENV === 'development') {
+    config = window.config.dev
+  } else {
+    config = window.config.pro
+  }
+  return config
+}
